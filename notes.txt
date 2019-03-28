@@ -1,0 +1,131 @@
+npm install pm2 -g
+pm2 start server.js
+pm2 show server
+
+
+
+yum update mysql
+
+
+---------- npm -----------
+npm i react-native-navigation-directions --save
+
+brew install siege
+
+siege -c10 -t1M http://192.168.43.64:6000/clubsDetails
+
+
+ALTER TABLE events
+ADD offertitile CHAR(200),
+
+
+
+-------
+
+     "userid" : "9999",
+     "mobilenumber="9867614466",
+     "emai" : "vichi100@gmail.com",
+     "clubid" : data.clubid,
+     "clubname" : data.clubname,
+     "eventid" : data.eventid,
+     "eventname" : data.eventname,
+     "eventDate" : data.eventDate,
+     "ticketby" : data.ticketby,
+     "offerid" : data.offerid,
+     "tablediscount" : data.tablediscount,
+     "passdiscount" : data.passdiscount,
+     "totalprice" : this.state.totalAmount,
+     "paidamount" : this.state.totalAmountAfterDiscount,
+     "remainingamount" : this.state.remainingamount,
+     "guestlistgirlcount" : this.state.guestlistgirlcount,
+     "guestlistcouplecount" : this.state.guestlistcouplecount,
+     "passcouplecount" : this.state.passcouplecount,
+     "passstagcount" : this.state.passstagcount,
+     "tablenumber" : this.state.tablenumber,
+     "tablepx" : this.state.tablepx,
+     "transactionnumber" : "10000000000000003",//transactionnumber,
+     "paymentstatusmsg" : "success",
+     "bookingconfirm" : "yes",
+     "latlong" : data.latlong,
+
+
+
+     var bookingTimeStamp = moment();// current date
+    var bookingdate = moment().toDate();
+    var qrcode = clubid+"_"+clubname+"_"+eventid+"_"+eventdate+"_"+totalAmount+"_"+bookingTimeStamp;
+    var userid = "9999";
+    var mobilenumber="9867614466";
+    var emai = "vichi100@gmail.com";
+    var clubid = data.clubid;
+    var clubname = data.clubname;
+    var eventid = data.eventid;
+    var eventname = data.eventname;
+    var eventDate = data.eventDate;
+    var ticketby = data.ticketby;
+    var offerid = data.offerid;
+    var tablediscount = data.tablediscount;
+    var passdiscount = data.passdiscount;
+    var totalprice = this.state.totalAmount;
+    var paidamount = this.state.totalAmountAfterDiscount;
+    var remainingamount = this.state.remainingamount;
+    var guestlistgirlcount = this.state.guestlistgirlcount;
+    var guestlistcouplecount = this.state.guestlistcouplecount;
+    var passcouplecount = this.state.passcouplecount;
+    var passstagcount = this.state.passstagcount;
+    var tablenumber = this.state.tablenumber;
+    var tablepx = this.state.tablepx;
+    var transactionnumber = "10000000000000003";//transactionnumber;
+    var paymentstatusmsg = "success";
+    var bookingconfirm = "yes";
+    var latlong = data.latlong;
+
+
+
+//   CREATE TABLE bookingdetails ( bookingid  , userid , mobilenumber VARCHAR(15), email , 
+//  clubid , clubname , eventid , eventname , eventdate , 
+//  ticketby VARCHAR(15), offerid , tablediscount , passdiscount , totalprice , 
+//paidamount , 
+//  remainingamount , guestlistgirlcount , guestlistcouplecount , 
+//passstagcount , 
+//   passcouplecount , tablenumber , tablepx , transactionnumber , 
+//paymentstatusmsg VARCHAR(900), bookingconfirm , 
+//   termncondition VARCHAR(1000), latlong VARCHAR(50), qrcode , bookingdate , 
+//bookingtimestamp );
+
+
+############################################################
+
+
+CREATE TABLE ticketbookingdetails ( req.body.bookingid , req.body.userid , req.body.mobilenumber , 
+req.body.email , 
+ req.body.clubid , req.body.clubname , req.body.eventid , req.body.eventname , req.body.eventdate , 
+ req.body.postedby  ,
+ req.body.offerid , req.body.tablediscountamt , req.body.tablediscountpercentage , 
+ req.body.passdiscountamt , req.body.passdiscountpercentage , 
+ req.body.totalprice , req.body.priceafterdiscount , req.body.paidamount , 
+ req.body.remainingamount , req.body.guestlistgirlcount , req.body.guestlistcouplecount , req.body.passcouplecount , 
+  req.body.passstagcount , req.body.tablenumber ,
+  req.body.tablepx , req.body.transactionnumber , req.body.paymentstatusmsg, req.body.bookingconfirm , 
+  req.body.termncondition , req.body.latlong , req.body.qrcode , req.body.bookingdate , 
+  req.body.bookingtimestamp );
+
+
+
+  #################
+
+  [req.body.bookingid , req.body.userid , req.body.mobilenumber , 
+                    req.body.email , req.body.clubid , req.body.clubname , req.body.eventid , req.body.eventname , req.body.eventdate , 
+                    req.body.postedby  , req.body.offerid , req.body.tablediscountamt , req.body.tablediscountpercentage , 
+                    req.body.passdiscountamt , req.body.passdiscountpercentage , 
+                    req.body.totalprice , req.body.priceafterdiscount , req.body.paidamount , 
+                    req.body.remainingamount , req.body.guestlistgirlcount , req.body.guestlistcouplecount , req.body.passcouplecount , 
+                    req.body.passstagcount , req.body.tablenumber ,
+                    req.body.tablepx , req.body.transactionnumber , req.body.paymentstatusmsg, req.body.bookingconfirm , 
+                    req.body.termncondition , req.body.latlong , req.body.qrcode , req.body.bookingdate , 
+                    req.body.bookingtimestamp]
+
+
+
+
+<Text style={styles.instructions}>* Club's policies are applied on all kinds of bookings</Text>
+ <Text style={styles.instructions}>* Admission rights reserved by clubs</Text>

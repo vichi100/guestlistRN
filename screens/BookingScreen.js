@@ -74,6 +74,7 @@ export default class BookingScreen extends React.Component {
     super(props);
     this.state = {
       calc_height: 0,
+      isLoading: true,
       guestListCoupleAvailableStr:"Couple/Free",
       totalAmount:0,
       remainingamount:0,

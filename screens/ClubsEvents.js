@@ -95,12 +95,12 @@ export default class ClubsEvents extends Component {
     this.props.navigation.navigate('BookingScreen', {data:item});  
 }
 
-goToTableScreen = (clubid, eventDate) => { 
+goToTableScreen = (item) => { 
   // const {navigate} = this.props.navigation;
   // navigate('GuestListScreen'); 
   // console.log("date ; " + eventDate);
   // console.log("clubid ; " + clubid);
-  this.props.navigation.navigate('TableScreen', {eventDate:eventDate, clubid: clubid});  
+  this.props.navigation.navigate('TableScreen', {data:item});   
 }
 
 _showMoreApp = () => {
@@ -289,7 +289,7 @@ _showMoreApp = () => {
                     
                   />
                   
-              <CardButton onPress={() => this.goToTableScreen(item.clubid, item.eventdate)} title="Table" color="#8FD694" />
+              <CardButton onPress={() => this.goToTableScreen(item)} title="Table" color="#8FD694" />
                 </View>
               </View>
            

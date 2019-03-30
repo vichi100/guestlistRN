@@ -129,3 +129,18 @@ req.body.email ,
 
 <Text style={styles.instructions}>* Club's policies are applied on all kinds of bookings</Text>
  <Text style={styles.instructions}>* Admission rights reserved by clubs</Text>
+
+
+
+
+ -----------------
+
+module.exports=createReactClass({
+            render:function(){
+                return(
+                    <div>
+                        <h1> the list  </h1>
+                    </div>   
+                )
+            }
+});

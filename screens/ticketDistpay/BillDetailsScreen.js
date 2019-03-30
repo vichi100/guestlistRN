@@ -46,6 +46,8 @@ export default class BillDetailsScreen extends React.Component {
     var data = this.props.bookingDetailDataForBillDetail;
     return (
       <View style={styles.container}>
+
+      
         <View
           //outer GuestList
           style={[
@@ -216,6 +218,8 @@ export default class BillDetailsScreen extends React.Component {
             </View>
           </View>
         </View>
+      
+      
       </View>
     );
   }

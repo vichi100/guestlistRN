@@ -7,6 +7,20 @@ pm2 show server
 yum update mysql
 
 
+[root@guestlist react-image-mapper]# pm2 start npm start
+[PM2] Starting /usr/bin/npm in fork_mode (1 instance)
+[PM2] Done.
+[PM2] Starting /sbin/start in fork_mode (1 instance)
+[PM2] Done.
+┌────────┬────┬──────┬─────────┬────┬──────┬───────────┐
+│ Name   │ id │ mode │ status  │ ↺  │ cpu  │ memory    │
+├────────┼────┼──────┼─────────┼────┼──────┼───────────┤
+│ npm    │ 1  │ fork │ online  │ 0  │ 150% │ 11.9 MB   │
+│ server │ 0  │ fork │ online  │ 18 │ 0%   │ 29.1 MB   │
+│ start  │ 2  │ fork │ stopped │ 1  │ 0%   │ 0 B       │
+└────────┴────┴──────┴─────────┴────┴──────┴───────────┘
+ Use `pm2 show <id|name>` to get more details about an app
+
 ---------- npm -----------
 npm i react-native-navigation-directions --save
 
@@ -144,3 +158,16 @@ module.exports=createReactClass({
                 )
             }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+260664005963-btpvaslb1iff4bvutc0fr0b01qb948qg.apps.googleusercontent.com

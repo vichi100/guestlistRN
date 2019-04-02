@@ -13,23 +13,28 @@ import {
 
 import { BackHandler } from "react-native";
 
-import GuestListScreen from "./GuestListScreenForBilling";
-import PassScreen from "./PassScreenForBilling";
-import TermnCondition from "./TermnCondtion";
-import BillDetailsScreen from "./BillDetailsScreen";
 
-import QRCodeDisplay from "../qrCode/QRCodeDisplay";
+import TermnCondition from "../screens/ticketDistpay/TermnCondtion";
+import BillDetailsScreen from "../screens/ticketDistpay/BillDetailsScreen";
+
+import QRCodeDisplay from "../screens/qrCode/QRCodeDisplay";
+
 import { bold } from "ansi-colors";
 
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
-import { Ionicons } from "@expo/vector-icons";
-import ClubLocationDisplay from "../gmap/ClubLocationDisplay";
-//https://github.com/laki944/react-native-navigation-directions/blob/master/index.js
-import { OpenMapDirections } from '../gmap/GMapDirectionDrive'
 
-import getDirections from '../gmap/gmapsdirection';  
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import {FontAwesome} from "@expo/vector-icons";
+
+import ClubLocationDisplay from "../screens/gmap/ClubLocationDisplay";
+
+import getDirections from '../screens/gmap/gmapsdirection';
+
+//https://github.com/laki944/react-native-navigation-directions/blob/master/index.js
+import { OpenMapDirections } from '../screens/gmap/GMapDirectionDrive'; 
 
 const window = Dimensions.get("window");
 
@@ -39,7 +44,7 @@ import { StackActions, NavigationActions } from 'react-navigation';
 
 
 
-export default class TicketDisplayFromBooking extends React.Component {
+export default class TicketDisplayFromTableBooking extends React.Component {
 
   static navigationOptions = {
     //To set the header image and title for the current Screen
@@ -146,7 +151,6 @@ export default class TicketDisplayFromBooking extends React.Component {
     getDirections(data)
   }
 
-
   _callShowDirections = (latlong) => {
     //"latlong":"19.106205,72.825633"
     console.log("latlong "+latlong);
@@ -180,71 +184,156 @@ export default class TicketDisplayFromBooking extends React.Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-          {/* <Card>
-          <QRCodeDisplay/>
-       
-          </Card> */}
+         
 
 
 
           <QRCodeDisplay qrCodeData={bookingDetailData}/>
-          <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}>
+          <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}> 
           <ClubLocationDisplay />
           </TouchableOpacity>
 
-          {/* <Text style={styles.title} numberOfLines={2} ellipsizeMode={"tail"}>
-            Sunday, March 9
-          </Text> */}
+          <View
+            //Table Details
+            style={[
+              styles.cardView,
+              {  
+                backgroundColor: this.props.backgroundColor,
+                marginTop: this.props.marginTop,
+                width: this.props.width,
+                height: this.props.height,
+                //margin: 5,
+                ...Platform.select({
+                  ios: {
+                    shadowColor: this.props.shadowColor,
+                    shadowOpacity: this.props.shadowOpacity,
+                    shadowRadius: this.props.shadowRadius,
+                    shadowOffset: {
+                      height: -1,
+                      width: 0
+                    }
+                  },
+                  android: {
+                    elevation: this.props.elevation
+                  }
+                })
+              }
+            ]}
+          >
+            <View style={{ flexDirection: "row", margin: 10 }}>
+            <MaterialCommunityIcons
+                style={styles.icons} 
+                name="table-settings"
+                size={20}
+              />
+              <Text style={{ fontSize: 14 , color:'#4caf50'}}>Table Details</Text>
+            </View>
+  
+            <View
+              
+  
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 10,
+                  marginRight: 10
+                }}
+              >
+                <Text style={styles.instructions}>Table No.</Text>
+                <Text style={styles.instructions}>
+                {bookingDetailData.tablenumber}
+                    </Text>
+              </View>
+            </View>
+  
+            <View
+              //Girls Section
+  
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 10,
+                  marginRight: 10 
+                }}
+              >
+                <Text style={styles.instructions}>Table Size</Text>
+                <Text style={styles.instructions}>
+                {bookingDetailData.tablepx} guests
+                    </Text>
+              </View>
+            </View>
+  
+      
+  
+
+  
+          </View>
 
           
 
-          <GuestListScreen bookingDetailDataForGuestList={bookingDetailData}/>
-          <PassScreen bookingDetailDataForPass={bookingDetailData}/>
+           
           <BillDetailsScreen bookingDetailDataForBillDetail={bookingDetailData}/>
           <TermnCondition/>
           
 
-          {/* <View
-            style={{
-              flex: 1,
-              justifyContent: "center", 
-              flexDirection: "row"
-            }}
-          >
-            <View style={{ flexDirection: "row" }}>
-              <AntDesign
-                style={styles.icons}
-                name="warning"
-                size={20}
-                color="tomato"
-              />
-              <Text style={{ fontSize: 14 }}>
-                Be advised to carry age proofe
-              </Text>
-              
-            </View>
-          </View> */}
-          {/* <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              flexDirection: "row"
-            }}
-          >
-            <View style={{ flexDirection: "row", margin: 5 }}>
-              <SimpleLineIcons
-                style={styles.icons}
-                name="info"
-                size={20}
-                color="tomato"
-              />
-              <Text style={{ fontSize: 14 }}>
-                Admission rights reserved by the club
-              </Text>
-            </View>
-          </View> */}
-
-          {/* <TableScreen></TableScreen> */}
         </ScrollView>
 
         <TouchableOpacity onPress={()=>this.onBack()} style ={{
@@ -337,5 +426,16 @@ const styles = StyleSheet.create({
   rowText: {
     flex: 4,
     flexDirection: "column"
-  }
+  },
+  icons: {
+    width: 30,
+    height: 30,
+    color:'#0091ea'
+    //borderRadius: 30, 
+    //borderWidth: 2, 
+    //borderColor: 'rgb(170, 207, 202)'
+},
+instructions:{
+    color: '#e0e0e0'
+},
 });

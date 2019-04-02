@@ -33,18 +33,32 @@ const mycenter = (Dimensions.get('window').height)/2;
 var mydatasource = []
 var isDataChanged = false
 
-const mydata = (data, date) => data.filter( (item) => {
-  // console.log("Date : "+date.format('DD/MMM/YYYY'))
-  // console.log("Data : "+JSON.stringify(data))
-  isDataChanged = true
-  return item.date === date.format('DD/MMM/YYYY')
-})
 
 
+let clubDetailData;
 
 export default class EventsOfOneClub extends Component {  
 
-  
+  static navigationOptions = {
+    //To set the header image and title for the current Screen
+    title: 'Club',
+    headerBackTitle: null,
+    headerLeft: null,
+    headerStyle: { 
+      backgroundColor: '#263238',
+      //Background Color of Navigation Bar
+    },
+
+    headerTitleStyle: {
+      justifyContent: 'center', 
+      color:'#ffffff',
+      textAlign:"left", 
+        flex:1
+  },
+
+    headerTintColor: '#606070',
+    //Text Color of Navigation Bar
+  };
 
   
   constructor(props) {  
@@ -73,24 +87,24 @@ export default class EventsOfOneClub extends Component {
   onSelectDate = (date) => {
     console.log("date ; " + date, 'day');
     console.log(date.format('DD/MMM/YYYY')); 
-    this.setState({ dataSource: mydata(mydatasource, date) }); 
+    this.setState({ dataSource: mydata(mydatasource, date) });  
   };
 
   
-  goToGuestListScreen = (clubid, eventDate) => { 
+  goToGuestListScreen = (item) => { 
     // const {navigate} = this.props.navigation;
     // navigate('GuestListScreen'); 
-    console.log("date ; " + eventDate);
-    console.log("clubid ; " + clubid);
-    this.props.navigation.navigate('BookingScreen', {eventDate:eventDate, clubid: clubid});  
+    console.log("date ; " + item.eventDate);
+    console.log("clubid ; " + item.clubid);
+    this.props.navigation.navigate('BookingScreen', {data:item});  
 }
 
-goToTableScreen = (clubid, eventDate) => { 
+goToTableScreen = (item) => { 
   // const {navigate} = this.props.navigation;
   // navigate('GuestListScreen'); 
-  console.log("date ; " + eventDate);
-  console.log("clubid ; " + clubid);
-  this.props.navigation.navigate('TableScreen', {eventDate:eventDate, clubid: clubid});  
+  // console.log("date ; " + eventDate);
+  // console.log("clubid ; " + clubid);
+  this.props.navigation.navigate('TableScreen', {data:item});  
 }
 
 _showMoreApp = () => {
@@ -102,6 +116,9 @@ _showMoreApp = () => {
 
     
     
+
+    const { navigation } = this.props;  
+    clubDetailData = navigation.getParam("clubDetailData");
     
     if (this.state.isLoading) {
       return ( 
@@ -232,7 +249,7 @@ _showMoreApp = () => {
                 >
                   <Ionicons style={styles.icons} name="ios-list" size={15} />
                   <CardButton
-                    onPress={() => this.goToGuestListScreen(item.clubid, item.eventdate)}
+                    onPress={() => this.goToGuestListScreen(item)}
                     title="GuestList"
                     color="blue"
                   />
@@ -249,7 +266,7 @@ _showMoreApp = () => {
                   }}
                 >
                   <FontAwesome style={styles.icons} name="ticket" size={15} />  
-                  <CardButton onPress={() => this.goToGuestListScreen(item.clubid, item.eventdate)} title="Pass" color="blue" />
+                  <CardButton onPress={() => this.goToGuestListScreen(item)} title="Pass" color="blue" />
                 </View>
                 <View
                   style={{
@@ -269,13 +286,13 @@ _showMoreApp = () => {
                     
                   />
                   
-              <CardButton onPress={() => this.goToTableScreen(item.clubid, item.eventdate)} title="Table" color="#8FD694" />
+              <CardButton onPress={() => this.goToTableScreen(item)} title="Table" color="#8FD694" />
                 </View>
               </View>
            
 
               
-          <MaterialCommunityIcons
+          <MaterialCommunityIcons 
           onPress={() => this.pressedLike()}
             style={styles.heartwhite}
             name="heart-outline"

@@ -51,24 +51,25 @@ export default class ClubsListScreen extends Component {
     return fetch("http://192.168.43.64:6000/clubsDetails?city=mumbai")
       .then(response => response.json())
       .then(response => { 
-        //console.log("data : " + response);
+        console.log("clubs list data : " + JSON.stringify(response)); 
         this.setState({ dataSource: response, isLoading: false });
       })
       .catch(error => {
-        console.error(error);
+        console.error(error); 
       });
   }
 
 
 
 
-  _getEventsOfOneClub = (clubid) => {
+  _getEventsOfOneClub = (item) => {
     // const {navigate} = this.props.navigation;
     // navigate('GuestListScreen');
     // console.log("date ; " + eventDate);
-    console.log("clubid ; " + clubid);
+    console.log("clubid ; " + item.clubid);
     this.props.navigation.navigate("EventsOfOneClub", {
-      clubid: clubid
+      clubDetailData: item,
+
     });
   };
 
@@ -91,7 +92,7 @@ export default class ClubsListScreen extends Component {
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => this._getEventsOfOneClub(item.clubid)}>
+            <TouchableOpacity onPress={() => this._getEventsOfOneClub(item)}>
             {/* <CardOverlay> */}
               <CardImageOverlay
                 source={{
@@ -103,6 +104,7 @@ export default class ClubsListScreen extends Component {
                 }}
                 title={item.clubname}
                 location={item.location}
+                latlong = {item.latlong}
                 //eventDate={item.date}
                 //title="Above all i am here"
               />

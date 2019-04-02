@@ -52,7 +52,12 @@ VALUES
 (	'1000006' ,'Rodeo Drive',	'Saturday Night',	'A night that will be marked in your memories because we are setting up the craziest weekend vibes for you',	'29/Mar/2019','/images/club/rodeodriveandherieast/event/saturday.jpg', '19.109745, 72.876034', 'guestlist');
 
 
-
+update events set eventdate='31/Mar/2019' where eventdate = '26/Mar/2019';
+update events set eventdate='01/Apr/2019' where eventdate = '27/Mar/2019';
+update events set eventdate='02/Apr/2019' where eventdate = '28/Mar/2019';
+update events set eventdate='03/Apr/2019' where eventdate = '29/Mar/2019';
+update events set eventdate='04/Apr/2019' where eventdate = '30/Mar/2019';
+update events set eventdate='05/Apr/2019' where eventdate = '31/Mar/2019';
 
 
  tickets:

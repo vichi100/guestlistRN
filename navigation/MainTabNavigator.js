@@ -24,6 +24,7 @@ import Icon from "@expo/vector-icons/FontAwesome";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import Profile from "../screens/profile";
+import MyProfile from "../screens/MyProfile";
 import Search from  "../screens/SearchScreen";
 import screen2 from "../screens/screen2";
 
@@ -184,7 +185,7 @@ SettingsStack.navigationOptions = {
 };
 
 const ProfileStack = createStackNavigator({
-  Profiles: Profile
+  Profiles: MyProfile
 });
 
 ProfileStack.navigationOptions = {
@@ -217,7 +218,7 @@ const Bottom = createBottomTabNavigator({
   // }
 });
 
-export default createStackNavigator({
+export default createStackNavigator({ 
   tabs: Bottom,
     Search: {
     screen: Search,

@@ -11,6 +11,7 @@ import {
   ImageBackground,
   WebView
 } from "react-native";
+import moment from 'moment';
 //import WebViewPostMessage from './react-native-web-view'
 //import { WebView } from 'react-native-webview';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -19,7 +20,7 @@ import NumericInput from "react-native-numeric-input";
 import { create, PREDEF_RES } from "react-native-pixel-perfect";
 import TableDetailsnPrice from "./TableDetailsnPrice"
 
-
+let eventData;
 
 export default class TableScreen extends React.Component {
 
@@ -48,7 +49,7 @@ export default class TableScreen extends React.Component {
     shadowColor: 'rgb(50,50,50)',
     shadowOpacity: 0.5,
     shadowRadius: 5,
-    elevation: 3
+    elevation: 3 
   };
 
   constructor(props) {
@@ -57,13 +58,13 @@ export default class TableScreen extends React.Component {
       calc_height: 0,
       tableNumber: 0,
       dataSource:[],
-      tableNumber:'',
+      tableNumber:'', 
       tablePrice:'',
       tableSize: '',
       tableDetails:'',
       tablelayoutURL: '',
       tableData:{}
-    };
+    }; 
   } 
 
   componentDidMount() { 
@@ -86,6 +87,79 @@ export default class TableScreen extends React.Component {
       }); 
   }
 
+
+
+bookTicket=() =>{
+  console.log("vichi");
+  var bookingTimeStamp = moment().valueOf();
+  var postData = {
+    "bookingid": bookingTimeStamp,
+    "userid" : "9999",
+    "mobilenumber":"9867614466",
+    "email" : "vichi100@gmail.com",
+    "clubid" : eventData.clubid, 
+    "clubname" : eventData.clubname,
+    "eventid" : eventData.eventid,
+    "eventname" : eventData.eventname,
+    "eventdate" : eventData.eventdate,
+    "imageurl": eventData.imageurl,
+    "postedby" : eventData.postedby,
+    "offerid" : eventData.offerid, 
+    "tablediscountamt" : "",//eventData.tablediscount,
+    "tablediscountpercentage" : "",
+    "passdiscountamt" : "",//eventData.passdiscount,
+    "passdiscountpercentage": "", 
+    "totalprice" : this.state.tableData.tablePrice,
+    "priceafterdiscount": this.state.totalAmount,
+    "paidamount" : this.state.tableData.bookingAmount,//this.state.totalAmountAfterDiscount,
+    "remainingamount" : this.state.tableData.remainingAmount,
+    "guestlistgirlcount" : this.state.guestlistgirlcount,
+    "guestlistcouplecount" : this.state.guestlistcouplecount,
+    "passcouplecount" : this.state.passcouplecount,
+    "passstagcount" : this.state.passstagcount,
+    "tablenumber" : this.state.tableData.tableNumber,
+    "tablepx" : this.state.tableData.tableSize,
+    "transactionnumber" : "10000000000000003",//transactionnumber,
+    "paymentstatusmsg" : "success",
+    "bookingconfirm" : "yes",
+    "termncondition": "", 
+    "latlong" : eventData.latlong,
+    "qrcode" : eventData.clubid+"_"+eventData.clubname+"_"+eventData.eventid+"_"+eventData.eventdate+"_"
+              +this.state.totalAmount+"_"+bookingTimeStamp,
+    "bookingdate" : moment().toDate(),
+    "bookingtimestamp" : bookingTimeStamp,// current date and time
+
+  }
+  
+  //https://stackoverflow.com/questions/43447106/how-to-send-data-to-server-and-fetched-response-using-react-native-application
+
+  // SEND BOOKING DETAILS TO SERVER -  START
+  return fetch("http://192.168.43.64:6000/bookTicket",{
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body:  JSON.stringify(postData)
+  })
+  .then(response => response.json()) 
+  .then(response => {
+  console.log("data : " + response); 
+    this.setState({ dataSource: response, isLoading: false });
+    this.props.navigation.navigate('TicketDisplayFromTableBooking', { "postData":postData }); 
+  console.log("data send to server");
+  }) 
+  .catch(error => {
+    console.error(error); 
+  }); 
+  // SEND BOOKING DETAILS TO SERVER FINSH -END
+  
+
+}  
+
+
+
+
   onMessage(m) {
     //alert(m.nativeEvent.data);
     console.log(m.nativeEvent.data);
@@ -103,8 +177,8 @@ export default class TableScreen extends React.Component {
   _onShouldStartLoadWithRequest = (e) =>{
     //"url": "http://199.180.133.121/imagemap/layouthtml/1000004-13Mar2019.html#BJ-1000004-C1",
     console.log("vichi "+e.url);
-    var urlArr = e.url.split('#');
-    var clickedTableid = urlArr[1];
+    var urlArr = e.url.split('#'); 
+    var clickedTableid = urlArr[1];  
     
     if(this.state.dataSource && this.state.dataSource.length > 0){
       //console.log("this.state.dataSource" + this.state.dataSource);
@@ -113,20 +187,36 @@ export default class TableScreen extends React.Component {
         let tableid = this.state.dataSource[keyName].tableid;
         //console.log("clickedTableid "+clickedTableid)
         if(clickedTableid != null && clickedTableid == tableid){
-          var tableNumber = this.state.dataSource[keyName].tablenumber;
+          var tableNumber = this.state.dataSource[keyName].tablenumber; 
           //console.log("tableNumber " + tableNumber)
           this.setState({tableNumber:tableNumber});
-          var tablePrice = this.state.dataSource[keyName].cost;
+          var tablePriceStr = this.state.dataSource[keyName].cost;
           this.setState({tablePrice:tablePrice});
           var tableSize = this.state.dataSource[keyName].size;
           this.setState({tableSize:tableSize});
-          var tableDetails = this.state.dataSource[keyName].details;
+          var tableDetails = this.state.dataSource[keyName].details; 
           this.setState({tableDetails:tableDetails});
+          var bookingAmount = 0;
+          var tablePrice = parseInt(tablePriceStr);  
+          if(tablePrice <= 5000){ 
+            bookingAmount = 2000;
+          }else if(tablePrice <= 10000){
+            bookingAmount = 3000;
+          }else if(tablePrice <= 20000){
+            bookingAmount = 5000
+          }else if(tablePrice <= 35000){ 
+            bookingAmount = 7000;
+          }else{
+            bookingAmount = 10000;
+          }
+          var remainingAmount = tablePrice -bookingAmount;
           var tableData = {
             "tableNumber": this.state.dataSource[keyName].tablenumber,
             "tablePrice": this.state.dataSource[keyName].cost,
             "tableSize": this.state.dataSource[keyName].size,
             "tableDetails": this.state.dataSource[keyName].details,
+            "bookingAmount": bookingAmount,
+            "remainingAmount":remainingAmount,
           }
 
           this.setState({tableData:tableData});
@@ -144,6 +234,12 @@ export default class TableScreen extends React.Component {
 
 
   render() {
+    setTimeout(() => { 
+      
+    }, 200);
+    const { navigation } = this.props;  
+    eventData = navigation.getParam("data");
+    console.log("data from events screen :"+ JSON.stringify(eventData));
     return (
       <View style={styles.container}>
       <ScrollView>
@@ -225,14 +321,16 @@ export default class TableScreen extends React.Component {
               }}  
             > 
                <WebView
-              useWebKit={true}
+              useWebKit={true} 
               //style={{ height: 200 }} 
               ////http://199.180.133.121/imagemap/layouthtml/1000000-21Mar2019.html
-              source={{ uri: "http://199.180.133.121/imagemap/layouthtml/1000001-13Mar2019.html" }}
+              //source={{ uri: "http://199.180.133.121/imagemap/layouthtml/1000001-13Mar2019.html" }}
+              source={{ uri: "http://199.180.133.121:8000" }}
+              //source={{ uri: "http://192.168.43.64:.html" }}
               //source={ require('../react-image-mapper/index.html' )} 
               javaScriptEnabled={true}
               domStorageEnabled={true} 
-              //scalesPageToFit={true}
+              scalesPageToFit={true}
               scrollEnabled={false}
               automaticallyAdjustContentInsets={true}
               injectedJavaScript={this.state.cookie} 
@@ -256,452 +354,9 @@ export default class TableScreen extends React.Component {
         
         <TableDetailsnPrice tableData = {this.state.tableData}/> 
 
-{/* 
-        <View
-          //outer GuestList
-          style={[
-            styles.cardView,
-            {  
-              backgroundColor: this.props.backgroundColor,
-              marginTop: this.props.marginTop,
-              width: this.props.width,
-              height: this.props.height,
-              //margin: 5,
-              ...Platform.select({
-                ios: {
-                  shadowColor: this.props.shadowColor,
-                  shadowOpacity: this.props.shadowOpacity,
-                  shadowRadius: this.props.shadowRadius,
-                  shadowOffset: {
-                    height: -1,
-                    width: 0
-                  }
-                },
-                android: {
-                  elevation: this.props.elevation
-                }
-              })
-            }
-          ]}
-        >
-          <View style={{ flexDirection: "row", margin: 10 }}>
-          <MaterialCommunityIcons
-              style={styles.icons} 
-              name="table-plus"
-              size={20}
-            />
-            <Text style={{ fontSize: 14 , color:'#4caf50'}}>Table Details</Text>
-          </View>
 
-          <View
-            //Girls Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Table No.</Text>
-              <Text style={styles.instructions}>
-              {this.state.tableNumber}
-                  </Text>
-            </View>
-          </View>
-
-          <View
-            //Girls Section 
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Table Size</Text>
-              <Text style={styles.instructions}>
-              Remaining Rs
-                  </Text>
-            </View>
-          </View>
-
-          <View
-            //Couple Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Table Price</Text>
-              <Text style={styles.instructions}>
-              Total Rs
-                  </Text>
-            </View>
-          </View>
-
-          <View
-            //Couple Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Table Price</Text>
-              <Text style={styles.instructions}>
-              Total Rs
-                  </Text>
-            </View>
-          </View>
-
-        </View>
       
-  
-
-
-        <View
-          //outer GuestList
-          style={[
-            styles.cardView,
-            {  
-              backgroundColor: this.props.backgroundColor,
-              marginTop: this.props.marginTop,
-              width: this.props.width,
-              height: this.props.height,
-              //margin: 5,
-              ...Platform.select({
-                ios: {
-                  shadowColor: this.props.shadowColor,
-                  shadowOpacity: this.props.shadowOpacity,
-                  shadowRadius: this.props.shadowRadius,
-                  shadowOffset: {
-                    height: -1,
-                    width: 0
-                  }
-                },
-                android: {
-                  elevation: this.props.elevation
-                }
-              })
-            }
-          ]}
-        >
-          <View style={{ flexDirection: "row", margin: 10 }}>
-            <FontAwesome style={styles.icons} name="rupee" size={20} />
-            <Text style={{ fontSize: 14 , color:'#4caf50'}}>Payment Details</Text>
-          </View>
-
-          <View
-            //Girls Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Booking Amount</Text>
-              <Text style={styles.instructions}>
-              Amount Rs
-                  </Text>
-            </View>
-          </View>
-
-          <View
-            //Girls Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Remaining Amount</Text>
-              <Text style={styles.instructions}>
-              Remaining Rs
-                  </Text>
-            </View>
-          </View>
-
-          <View
-            //Couple Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>Total Amount</Text>
-              <Text style={styles.instructions}>
-              Total Rs
-                  </Text>
-            </View>
-          </View>
-
-          <View
-            //Couple Section
-
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                marginTop: 5,
-                marginBottom: 5,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              <Text style={styles.instructions}>All amount is with full cover charge</Text>
-              <Text style={styles.instructions}>
-              Total Rs
-                  </Text> 
-            </View>
-          </View>
-
-        </View>
-       */}
-      
-</ScrollView>
+</ScrollView> 
 
 <TouchableOpacity onPress={()=>this.bookTicket()} style ={{
                     height: 50,

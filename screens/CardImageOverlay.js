@@ -13,6 +13,8 @@ import moment from "moment";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+//https://github.com/laki944/react-native-navigation-directions/blob/master/index.js
+import { OpenMapDirections } from '../screens/gmap/GMapDirectionDrive'; 
 
 const mywidth = Dimensions.get("window").width;
 const myheight = Dimensions.get('window').height;
@@ -29,6 +31,30 @@ export default class CardImage extends Component {
     console.log("hi vihi")
     this.setState({ liked: !this.state.liked });
   };
+
+  _callShowDirections = (latlong) => {
+    //"latlong":"19.106205,72.825633"
+    console.log("latlong "+latlong);
+    var latlongArr = latlong.split(',');
+    console.log("latlong "+parseFloat(latlongArr[0]));
+    console.log("latlong "+latlongArr[1]);
+    const startPoint = {
+      longitude: -8.945406,
+      latitude: 38.575078
+    } 
+
+    const endPoint = { 
+      longitude: parseFloat(latlongArr[1]),
+      latitude: parseFloat(latlongArr[0]),
+    }
+
+		const transportPlan = 'd';
+
+    OpenMapDirections(null, endPoint, transportPlan).then(res => {
+      console.log(res)
+    });
+  }
+
   render() {
     const newStyle = this.props.style || {};
     if (this.props.eventDate != null) {
@@ -116,7 +142,7 @@ export default class CardImage extends Component {
                     />
           </TouchableOpacity> */}
           
-              <MaterialIcons onPress={() => this.pressedLike()} style={styles.near_me} name="near-me" size={30} />
+              <MaterialIcons onPress={() => this._callShowDirections(this.props.latlong)} style={styles.near_me} name="near-me" size={30} />
               
           <MaterialCommunityIcons
           onPress={() => this.pressedLike()}

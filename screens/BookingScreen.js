@@ -20,10 +20,14 @@ import GuestListScreen from "./GuestListScreen";
 import PassScreen from "./PassScreen";
 import TableScreen from "./TableScreen";
 import { bold } from "ansi-colors";
-import BillDetailsScreen from "../screens/BillDetailsScreenForBooking"
-import TicketDisplayScreen from "../screens/ticketDistpay/TicketDisplayScreen"
+import BillDetailsScreen from "../screens/BillDetailsScreenForBooking";
+import TicketDisplayScreen from "../screens/ticketDistpay/TicketDisplayScreen";
+
+import Login from "../screens/login/Login";
+
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {AsyncStorage} from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import {FontAwesome} from "@expo/vector-icons";
 import NumericInput from '../screens/numericInput/NumericInput';
@@ -31,6 +35,9 @@ import { create, PREDEF_RES } from 'react-native-pixel-perfect';
 const calcSize = create(PREDEF_RES.iphone7.px)
 
 const window = Dimensions.get("window");
+
+var email ;
+var mobile;  
 
 let w = window.Width;
 let eventData;
@@ -132,8 +139,30 @@ export default class BookingScreen extends React.Component {
     this.setState({guestlistcouplecount: value.guestlistcouplecount}  )
   }  
 
+  //fetch data from AsyncStorage
+  _retrieveData = async () => {
+    try {
+       email = await AsyncStorage.getItem('email');
+       mobile = await AsyncStorage.getItem('mobile');
+      if (email !== null && mobile !== null) {
+        // We have data!!
+        console.log(email + ": " +mobile);
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
 
-bookTicket=() =>{
+
+  bookTicket=() =>{
+    // check if already logged in if not ask for login
+    this._retrieveData();
+    if (email == null && mobile == null) {
+      // go to login form
+      console.log(email + ": " +mobile);
+      this.props.navigation.navigate('LoginScreen');// move to login page
+      
+    }
     console.log("vichi");
     var bookingTimeStamp = moment().valueOf();
     var postData = {

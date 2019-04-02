@@ -25,6 +25,7 @@ import ClubsEvents from "../screens/ClubsEvents";
 
 import BookingScreen from "../screens/BookingScreen";
 import TableScreen from "../screens/TableScreen";
+import TicketDisplayFromTableBooking from "../screens/TicketDisplayFromTableBooking";
 
 // import screen2 from "../screens/screen2";
 // import screen3 from "../screens/screen3";
@@ -32,7 +33,7 @@ import TableScreen from "../screens/TableScreen";
 
 // import MyHomeScreen from "../screens/MyHomeScreen";
 // import OtherScreen from "../screens/OtherScreen";
-
+import MyProfile from "../screens/MyProfile";
 
 ////////
 
@@ -54,6 +55,7 @@ import DJProfile from "../screens/DJProfile";
 import Search from  "../screens/SearchScreen";
 import EventsOfOneClub from '../screens/EventsOfOneClub'
 import CardImageOverlayEvents from '../screens/CardImageOverlayEvents';
+import Login from "../screens/login/Login";
 // import screen2 from "../screens/screen2";
 
 // import MyHomeScreen from "../screens/MyHomeScreen";
@@ -234,7 +236,7 @@ PassesStack.navigationOptions = {
 };
 
 const ProfileStack = createStackNavigator({
-  Profiles: Profile
+  Profiles: Profile 
 });
 
 ProfileStack.navigationOptions = {
@@ -247,7 +249,7 @@ ProfileStack.navigationOptions = {
       focused={focused}
       name={Platform.OS === "ios" ? "md-finger-print" : "md-finger-print"}
     />
-  ),
+  ), 
   // tabBarOptions: {
   //   activeTintColor: 'tomato',
   //   inactiveTintColor: 'gray',
@@ -296,10 +298,12 @@ const AppStack = createStackNavigator({
   ClubsEvents: ClubsEvents,
   DJProfile:DJProfile,
   EventsOfOneClub: EventsOfOneClub,
-  CardImageOverlayEvents: CardImageOverlayEvents,
+  CardImageOverlayEvents: CardImageOverlayEvents, 
   TicketDisplayScreen: TicketDisplayScreen,  
   TicketDisplayFromBooking : TicketDisplayFromBooking,
+  TicketDisplayFromTableBooking: TicketDisplayFromTableBooking,
   BookingScreen: BookingScreen,
+  LoginScreen:Login,
   TableScreen: TableScreen,
   GuestListScreen: GuestListScreen,
   PassScreen: PassScreen

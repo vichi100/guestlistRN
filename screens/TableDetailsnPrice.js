@@ -41,20 +41,7 @@ export default class TableDetailsnPrice extends React.Component {
 
   render() {
     var tableData = this.props.tableData;
-    var bookingAmount = 0;
-    var tablePrice = parseInt(tableData.tablePrice);
-    if(tablePrice <= 5000){
-      bookingAmount = 2000;
-    }else if(tablePrice <= 10000){
-      bookingAmount = 3000;
-    }else if(tablePrice <= 20000){
-      bookingAmount = 5000
-    }else if(tablePrice <= 35000){ 
-      bookingAmount = 7000;
-    }else{
-      bookingAmount = 10000;
-    }
-    var remainingAmount = tablePrice -bookingAmount;
+    
     console.log(JSON.stringify(tableData));
     //if(false){
       if(Object.entries(tableData).length === 0 && tableData.constructor === Object){
@@ -238,7 +225,7 @@ export default class TableDetailsnPrice extends React.Component {
               >
                 <Text style={styles.instructions}>Table Size</Text>
                 <Text style={styles.instructions}>
-                {tableData.tableSize}
+                {tableData.tableSize} guests
                     </Text>
               </View>
             </View>
@@ -413,7 +400,7 @@ export default class TableDetailsnPrice extends React.Component {
               >
                 <Text style={styles.instructions}>Booking Amount</Text>
                 <Text style={styles.instructions}>
-                {bookingAmount} Rs
+                {tableData.bookingAmount} Rs
                     </Text>
               </View>
             </View>
@@ -459,7 +446,7 @@ export default class TableDetailsnPrice extends React.Component {
               >
                 <Text style={styles.instructions}>Remaining Amount</Text>
                 <Text style={styles.instructions}>
-                {remainingAmount} Rs
+                {tableData.remainingAmount} Rs
                     </Text>
               </View>
             </View>
@@ -505,7 +492,7 @@ export default class TableDetailsnPrice extends React.Component {
               >
                 <Text style={styles.instructions}>Total Amount</Text>
                 <Text style={styles.instructions}>
-                {tablePrice} Rs
+                {tableData.tablePrice} Rs
                     </Text>
               </View>
             </View>
@@ -549,10 +536,10 @@ export default class TableDetailsnPrice extends React.Component {
                   marginRight: 10
                 }}
               >
-                <Text style={styles.instructions}>All amount is with full cover charge</Text>
-                {/* <Text style={styles.instructions}>
-                Total Rs
-                    </Text> */} 
+                {/* <Text style={styles.instructions}>All amount is with full cover charge</Text> */}
+                <Text style={styles.instructions}>
+                All amount is with full cover charge
+                    </Text> 
               </View>
             </View>
   

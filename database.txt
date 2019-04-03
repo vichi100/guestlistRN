@@ -135,7 +135,8 @@ VALUES
 ();
 
  customer:
- userid, email, mobilenumber, 
+ CREATE TABLE customer (userid VARCHAR(100) PRIMARY KEY, customername VARCHAR(100), email VARCHAR(100), mobilenumber VARCHAR(15), firebasetoken VARCHAR(100));
+ userid, email, mobilenumber, firebasetoken
 
  followers:
  userid, clubid, djid, prid

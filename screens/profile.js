@@ -19,6 +19,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons"; 
 import OfficeLocationDisplay from "../screens/gmap/OfficeLocationDisplay";
 import { OpenMapDirections } from '../screens/gmap/GMapDirectionDrive';
+import Dialog from "react-native-dialog";
+import { AsyncStorage } from "react-native";
 
 
 var mePic = require('../images/sebas.jpg');
@@ -58,8 +60,19 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
   
-    this.state = {};
+    this.state = {
+      mobile:null,
+      name: null,
+      photoUrl: null,
+      dialogVisible: false,
+      newMobile:null,
+    };
   }
+
+  componentDidMount() { 
+    this._retrieveData();
+  }
+
   _callShowDirections = () => {
     //"latlong":19.074103, 72.869604
     
@@ -76,9 +89,82 @@ export default class Profile extends Component {
     });
   }
 
+  //fetch data from AsyncStorage
+  _retrieveData = async () => { 
+    if(! this.state.dialogVisible){ 
+      console.log("in profile _retrieveData");  
+      try {
+        //email = await AsyncStorage.getItem('email');
+        var mobilex = await AsyncStorage.getItem("mobile");
+        console.log("get mobile"+ mobilex);
+        var name = await AsyncStorage.getItem("name");
+        var photoUrl = await AsyncStorage.getItem("photoUrl");
+        console.log("get name"+ name);
+        if (mobilex !== null) {
+          // We have data!!
+          console.log(mobilex); 
+          this.setState({ mobile: mobilex,
+            name: name,
+            photoUrl: photoUrl});
+          
+        }
+      } catch (error) {
+        // Error retrieving data
+        console.log("Error retrieving data "+ error);
+      }
+    }
+ 
+  };
+
+  setMobile = text => {
+    console.log(text);
+    var myMob = text;
+    console.log("myMob : " + myMob);
+    this.setState({ newMobile: myMob });
+    // var lastChar = myMob[myMob.length - 1];
+    // this.setState({ modiMob: myMob });
+  };
+
+  editMobile = () => { 
+    this.setState({ dialogVisible: true });
+  };
+  handleCancel = () => {
+    this.setState({ dialogVisible: false, mobile: null });
+  };
+
+  handleOk = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    console.log("new mobile in OK : " + this.state.newMobile);
+    this.setState({ dialogVisible: false ,
+    mobile: this.state.newMobile});
+    this._storeDataMobile(this.state.mobile);
+    console.log("new mobile in OK : " + this.state.newMobile);
+    setTimeout(() => { 
+      
+    }, 200);
+  };
+
+  _storeDataMobile = async (mobile) => {
+    try {
+      await AsyncStorage.setItem("mobile", mobile);
+      console.log("store mobile"+ mobile);
+      setTimeout(() => { 
+      
+      }, 200);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
 
   render() {
+    
+    setTimeout(() => { 
+      
+    }, 200);
 
+    console.log("in profile");   
     return (
      <View> 
 
@@ -99,10 +185,19 @@ export default class Profile extends Component {
             <Image
               style={styles.userImage}
               source={{
-                uri: "http://199.180.133.121:3030"+'/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg',
+                // uri: "http://199.180.133.121:3030"+'/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg',
+                uri: this.state.photoUrl  
               }}
             />
-            <Text style={styles.userNameText}>name</Text>
+            <MaterialCommunityIcons
+          onPress={() => this.editMobile()}
+            style={styles.heartwhite}
+            name="account-edit"
+            size={30}
+          />
+           
+            <Text style={styles.userNameText}>{this.state.name}</Text>
+            <Text style={styles.userMobileText}>+91 {this.state.mobile}</Text>
             </View>
         </ImageBackground>
       </View>
@@ -448,6 +543,34 @@ Bandra Kurla Complex, Mumbai 400098</Text>
 
 
       </ScrollView>
+
+      <Dialog.Container visible={this.state.dialogVisible}>
+          <Dialog.Title>Enter Mobile Number</Dialog.Title>
+          <Dialog.Description>
+            Mobile number is required by bank and payment getway.
+          </Dialog.Description>
+
+          <Dialog.Input
+            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+            onChangeText={text => this.setMobile(text)}
+            keyboardType="phone-pad"
+            maxLength={10}
+            autoCorrect={false}
+            //value={changeText}
+            textAlign={"center"}
+            autoFocus={true}
+          />
+          <Dialog.Button
+            style={{ fontFamily: "sans-serif" }}
+            label="Cancel"
+            onPress={this.handleCancel}
+          />
+          <Dialog.Button
+            style={{ fontFamily: "sans-serif" }}
+            label="OK"
+            onPress={() => this.handleOk()}
+          />
+        </Dialog.Container>
      
     </View>
     );
@@ -465,6 +588,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
 
+  },
+  heartwhite: {
+    margin: 10,
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    width: 30,
+    height: 30,
+    color: "#ffffff"
   },
 
   headerBackgroundImage: {
@@ -557,7 +689,15 @@ const styles = StyleSheet.create({
   },
   userNameText: {
     color: '#FFF',
-    fontSize: 22,
+    fontSize: 20,
+    //fontWeight: 'bold',
+    paddingBottom: 8,
+    textAlign: 'center',
+  }, 
+
+  userMobileText: {
+    color: '#FFF',
+    fontSize: 14,
     //fontWeight: 'bold',
     paddingBottom: 8,
     textAlign: 'center',

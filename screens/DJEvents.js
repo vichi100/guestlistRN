@@ -64,12 +64,12 @@ export default class DJEvents extends Component {
       }); 
   }
   
-  goToGuestListScreen = (clubid, eventDate) => { 
+  goToGuestListScreen = (item) => {  
     // const {navigate} = this.props.navigation;
     // navigate('GuestListScreen'); 
     // console.log("date ; " + eventDate);
     // console.log("clubid ; " + clubid);
-    this.props.navigation.navigate('BookingScreen', {eventDate:eventDate, clubid: clubid});  
+    this.props.navigation.navigate('BookingScreen', {data:item});  
 }
 
 goToTableScreen = (clubid, eventDate) => { 
@@ -77,7 +77,7 @@ goToTableScreen = (clubid, eventDate) => {
   // navigate('GuestListScreen'); 
 //   console.log("date ; " + eventDate);
 //   console.log("clubid ; " + clubid);
-  this.props.navigation.navigate('TableScreen', {eventDate:eventDate, clubid: clubid});  
+  this.props.navigation.navigate('TableScreen', {data:item});  
 }
 
 
@@ -216,7 +216,7 @@ render() {
               >
                 <Ionicons style={styles.icons} name="ios-list" size={15} />
                 <CardButton
-                  onPress={() => this.goToGuestListScreen(item.clubid, item.eventdate)}
+                  onPress={() => this.goToGuestListScreen(item)}
                   title="GuestList"
                   color="blue"
                 />
@@ -233,7 +233,7 @@ render() {
                 }}
               >
                 <FontAwesome style={styles.icons} name="ticket" size={15} />  
-                <CardButton onPress={() => this.goToGuestListScreen(item.clubid, item.eventdate)} title="Pass" color="blue" />
+                <CardButton onPress={() => this.goToGuestListScreen(item)} title="Pass" color="blue" />
               </View>
               <View
                 style={{
@@ -253,7 +253,7 @@ render() {
                   
                 />
                 
-            <CardButton onPress={() => this.goToTableScreen(item.clubid, item.eventdate)} title="Table" color="#8FD694" />
+            <CardButton onPress={() => this.goToTableScreen(item)} title="Table" color="#8FD694" />
               </View>
             </View>
          

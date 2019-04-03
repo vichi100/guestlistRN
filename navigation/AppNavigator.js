@@ -56,6 +56,7 @@ import Search from  "../screens/SearchScreen";
 import EventsOfOneClub from '../screens/EventsOfOneClub'
 import CardImageOverlayEvents from '../screens/CardImageOverlayEvents';
 import Login from "../screens/login/Login";
+import FBLogin from "../screens/login/FBLogin";
 // import screen2 from "../screens/screen2";
 
 // import MyHomeScreen from "../screens/MyHomeScreen";
@@ -304,6 +305,7 @@ const AppStack = createStackNavigator({
   TicketDisplayFromTableBooking: TicketDisplayFromTableBooking,
   BookingScreen: BookingScreen,
   LoginScreen:Login,
+  FBLogin: FBLogin,
   TableScreen: TableScreen,
   GuestListScreen: GuestListScreen,
   PassScreen: PassScreen

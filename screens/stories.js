@@ -17,7 +17,7 @@ export default class stories extends Component {
     super(props);
     const ds1 = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      data:ds1.cloneWithRows(feedData)
+      data:ds1.cloneWithRows(feedData) 
     };
   }
 

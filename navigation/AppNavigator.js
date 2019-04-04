@@ -57,6 +57,7 @@ import EventsOfOneClub from '../screens/EventsOfOneClub'
 import CardImageOverlayEvents from '../screens/CardImageOverlayEvents';
 import Login from "../screens/login/Login";
 import FBLogin from "../screens/login/FBLogin";
+import SelectCity from '../screens/changeCity/SelectCity';
 // import screen2 from "../screens/screen2";
 
 // import MyHomeScreen from "../screens/MyHomeScreen";
@@ -71,7 +72,7 @@ const HomeStack = createStackNavigator({
       return {
               
       headerTitle: () => ( 
-        <TouchableWithoutFeedback onPress={() => navigate('Search')}>
+        <TouchableWithoutFeedback onPress={() => navigate('SelectCity')}>
           <View
             style={{ flex: 1, alignItems: "stretch", justifyContent: "center" ,}}
           >
@@ -292,6 +293,10 @@ const AppStack = createStackNavigator({
       header: null  
     }
   },
+  SelectCity: {
+    screen: SelectCity,
+  },
+
   Search: {
     screen: Search,
   },

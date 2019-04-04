@@ -140,3 +140,9 @@ VALUES
 
  followers:
  userid, clubid, djid, prid
+
+
+ ------
+
+ get search parameter
+dj, club name, event name, location

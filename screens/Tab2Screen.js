@@ -12,3 +12,4 @@ class Tab2Screen extends React.Component {
 }
 
 export default Tab2Screen;
+ 

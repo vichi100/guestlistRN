@@ -5,7 +5,7 @@ const screen4 = (props) => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     <Text>screen4</Text>
     
-    <Text onPress={
+    <Text onPress={ 
       () => props.navigation.goBack()
     }>Go back</Text>
 
@@ -16,7 +16,7 @@ const screen4 = (props) => (
     <Text onPress={
       () => props.navigation.pop()
     }>pop screen</Text>
-  </View>
-);
+  </View>  
+);  
 
 export default screen4;

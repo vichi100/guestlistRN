@@ -8,6 +8,8 @@ import { Facebook } from 'expo';
 
 var changeText;
 
+//https://github.com/mmazzarolo/react-native-dialog
+
 // Initialize Firebase
 const firebaseConfig = {
   // ADD YOUR FIREBASE CREDENTIALS

@@ -12,6 +12,8 @@ import * as Expo from "expo";
 import { AsyncStorage } from "react-native";
 import Dialog from "react-native-dialog";
 
+//https://github.com/mmazzarolo/react-native-dialog
+
 export default class GLogin extends React.Component {
   constructor(props) {
     super(props);

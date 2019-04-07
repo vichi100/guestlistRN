@@ -35,6 +35,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import NumericInput from "../screens/numericInput/NumericInput";
 import { create, PREDEF_RES } from "react-native-pixel-perfect";
 const calcSize = create(PREDEF_RES.iphone7.px);
+import Dialog from "react-native-dialog";
 
 const window = Dimensions.get("window");
 
@@ -84,20 +85,24 @@ export default class BookingScreen extends React.Component {
       calc_height: 0,
       isLoading: true,
       guestListCoupleAvailableStr: "Couple/Free",
+      guestListGirlAvailableStr: "Girl/Free",
+      guestListTitleStr:"Guest List",
       totalAmount: 0,
       remainingamount: 0,
-      guestlistGirlAvailableCount: 0,
-      guestListCoupleAvailableCount: 0,
-      guestListCoupleAvailableCountFromDB: 0,
-      passStagCost: "0",
-      passCoupleCost: "0",
+      clubTicketData:null,
+      eventTicketDataByDj:null,
+      eventTicketDataByPR:null,
+      eventTicketDataByGuestList: null,
+      totalGirlGuestListCount: 0,
+      totalCoupleGuestListCount: 0,
       dataSource: [],
-      lastPassCoupleCount: 0,
-      lastPassStagCount: 0,
-      guestlistgirlcount: 0,
+      lastPassCoupleCount:0,
+      lastPassStagCount:0,
+      guestlistgirlcount:0,
       guestlistcouplecount: 0,
-      passcouplecount: 0,
-      passstagcount: 0
+      dialogVisible : false,
+
+      
     };
   }
 
@@ -108,32 +113,56 @@ export default class BookingScreen extends React.Component {
         "&eventDate=" +
         eventData.eventdate
     )
-      .then(response => response.json())
+      .then(response => response.json()) 
       .then(response => {
-        console.log("data : " + JSON.stringify(response));
-        Object.keys(response).map((keyName, keyIndex) => {
-          // use keyName to get current key's name
-          let ticketType = response[keyName].type;
-          let ticketCategory = response[keyName].category;
-          if (ticketType == "pass" && ticketCategory == "couple") {
-            this.setState({ passCoupleCost: response[keyName].cost });
-          }
+        console.log("ticketDetailsData : " + JSON.stringify(response));
 
-          if (ticketType == "pass" && ticketCategory == "stag") {
-            this.setState({ passStagCost: response[keyName].cost });
-          }
+        //TICKET DATA FOR CLUB 
+        console.log(" clubTicketData "+response.clubTicketData.guestlistGirlAvailableCount) 
+        this.setState({
+          clubTicketData:response.clubTicketData,
+          eventTicketDataByDj: response.eventTicketDataByDj,
+          eventTicketDataByPR: response.eventTicketDataByPR,
+          eventTicketDataByGuestList: response.eventTicketDataByGuestList,
+        })
 
-          // console.log("data : " + response[keyName].type);
-          // and a[keyName] to get its value
-        });
 
-        this.setState({ dataSource: response, isLoading: false });
+        var guestlistGirlAvailableCountByClub = parseInt(response.clubTicketData.guestlistGirlAvailableCount);
+        var guestlistGirlAvailableCountByDj = parseInt(response.eventTicketDataByDj.guestlistGirlAvailableCount);
+        var guestlistGirlAvailableCountByPR = parseInt(response.eventTicketDataByPR.guestlistGirlAvailableCount);
+        var guestlistGirlAvailableCountByGuestList = parseInt(response.eventTicketDataByGuestList.guestlistGirlAvailableCount);
+
+        var guestlistCouplelAvailableCountByClub = parseInt(response.clubTicketData.guestlistCoupleAvailableCount);
+        var guestlistCoupleAvailableCountByDj = parseInt(response.eventTicketDataByDj.guestlistCoupleAvailableCount);
+        var guestlistCoupleAvailableCountByPR = parseInt(response.eventTicketDataByPR.guestlistCoupleAvailableCount);
+        var guestlistCoupleAvailableCountByGuestList = parseInt(response.eventTicketDataByGuestList.guestlistCoupleAvailableCount);
+        
+        totalGirlGuestListCount = guestlistGirlAvailableCountByClub+guestlistGirlAvailableCountByDj
+                                  +guestlistGirlAvailableCountByPR+guestlistGirlAvailableCountByGuestList;
+        totalCoupleGuestListCount = guestlistCouplelAvailableCountByClub+guestlistCoupleAvailableCountByDj
+                                  +guestlistCoupleAvailableCountByPR+guestlistCoupleAvailableCountByGuestList;
+
+        if(guestlistCouplelAvailableCountByClub > 0 || guestlistGirlAvailableCountByClub > 0  ){
+          this.setState({guestListTitleStr: "Guest List"})
+        }else if(guestlistCoupleAvailableCountByDj > 0 || guestlistGirlAvailableCountByDj > 0){
+          this.setState({guestListTitleStr: "Guest List with love by "+response.eventTicketDataByDj.postedByName})
+        }else if(guestlistCoupleAvailableCountByPR || guestlistGirlAvailableCountByPR > 0){
+          this.setState({guestListTitleStr: "Guest List with love by "+response.eventTicketDataByPR.postedByName})
+        }else if(guestlistCoupleAvailableCountByGuestList > 0 || guestlistGirlAvailableCountByGuestList > 0){
+          this.setState({guestListTitleStr: "Guest List"})
+        }else{
+          this.setState({ guestListTitleStr: "Guest List",
+                          guestListCoupleAvailableStr: "Couple/Sold Out",
+                        })
+        }
+        
+        this.setState({ dataSource: response, isLoading: false }); 
       })
       .catch(error => {
         console.error(error);
       });
   }
-
+ 
   pressedIncreaseGuestListGirlCount = value => {
     console.log("guestlistgirlcount " + JSON.stringify(value));
     this.setState({ guestlistgirlcount: value.guestlistgirlcount });
@@ -161,6 +190,13 @@ export default class BookingScreen extends React.Component {
   bookTicket = async eventData => {
     // check if already logged in if not ask for login
     //this._retrieveData();
+
+    if(this.state.guestlistcouplecount == 0 && this.state.guestlistgirlcount ==0 
+      && this.state.lastPassCoupleCount == 0 && this.state.lastPassStagCount ==0){
+          this._showDialog();
+          return; 
+      }
+
     email = await AsyncStorage.getItem("email");
     mobile = await AsyncStorage.getItem("mobile");
     var userid = await AsyncStorage.getItem("customerId");
@@ -170,7 +206,8 @@ export default class BookingScreen extends React.Component {
       console.log(email + ": " + mobile);
       //this.props.navigation.navigate('BookingScreen', {data:item});
       this.props.navigation.navigate("LoginScreen", {
-        eventDataFromBookingScreen: eventData
+        eventDataFromBookingScreen: eventData,
+        // fromScreen:'BookingScreen.js'
       }); // move to login page
       return;
     }
@@ -250,6 +287,16 @@ export default class BookingScreen extends React.Component {
     // SEND BOOKING DETAILS TO SERVER FINSH -END
   };
 
+  _showDialog = () => {
+    this.setState({ dialogVisible: true });
+  };
+  
+  handleOk = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    this.setState({ dialogVisible: false });
+  };
+
   pressedPassStag = value => {
     console.log("current stag " + JSON.stringify(value));
     console.log("this.state.totalAmount stag " + this.state.totalAmount);
@@ -257,11 +304,11 @@ export default class BookingScreen extends React.Component {
 
     if (value.passstagcount > this.state.lastPassStagCount) {
       var totalAmountx =
-        this.state.totalAmount + parseInt(this.state.passStagCost);
+        this.state.totalAmount + parseInt(this.state.clubTicketData.passStagCost);
       this.setState({ totalAmount: totalAmountx });
     } else if (value.passstagcount < this.state.lastPassStagCount) {
       var totalAmountx =
-        this.state.totalAmount - parseInt(this.state.passStagCost);
+        this.state.totalAmount - parseInt(this.state.clubTicketData.passStagCost);
       this.setState({ totalAmount: totalAmountx });
     }
     this.setState({ passstagcount: value.passstagcount });
@@ -275,11 +322,11 @@ export default class BookingScreen extends React.Component {
     console.log("lastPassCoupleCount " + this.state.lastPassCoupleCount);
     if (value.passcouplecount > this.state.lastPassCoupleCount) {
       var totalAmountx =
-        this.state.totalAmount + parseInt(this.state.passCoupleCost);
+        this.state.totalAmount + parseInt(this.state.clubTicketData.passCoupleCost);
       this.setState({ totalAmount: totalAmountx });
     } else if (value.passcouplecount < this.state.lastPassCoupleCount) {
       var totalAmountx =
-        this.state.totalAmount - parseInt(this.state.passCoupleCost);
+        this.state.totalAmount - parseInt(this.state.clubTicketData.passCoupleCost);
       this.setState({ totalAmount: totalAmountx });
     }
 
@@ -420,10 +467,7 @@ export default class BookingScreen extends React.Component {
               </View>
             </View>
 
-            <View
-              //Couple Section
-
-              style={[
+            <View style={[
                 styles.cardView,
                 {
                   backgroundColor: this.props.backgroundColor,
@@ -564,7 +608,7 @@ export default class BookingScreen extends React.Component {
                 }}
               >
                 <Text style={styles.instructions}>
-                  Couples/{this.state.passCoupleCost} Rs
+                  Couples/{this.state.clubTicketData.passCoupleCost} Rs
                 </Text>
                 <NumericInput
                   initValue={this.state.passcouplecount}
@@ -628,7 +672,7 @@ export default class BookingScreen extends React.Component {
                 }}
               >
                 <Text style={styles.instructions}>
-                  Stags/{this.state.passStagCost} Rs
+                  Stags/{this.state.clubTicketData.passStagCost} Rs
                 </Text>
                 <NumericInput
                   initValue={this.state.passstagcount}
@@ -690,8 +734,6 @@ export default class BookingScreen extends React.Component {
             </View>
 
             <View
-              //Girls Section
-
               style={[
                 styles.cardView,
                 {
@@ -730,7 +772,7 @@ export default class BookingScreen extends React.Component {
               >
                 <Text style={styles.instructions}>Total Amount</Text>
                 <Text style={styles.instructions}>
-                  {this.state.totalAmount}
+                  {this.state.totalAmount} Rs
                 </Text>
               </View>
             </View>
@@ -813,6 +855,11 @@ export default class BookingScreen extends React.Component {
           {/* <BillDetailsScreen/> End */}
         </ScrollView>
 
+
+
+
+
+
         <View style={{ width: w }}>
           <TouchableOpacity
             onPress={() => this.bookTicket(eventData)}
@@ -827,9 +874,9 @@ export default class BookingScreen extends React.Component {
             }}
           >
             <View
-              style={{
+              style={{ 
                 flex: 1,
-                alignItems: "center",
+                alignItems: "center", 
                 justifyContent: "center",
                 backgroundColor: "#263238"
               }}
@@ -840,10 +887,25 @@ export default class BookingScreen extends React.Component {
           {/* <Button
             onPress={this.buttonClickListener}
             title="BOOK"
-            color="#263238"
+            color="#263238" 
             height="40"
           /> */}
         </View>
+
+        <Dialog.Container visible={this.state.dialogVisible}>
+          {/* <Dialog.Title>Enter Mobile Number</Dialog.Title> */}
+          <Dialog.Description>
+            No Guest List or Passes selected !
+          </Dialog.Description>
+
+          
+          <Dialog.Button
+            style={{ fontFamily: "sans-serif" }}
+            label="OK"
+            onPress={this.handleOk}
+          />
+        </Dialog.Container>
+
       </View>
     );
   }

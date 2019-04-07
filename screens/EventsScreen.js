@@ -30,7 +30,7 @@ const FAKE_EVENTS = (() => {
     // use random dimensions to get random urls
     image: faker.image.nightlife(Math.floor(Math.random() * 200) + 100, Math.floor(Math.random() * 200) + 100),
   }));
-})();
+})(); 
 
 // Filter events by date
 // const filterEvents = (date: Moment): ?Array<EventType> =>

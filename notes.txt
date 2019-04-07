@@ -28,6 +28,18 @@ brew install siege
 
 siege -c10 -t1M http://192.168.43.64:6000/clubsDetails
 
+------------------ react image map ---------
+[root@guestlist home]# cd react-image-mapper/
+[root@guestlist react-image-mapper]# ls
+LICENSE.txt  README.md  ROADMAP.md  bower.json  dist  example  gulpfile.js  lib  node_modules  npm-debug.log  package-lock.json  package.json  src  test
+[root@guestlist react-image-mapper]# pwd
+/root/home/react-image-mapper
+[root@guestlist react-image-mapper]# 
+
+for every club there will be a seprate index file and exaple file
+
+
+------------------------------------------
 
 ALTER TABLE events
 ADD offertitile CHAR(200),
@@ -162,7 +174,7 @@ module.exports=createReactClass({
 
 
 
-
+                        // injectedJavaScript = {'document.getElementById('ORDER_ID').value= "${ORDER_ID}"; document.getElementById('TXN_AMOUNT').value= "${TXN_AMOUNT}"; document.getElementById('CUST_ID').value= "${CUST_ID}"; document.f1.submit()'}
 
 
 
@@ -171,3 +183,33 @@ module.exports=createReactClass({
 
 
 260664005963-btpvaslb1iff4bvutc0fr0b01qb948qg.apps.googleusercontent.com
+
+
+        Object.keys(ticketDataForClub).map((keyName, keyIndex) => { 
+          // use keyName to get current key's name
+          let ticketType = ticketDataForClub[keyName].type;
+          let ticketCategory = ticketDataForClub[keyName].category;
+          let passCoupleCost = 0;
+          let passStagCost = 0;
+          if (ticketType == "pass" && ticketCategory == "couple") {
+            // this.setState({ passCoupleCost: ticketDataForClub[keyName].cost });
+            passCoupleCost = ticketDataForClub[keyName].cost;
+          }
+
+          if (ticketType == "pass" && ticketCategory == "stag") {
+            passStagCost = ticketDataForClub[keyName].cost
+          }
+
+          var clubTicketData = { 
+            "guestlistGirlAvailableCount": 0, 
+            "guestListCoupleAvailableCount":0,
+            "passStagCost":passStagCost,
+            "passCoupleCost": passCoupleCost,
+          } 
+
+          // console.log("data : " + response[keyName].type);
+          // and a[keyName] to get its value
+        });
+
+
+        91 91584371265

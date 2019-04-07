@@ -9,8 +9,8 @@ import {
   Image,
   Navigator
 } from 'react-native';
-import TopBar from './topBar';
-import TabProfile from './tabProfile';
+// import TopBar from './topBar';
+// import TabProfile from './tabProfile'; 
 import DJEvents from './DJEvents'
 
 import Card from "./Card";
@@ -27,7 +27,7 @@ export default class Profile extends Component {
     const { navigation } = this.props;
     const item = navigation.getParam("item");
 
-    return (
+    return ( 
      <View> 
 
         {/* <TopBar title={meUsername}/> */}

@@ -144,7 +144,7 @@ export default class FBLogin extends React.Component {
 
   }
 
-  async loginWithFacebook(eventDataFromBookingScreen) {
+  async loginWithFacebook(eventDataFromBookingScreen, fromScreen) {
 
     this._retrieveData();
     if (this.state.mobile == null) {
@@ -181,7 +181,8 @@ export default class FBLogin extends React.Component {
         }, 200);
 
         this.insertCustomerDetails();
-        this.props.navigation.navigate('BookingScreen', { "data":eventDataFromBookingScreen }); 
+        console.log("fromScreen "+ fromScreen)
+        this.props.navigation.navigate(fromScreen, { "data":eventDataFromBookingScreen }); 
 
         //const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
         //Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
@@ -232,6 +233,7 @@ export default class FBLogin extends React.Component {
 
   render() {
     var eventDataFromBookingScreen = this.props.eventDataFromBookingScreen;
+    var fromScreen = this.props.fromScreen;
     return ( 
       <View style={styles.container}>
         {/* <Button
@@ -243,7 +245,7 @@ export default class FBLogin extends React.Component {
         /> */}
 
         <TouchableOpacity
-          onPress={() => this.loginWithFacebook(eventDataFromBookingScreen)}
+          onPress={() => this.loginWithFacebook(eventDataFromBookingScreen, fromScreen)}
           style={{
             height: 50
           }}

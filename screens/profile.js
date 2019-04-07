@@ -12,8 +12,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import TopBar from './topBar';
-import TabProfile from './tabProfile';
+//import TopBar from './topBar';
+//import TabProfile from './tabProfile';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons"; 

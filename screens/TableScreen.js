@@ -18,9 +18,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import NumericInput from "react-native-numeric-input";
 import { create, PREDEF_RES } from "react-native-pixel-perfect";
-import TableDetailsnPrice from "./TableDetailsnPrice"
+import TableDetailsnPrice from "./TableDetailsnPrice";
+import Dialog from "react-native-dialog";
 
 let eventData;
+var email;
+var mobile;
+
+var clickedTableid = null;
 
 export default class TableScreen extends React.Component {
 
@@ -55,6 +60,7 @@ export default class TableScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      dialogVisible: false,
       calc_height: 0,
       tableNumber: 0,
       dataSource:[],
@@ -68,29 +74,57 @@ export default class TableScreen extends React.Component {
   } 
 
   componentDidMount() { 
-    return fetch("http://192.168.43.64:6000/tableDetails?clubid=1000001&eventDate=19/Mar/2019")
+    //return fetch("http://192.168.43.64:6000/tableDetails?clubid=1000001&eventDate=19/Mar/2019")
+    return fetch("http://192.168.43.64:6000/tableDetails?clubid="+eventData.clubid+"&eventDate="+eventData.eventdate)
       .then(response => response.json())   
       .then(response => {
-       console.log("data : " + JSON.stringify(response));   
+       console.log("Table data from response  : " + JSON.stringify(response));   
        Object.keys(response).map((keyName, keyIndex) =>{ 
         // use keyName to get current key's name
         let tableid = response[keyName].tableid;
-        //console.log("tableid "+tableid);
+        console.log("tableid "+tableid);
         // console.log("data : " + response[keyName].type);  
-        // and a[keyName] to get its value
+        // and a[keyName] to get its value 
       })
       
         this.setState({ dataSource: response, isLoading: false });
       })
-      .catch(error => {
+      .catch(error => { 
         console.error(error); 
       }); 
   }
 
+  _showDialog = () => {
+    this.setState({ dialogVisible: true });
+  };
+  
+  handleOk = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    this.setState({ dialogVisible: false });
+  };
+
+bookTicket= async() =>{
+  if(clickedTableid == null){
+        this._showDialog();
+        return; 
+  }
+
+  if (email == null && mobile == null) {
+    // go to login form
+    console.log(email + ": " + mobile);
+    //this.props.navigation.navigate('BookingScreen', {data:item});
+    this.props.navigation.navigate("LoginScreen", {
+      eventDataFromBookingScreen: eventData
+    }); // move to login page
+    return;
+  }
+
+  email = await AsyncStorage.getItem("email");
+  mobile = await AsyncStorage.getItem("mobile");
+  var userid = await AsyncStorage.getItem("customerId");
 
 
-bookTicket=() =>{
-  console.log("vichi");
   var bookingTimeStamp = moment().valueOf();
   var postData = {
     "bookingid": bookingTimeStamp,
@@ -178,8 +212,8 @@ bookTicket=() =>{
     //"url": "http://199.180.133.121/imagemap/layouthtml/1000004-13Mar2019.html#BJ-1000004-C1",
     console.log("vichi "+e.url);
     var urlArr = e.url.split('#'); 
-    var clickedTableid = urlArr[1];  
-    
+    clickedTableid = urlArr[1];   
+    console.log("this.state.dataSource : "+this.state.dataSource);
     if(this.state.dataSource && this.state.dataSource.length > 0){
       //console.log("this.state.dataSource" + this.state.dataSource);
       Object.keys(this.state.dataSource).map((keyName, keyIndex) =>{ 
@@ -234,11 +268,19 @@ bookTicket=() =>{
 
 
   render() {
+
     setTimeout(() => { 
       
     }, 200);
+
     const { navigation } = this.props;  
     eventData = navigation.getParam("data");
+
+    function replaceAll(str, find, replace) {
+      return str.replace(new RegExp(find, 'g'), replace);
+  }
+    var eventDateForImageURL = eventData.eventdate.replace(new RegExp('/', 'g'), '');
+    console.log('eventDateForImageURL '+eventDateForImageURL) 
     console.log("data from events screen :"+ JSON.stringify(eventData));
     return (
       <View style={styles.container}>
@@ -325,7 +367,11 @@ bookTicket=() =>{
               //style={{ height: 200 }} 
               ////http://199.180.133.121/imagemap/layouthtml/1000000-21Mar2019.html
               //source={{ uri: "http://199.180.133.121/imagemap/layouthtml/1000001-13Mar2019.html" }}
-              source={{ uri: "http://199.180.133.121:8000" }}
+
+              //source={{ uri: "http://199.180.133.121:8000/" }}
+              source={{ uri: "http://192.168.43.64:8000/"+eventData.clubid+"-"+eventDateForImageURL+".html" }}
+
+              //http://localhost:8000/999999-20Mar2019.html
               //source={{ uri: "http://192.168.43.64:.html" }}
               //source={ require('../react-image-mapper/index.html' )} 
               javaScriptEnabled={true}
@@ -357,6 +403,20 @@ bookTicket=() =>{
 
       
 </ScrollView> 
+
+<Dialog.Container visible={this.state.dialogVisible}>
+          {/* <Dialog.Title>Enter Mobile Number</Dialog.Title> */}
+          <Dialog.Description>
+            Please select a table !
+          </Dialog.Description>
+
+          
+          <Dialog.Button
+            style={{ fontFamily: "sans-serif" }}
+            label="OK"
+            onPress={this.handleOk}
+          />
+        </Dialog.Container>
 
 <TouchableOpacity onPress={()=>this.bookTicket()} style ={{
                     height: 50,

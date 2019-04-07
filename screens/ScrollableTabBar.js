@@ -6,7 +6,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 import EventsScreen from './EventsScreen';
 import Profile from '../screens/profile';
-import HomeScreen from '../screens/HomeScreen';
 
 import Office from './Office'
 

@@ -5,6 +5,7 @@ import FBLogin from './FBLogin';
 import GLogin from './GLogin';
 import Dialog from "react-native-dialog";
 
+
 // create a component
 export default class Login extends Component {
     static navigationOptions = {
@@ -32,6 +33,9 @@ export default class Login extends Component {
     render() {
         const { navigation } = this.props;  
         eventData = navigation.getParam("eventDataFromBookingScreen");
+        var eventDatax = navigation.getParam("eventDataFromBookingScreen");
+        console.log("eventDatax "+JSON.stringify(eventDatax))
+        
         return (
         <View behavior="padding" style={styles.container}>
 

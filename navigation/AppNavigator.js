@@ -16,31 +16,25 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
-import MainTabNavigator from "./MainTabNavigator";
+//import MainTabNavigator from "./MainTabNavigator";
 
 import GuestListScreen from "../screens/GuestListScreen";
 import PassScreen from "../screens/PassScreen";
 import ClubsEvents from "../screens/ClubsEvents";
-//import ScrollableTabBar from "../screens/ScrollableTabBar";
+
 
 import BookingScreen from "../screens/BookingScreen";
 import TableScreen from "../screens/TableScreen";
 import TicketDisplayFromTableBooking from "../screens/TicketDisplayFromTableBooking";
 
-// import screen2 from "../screens/screen2";
-// import screen3 from "../screens/screen3";
-// import screen4 from "../screens/screen4";
 
-// import MyHomeScreen from "../screens/MyHomeScreen";
-// import OtherScreen from "../screens/OtherScreen";
 import MyProfile from "../screens/MyProfile";
 
 ////////
 
 import TabBarIcon from "../components/TabBarIcon";
-//import HomeScreen from "../screens/HomeScreen";
 import OffersListScreen from "../screens/offers/OffersListScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+//import SettingsScreen from "../screens/SettingsScreen";
 import TicketsListScreen from "../screens/tickets/TicketsListScreen";
 import TicketDisplayScreen from "../screens/ticketDistpay/TicketDisplayScreen";
 import TicketDisplayFromBooking from "../screens/ticketDistpay/TicketDisplayFromBooking";
@@ -58,6 +52,7 @@ import CardImageOverlayEvents from '../screens/CardImageOverlayEvents';
 import Login from "../screens/login/Login";
 import FBLogin from "../screens/login/FBLogin";
 import SelectCity from '../screens/changeCity/SelectCity';
+import chat from '../chat/Chat';
 // import screen2 from "../screens/screen2";
 
 // import MyHomeScreen from "../screens/MyHomeScreen";
@@ -237,6 +232,48 @@ PassesStack.navigationOptions = {
   // },
 };
 
+
+const chatStack = createStackNavigator({ 
+  //Passes: TicketsListScreen
+  chat: {
+    screen: chat,
+    navigationOptions: {
+      headerTitle: "Passes",
+      headerTitleStyle: {
+        //fontWeight: 'bold',
+        //fontFamily: "Roboto",
+        textAlign: "left",
+        flex: 1,
+        color:'#fff',
+      },
+      
+      headerStyle: {
+        backgroundColor: "#263238",
+
+        shadowOpacity: 0,
+        borderBottomWidth: 0
+      }
+    }
+  }
+});
+
+chatStack.navigationOptions = {
+  tabBarLabel: "Chat",
+  safeAreaInset: {
+    top: "never"
+  },
+  tabBarIcon: ({ focused }) => ( 
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-text" : "ios-text"}
+    />
+  ),
+  
+};
+
+
+
+
 const ProfileStack = createStackNavigator({
   Profiles: Profile 
 });
@@ -262,6 +299,7 @@ const Bottom = createBottomTabNavigator({
   HomeStack,
   OffersStack,
   PassesStack,
+  chatStack,
   ProfileStack,
 },
 {

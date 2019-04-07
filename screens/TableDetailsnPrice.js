@@ -42,7 +42,7 @@ export default class TableDetailsnPrice extends React.Component {
   render() {
     var tableData = this.props.tableData;
     
-    console.log(JSON.stringify(tableData));
+    console.log("table data : "+JSON.stringify(tableData));
     //if(false){
       if(Object.entries(tableData).length === 0 && tableData.constructor === Object){
       return (

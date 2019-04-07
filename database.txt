@@ -18,6 +18,13 @@ clubs:
     ('1000005' , 'The Stables','mumbai','Andheri East','/images/club/thestablesandherieast/thestablesandherieast.jpg', '/video/assets/thestablesandherieast.mp4', '19.109860, 72.876048' ,'4.8', '730', 'yes');
 
 
+upload event screen
+
+eventpic
+club name
+event name
+event date
+posted by dj
 
  events:
  eventid, eventname, eventdate, clubid, clubname, location, city, imageurl, videourl, 
@@ -27,6 +34,67 @@ CREATE TABLE events (eventid int NOT NULL AUTO_INCREMENT PRIMARY KEY, eventname 
 clubid VARCHAR(100), clubname VARCHAR(100), location VARCHAR(100), city VARCHAR(100), imageurl VARCHAR(500), 
 videourl VARCHAR(100), description VARCHAR(500), music VARCHAR(100), djname VARCHAR(100), djid VARCHAR(100), 
 prid VARCHAR(100), latlong VARCHAR(50), postedby VARCHAR(20));
+
+
+INSERT INTO events ( eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , music , 
+djname , djid , prid , latlong , postedby )
+VALUES
+('Model Night', '05/Apr/2019', '1000002' ,'Barrel', 'Andheri West', 'mumbai', '/images/club/barrelandheriwest/event/tuesday.jpg',
+null, null, 'Live Band/Bollywood Music', 'DJ Cyrus', '1000', '1000', '19.134907,72.832405', 'guestlist'),
+('Retro Night', '06/Apr/2019', '1000002' ,'Barrel', 'Andheri West', 'mumbai', '/images/club/barrelandheriwest/event/wednesday.jpg',
+null, null, 'Live Band/Bollywood Music', 'DJ Nank', '1002', '1000', '19.134907,72.832405', 'dj'),
+('Bollywood Night', '07/Apr/2019', '1000002' ,'Barrel', 'Andheri West', 'mumbai', '/images/club/barrelandheriwest/event/thursday.jpg',
+null, null, 'Live Band/Bollywood Music', 'DJ Vichi', '1001', '1000', '19.134907,72.832405', 'guestlist'),
+('Winter White Party', '08/Apr/2019', '1000002' ,'Barrel', 'Andheri West', 'mumbai', '/images/club/barrelandheriwest/event/friday.jpg',
+null, null, 'Live Band/Bollywood Music', 'DJ Manv', '1003', '1000', '19.134907,72.832405', 'dj'),
+('Saturday Night', '09/Apr/2019', '1000002' ,'Barrel', 'Andheri West', 'mumbai', '/images/club/barrelandheriwest/event/saturday.jpg',
+null, null, 'Live Band/Bollywood Music', 'DJ VKay', '1004', '1000', '19.134907,72.832405', 'guestlist'),
+('Throwback Party', '10/Apr/2019', '1000002' ,'Barrel', 'Andheri West', 'mumbai', '/images/club/barrelandheriwest/event/sunday.jpg',
+null, null, 'Live Band/Bollywood Music', 'DJ Cyrus', '1000', '1000', '19.134907,72.832405', 'guestlist'),
+('Wednesday Night', '05/Apr/2019', '1000003' , 'Barrel Mansion', 'Andheri East' , 'mumbai', '/images/club/barrelmansionandherieast/event/wednesday.jpg',
+null, null,  'Bollywood/Hip Hop/Rock Music',  'DJ Vichi', '1001', '1000', '19.134907,72.832405', 'guestlist'),
+('Wednesday Night', '06/Apr/2019', '1000003' , 'Barrel Mansion', 'Andheri East' , 'mumbai' ,'/images/club/barrelmansionandherieast/event/friday.jpg',
+null, null,  'Bollywood/Hip Hop/Rock Music',  'DJ Nank', '1002', '1000', '19.134907,72.832405', 'dj'),
+('Wednesday Night', '07/Apr/2019', '1000003' , 'Barrel Mansion', 'Andheri East' , 'mumbai', '/images/club/barrelmansionandherieast/event/saturday.jpg',
+null, null,  'Bollywood/Hip Hop/Rock Music',  'DJ VKay', '1004', '1000', '19.134907,72.832405', 'dj'),
+('Wednesday Night', '08/Apr/2019', '1000003' , 'Barrel Mansion', 'Andheri East' , 'mumbai' ,'/images/club/barrelmansionandherieast/event/sunday.jpg',
+null, null,  'Bollywood/Hip Hop/Rock Music',  'DJ Cyrus', '1000', '1000', '19.134907,72.832405', 'guestlist'),
+('Luv Hip-Hop', '05/Apr/2019', '1000004', 'Club B', 'Juhu' , 'mumbai' , '/images/club/bkitchenandbarjuhu/event/wednesday.jpg',
+null, null, 'Hip Hop Music', 'DJ Cyrus', '1000', '1000', '19.134907,72.832405', 'guestlist'),
+('Luv Hip-Hop', '06/Apr/2019', '1000004', 'Club B', 'Juhu' , 'mumbai' , '/images/club/bkitchenandbarjuhu/event/friday.jpg',
+null, null, 'L-Agent', 'DJ VKay', '1004', '1000', '19.134907,72.832405', 'dj'),
+('Luv Hip-Hop', '07/Apr/2019', '1000004', 'Club B', 'Juhu' , 'mumbai' , '/images/club/bkitchenandbarjuhu/event/saturday.jpg',
+null, null, 'Soiree Night', 'DJ Nank', '1002', '1000', '19.134907,72.832405', 'dj'),
+('Tipsy Tuesday', '05/Apr/2019', '1000006' ,'Rodeo Drive', 'Andheri East' , 'mumbai', '/images/club/rodeodriveandherieast/event/tuesday.jpg',
+null, null, 'LIVE Band by Forelock and Arawak',	'DJ Nank', '1002', '1000', '19.134907,72.832405', 'dj'),
+('Wanted Wednesday', '06/Apr/2019', '1000006' ,'Rodeo Drive', 'Andheri East' , 'mumbai', '/images/club/rodeodriveandherieast/event/wednesday.jpg',
+null, null, 'DJs to give you a tipsy trip',	'DJ VKay', '1004', '1000', '19.134907,72.832405', 'dj'),
+('Ladies Night', '07/Apr/2019', '1000006' ,'Rodeo Drive', 'Andheri East' , 'mumbai', '/images/club/rodeodriveandherieast/event/thursday.jpg',
+null, null, 'DJs to give you a tipsy trip',	'DJ Vichi', '1001', '1000', '19.134907,72.832405', 'guestlist'),
+('Friday Night', '08/Apr/2019', '1000006' ,'Rodeo Drive', 'Andheri East' , 'mumbai', '/images/club/rodeodriveandherieast/event/friday.jpg',
+null, null, 'A weekend that boasts of upbeat sound with vibrant vibes that drives you crazy all night',	'DJ Manv', '1003', '1000', '19.134907,72.832405', 'guestlist'),
+('Saturday Night',  '09/Apr/2019', '1000006' ,'Rodeo Drive', 'Andheri East' , 'mumbai', '/images/club/rodeodriveandherieast/event/saturday.jpg',
+null, null, 'A night that will be marked in your memories because we are setting up the craziest weekend vibes for you',	'DJ Cyrus', '1000', '1000', '19.134907,72.832405', 'guestlist'),
+('Man I Love Fridays', '05/Apr/2019',  '1000005' ,'The Stables', 'Andheri East' , 'mumbai', '/images/club/thestablesandherieast/event/friday.jpg',
+null, null, 'Live Band by Krystal Waters', 'DJ Vichi', '1001', '1000', '19.134907,72.832405', 'guestlist' ),
+('Saturday Night', '05/Apr/2019',  '1000005' ,'The Stables', 'Andheri East' , 'mumbai', '/images/club/thestablesandherieast/event/saturday.jpg',
+null, null, 'LIVE Band by Forelock and Arawak', 'DJ Vichi', '1001', '1000', '19.134907,72.832405', 'dj' );
+
+
+CREATE TABLE events (eventid int NOT NULL AUTO_INCREMENT PRIMARY KEY, eventname VARCHAR(100), eventdate VARCHAR(100), 
+clubid VARCHAR(100), clubname VARCHAR(100), location VARCHAR(100), city VARCHAR(100), imageurl VARCHAR(500), 
+videourl VARCHAR(100), description VARCHAR(500), music VARCHAR(100), djname VARCHAR(100), djid VARCHAR(100), 
+prid VARCHAR(100), latlong VARCHAR(50), postedby VARCHAR(20));
+
+update ticketdetails set date = '05/Apr/2019' where date = '19/Mar/2019';
+update ticketdetails set date = '06/Apr/2019' where date = '20/Mar/2019';
+update ticketdetails set date = '07/Apr/2019' where date = '21/Mar/2019';
+update ticketdetails set date = '08/Apr/2019' where date = '22/Mar/2019';
+update ticketdetails set date = '09/Apr/2019' where date = '23/Mar/2019';
+update ticketdetails set date = '10/Apr/2019' where date = '24/Mar/2019';
+
+
+
 
 INSERT INTO events ( clubid, clubname, eventname, music, eventdate, imageurl, latlong, postedby )
 VALUES
@@ -146,3 +214,35 @@ VALUES
 
  get search parameter
 dj, club name, event name, location
+
+
+########################
+
+
+
+RENAME TABLE ticketdetails TO ticketdetailsbyclubs;
+
+
+
+CREATE TABLE ticketsforevents (clubid int, clubname VARCHAR(50), tablesize VARCHAR(3), type VARCHAR(50), category VARCHAR(20),
+      cost VARCHAR(10), details VARCHAR(200), Day VARCHAR(15), date VARCHAR(15), totaltickets VARCHAR(3),
+    availbletickets VARCHAR(3), eventid VARCHAR(100), postedbyname VARCHAR(100), postedbyid VARCHAR(100), postedby VARCHAR(10));
+
+postedby: PR, DJ
+
+INSERT INTO ticketsforevents ( clubid, clubname,type, tablesize, category, cost, details, Day, date, totaltickets, availbletickets, eventid,
+postedbyname, postedbyid, postedby)
+VALUES
+(	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '05/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '05/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '06/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '06/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj');
+
+update tablesdata set eventdate = '05/Apr/2019' where eventdate = '19/Mar/2019';
+update tablesdata set eventdate = '06/Apr/2019' where eventdate = '20/Mar/2019';
+update tablesdata set eventdate = '07/Apr/2019' where eventdate = '21/Mar/2019';
+update tablesdata set eventdate = '08/Apr/2019' where eventdate = '22/Mar/2019';
+update tablesdata set eventdate = '09/Apr/2019' where eventdate = '23/Mar/2019';
+update tablesdata set eventdate = '10/Apr/2019' where eventdate = '24/Mar/2019';

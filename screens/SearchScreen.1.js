@@ -6,8 +6,7 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
-  Platform,
-  TouchableOpacity,
+  Platform
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { withNavigation } from "react-navigation";
@@ -15,13 +14,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-//library-music
+//library-music  
 
 class Search extends React.Component {
   static defaultProps = {
     //backgroundColor: "#fff",
     backgroundColor: "#37474f",
-    marginTop: 1,
+    marginTop: 1, 
     // width: 350,
     // height: 350,
     shadowColor: "rgb(50,50,50)",
@@ -155,37 +154,12 @@ class Search extends React.Component {
     );
   };
 
-  _display() {}
+_display(){
 
-  goToClubEvents = (item) => {
-    // const {navigate} = this.props.navigation;
-    // navigate('GuestListScreen');
-    // console.log("date ; " + eventDate);
-    console.log("clubid ; " + item.clubid);
-    this.props.navigation.navigate("EventsOfOneClub", {
-      clubDetailData: item,
 
-    });
-  };
+}
 
-  goToClubEventsByLocation =  (item) => {
-    // const {navigate} = this.props.navigation;
-    // navigate('GuestListScreen');
-    // console.log("date ; " + eventDate);
-    console.log("clubid ; " + item.clubid);
-    this.props.navigation.navigate("EventsOfOneClub", {
-      clubDetailData: item,
 
-    });
-  };
-
-  goToDJProfile = (item) => {
-    // const {navigate} = this.props.navigation;
-    // navigate('GuestListScreen');
-    // console.log("date ; " + eventDate);
-    // console.log("clubid ; " + clubid);
-    this.props.navigation.navigate("DJProfile", { item: item });
-  };
 
   render() {
     if (this.state.isLoading) {
@@ -199,6 +173,7 @@ class Search extends React.Component {
     return (
       //ListView to show with textinput used as search bar
       <View style={styles.viewStyle}>
+      
         <SearchBar
           style={{ fontSize: 12 }}
           round
@@ -221,9 +196,7 @@ class Search extends React.Component {
           }}
         >
           <MaterialCommunityIcons style={styles.icons} name="owl" size={20} />
-          <Text style={{ paddingLeft: 10, fontSize: 14, color: "#4caf50" }}>
-            Clubs
-          </Text>
+          <Text style={{ paddingLeft:10, fontSize: 14, color: "#4caf50" }}>Clubs</Text>
         </View>
 
         <FlatList
@@ -235,6 +208,8 @@ class Search extends React.Component {
             // Single Comes here which will be repeatative for the FlatListItems
 
             <View
+              //Girls Section
+
               style={[
                 styles.cardView,
                 {
@@ -260,26 +235,19 @@ class Search extends React.Component {
                 }
               ]}
             >
-              <TouchableOpacity
-                onPress={() => this.goToClubEvents(item)}
+              <View
                 style={{
-                  height: 40
+                  flex: 1,
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 10,
+                  marginRight: 10
                 }}
               >
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                    marginTop: 5,
-                    marginBottom: 5,
-                    marginLeft: 10,
-                    marginRight: 10
-                  }}
-                >
-                  <Text style={styles.instructions}>{item.clubname}</Text>
-                </View>
-              </TouchableOpacity>
+                <Text style={styles.instructions}>{item.clubname}</Text>
+              </View>
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}
@@ -297,10 +265,12 @@ class Search extends React.Component {
             hight: 90
           }}
         >
-          <MaterialIcons style={styles.icons} name="location-on" size={20} />
-          <Text style={{ paddingLeft: 8, fontSize: 14, color: "#4caf50" }}>
-            Location
-          </Text>
+          <MaterialIcons
+                style={styles.icons} 
+                name="location-on"
+                size={20}
+              />
+          <Text style={{ paddingLeft:8, fontSize: 14, color: "#4caf50" }}>Location</Text>
         </View>
 
         <FlatList
@@ -310,6 +280,8 @@ class Search extends React.Component {
           //Item Separator View
           renderItem={({ item }) => (
             <View
+              //Girls Section
+
               style={[
                 styles.cardView,
                 {
@@ -335,26 +307,19 @@ class Search extends React.Component {
                 }
               ]}
             >
-              <TouchableOpacity
-                onPress={() => this.goToClubEventsByLocation(item)}
+              <View
                 style={{
-                  height: 40
+                  flex: 1,
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 10,
+                  marginRight: 10
                 }}
               >
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "space-between",
-                    flexDirection: "row",
-                    marginTop: 5,
-                    marginBottom: 5,
-                    marginLeft: 10,
-                    marginRight: 10
-                  }}
-                >
-                  <Text style={styles.instructions}>{item.location}</Text>
-                </View>
-              </TouchableOpacity>
+                <Text style={styles.instructions}>{item.location}</Text>
+              </View>
             </View>
           )}
           keyExtractor={(item, index) => index.toString()}
@@ -371,14 +336,9 @@ class Search extends React.Component {
             hight: 90
           }}
         >
-          <MaterialCommunityIcons
-            style={styles.icons}
-            name="access-point"
-            size={20}
-          />
-          <Text style={{ paddingLeft: 8, fontSize: 14, color: "#4caf50" }}>
-            DJs
-          </Text>
+         
+          <MaterialCommunityIcons style={styles.icons} name="access-point" size={20} />
+          <Text style={{ paddingLeft:8, fontSize: 14, color: "#4caf50" }}>DJs</Text> 
         </View>
 
         <FlatList
@@ -388,6 +348,8 @@ class Search extends React.Component {
           //Item Separator View
           renderItem={({ item }) => (
             <View
+              //Girls Section
+
               style={[
                 styles.cardView,
                 {
@@ -413,13 +375,6 @@ class Search extends React.Component {
                 }
               ]}
             >
-
-            <TouchableOpacity
-                onPress={() => this.goToDJProfile(item)}
-                style={{
-                  height: 40
-                }}
-              >
               <View
                 style={{
                   flex: 1,
@@ -429,11 +384,10 @@ class Search extends React.Component {
                   marginBottom: 5,
                   marginLeft: 10,
                   marginRight: 10
-                }} 
+                }}
               >
                 <Text style={styles.instructions}>{item.name}</Text>
               </View>
-              </TouchableOpacity>
             </View>
           )}
           // enableEmptySections={true}

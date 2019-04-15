@@ -7,7 +7,7 @@ import {
     View
   } from 'react-native';
 
-//import { Icon } from 'react-native-elements';
+  import moment from "moment";
 
 export default class TicketRowItem extends Component {
 
@@ -16,26 +16,69 @@ export default class TicketRowItem extends Component {
 
 
     render() {
+      var data = this.props.bookedTicketDetailsData;
+      console.log('data.eventdate: '+data);
+      var weekDayName = moment(data.eventdate, "DD/MMM/YYYY HH:mm:ssZZ")
+        .format("ddd")
+        .toUpperCase();
+      var date = data.eventdate.split("/");
+      if(data.bookingconfirm != null && data.bookingconfirm == 'confirmed'){
         return(
           
           <View style={styles.rowContainer}>
-            <Image source={{uri: this.props.thumbnail}}
+            <Image source={{uri: "http://199.180.133.121:3030" +data.imageurl}}
             style={styles.thumbnail}
              />
             <View style={styles.rowText}>
               <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
-                {this.props.title}
+                {data.clubname}
               </Text>
               <Text style={styles.author} numberOfLines={1} ellipsizeMode ={'tail'}>
-                {this.props.author}
+                {data.eventname}
               </Text>
 
               <Text style={styles.datetxt} numberOfLines={1} ellipsizeMode ={'tail'}>
-                Sun | 29 Feb 2019
+              {weekDayName} | {date[0]} {date[1]} {date[2]}
               </Text>
+              
             </View>
+            
+            <Image source={require('../../assets/images/confirmed4.png')}
+            style={styles.statusImg}
+             />
           </View>
         );
+
+      }else {
+
+        return(
+          
+          <View style={styles.rowContainer}>
+            <Image source={{uri: "http://199.180.133.121:3030" +data.imageurl}}
+            style={styles.thumbnail}
+             />
+            <View style={styles.rowText}>
+              <Text style={styles.title} numberOfLines={2} ellipsizeMode ={'tail'}>
+                {data.clubname}
+              </Text>
+              <Text style={styles.author} numberOfLines={1} ellipsizeMode ={'tail'}>
+                {data.eventname}
+              </Text>
+
+              <Text style={styles.datetxt} numberOfLines={1} ellipsizeMode ={'tail'}>
+                {weekDayName} | {date[0]} {date[1]} {date[2]}
+              </Text>
+              
+            </View> 
+            
+            <Image source={require('../../assets/images/pending5.png')}
+            style={styles.statusImg}
+             />
+          </View>
+        );
+
+      }
+        
     }
 }
 
@@ -53,6 +96,16 @@ const styles = StyleSheet.create({
     shadowColor: '#ffffff',
     // shadowOpacity: 1.0,
     // shadowRadius: 1
+  },
+
+  statusImg:{
+    width: 55,  
+    height: 55,
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    marginBottom: 0,
+    marginRight: 10,
   },
   title: {
     paddingLeft: 10,

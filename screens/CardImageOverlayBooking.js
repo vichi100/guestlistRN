@@ -118,12 +118,6 @@ export default class CardImageOverlayBooking extends Component {
                 </Text>
                 
               </View>
-              
-              
-              
-
-
-              
             </View>
             
                  

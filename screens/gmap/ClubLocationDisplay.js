@@ -2,21 +2,25 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { Constants, MapView, Location, Permissions } from "expo";
 
+var  bookingDetailData;
+var latlongArr;
 export default class ClubLocationDisplay extends Component {
+  //19.084097, 72.874318
   state = {
     mapRegion: {
-      latitude: 37.78825,
-      longitude: -122.4324,
+      latitude: 19.084097,
+      longitude: 72.874318,
       latitudeDelta: 0.0922,
       longitudeDelta:
         (Dimensions.get("window").width / Dimensions.get("window").height) *
         0.00522
     },
     locationResult: null,
-    location: { coords: { latitude: 37.78825, longitude: -122.4324 } }
+    location: { coords: { latitude: 19.084097, longitude: 72.874318 } }
   };
 
   componentDidMount() {
+    //this.setState({location: { coords: { latitude: latlongArr[0], longitude: latlongArr[1] } }})
     this._getLocationAsync();
   }
 
@@ -33,11 +37,14 @@ export default class ClubLocationDisplay extends Component {
       });
     }
 
-    let location = await Location.getCurrentPositionAsync({});
-    this.setState({ locationResult: JSON.stringify(location), location });
+    // let location = await Location.getCurrentPositionAsync({});
+    // this.setState({ locationResult: JSON.stringify(location), location });
   };
 
   render() {
+    bookingDetailData = this.props.bookingDetailData;
+     latlongArr = bookingDetailData.latlong.split(",");
+    
     return (
       <View style={styles.container}>
         <MapView
@@ -45,7 +52,7 @@ export default class ClubLocationDisplay extends Component {
           region={{
             latitude: this.state.location.coords.latitude,
             longitude: this.state.location.coords.longitude,
-            latitudeDelta: 0.001922,
+            latitudeDelta: 0.01922,
             longitudeDelta:
               (Dimensions.get("window").width /
                 Dimensions.get("window").height) *
@@ -57,8 +64,8 @@ export default class ClubLocationDisplay extends Component {
           <MapView.Marker coordinate={this.state.location.coords} />
 
           <View>
-            <Text style={styles.pinText}>True Tramn Trunk </Text>
-            <Text style={styles.title}> Sunday, March 9 </Text>
+            <Text style={styles.pinText}>{bookingDetailData.clubname} </Text>
+            {/* <Text style={styles.title}> Sunday, March 9 </Text> */}
           </View>
         </MapView>
       </View>

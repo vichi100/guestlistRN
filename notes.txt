@@ -38,6 +38,27 @@ LICENSE.txt  README.md  ROADMAP.md  bower.json  dist  example  gulpfile.js  lib 
 
 for every club there will be a seprate index file and exaple file
 
+************* NODE JS ***********
+First update npm,
+
+npm install -g npm@next
+
+Then update node to the next version,
+
+npm install -g node@next or npm install -g n@next or, to the latest,
+
+npm install -g node@latest or npm install -g node
+
+check after version installation,
+
+node --versionor node -v
+
+************** RESET CACHE ***********************
+
+watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm cache verify && npm install && npm start -- --reset-cache
+
+
+
 
 ------------------------------------------
 
@@ -178,6 +199,9 @@ module.exports=createReactClass({
 
 
 
+######### Testing #########
+1) go to table booking select table come back then select pass now book pass then check ticket details.
+2) got to pass booking then come back then book table check ticket details
 
 
 
@@ -213,3 +237,31 @@ module.exports=createReactClass({
 
 
         91 91584371265
+
+
+
+----------------
+
+import React from 'react';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import HomeScreen from './paymentgetway/InstamojoHomeScreen';
+import InstamojoWebview from './paymentgetway/InstamojoWebView';
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    InstamojoWebview: InstamojoWebview,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+// export default class App extends React.Component {
+//   render() {
+//     return <RootStack />;
+//   }
+// }
+
+const App = createAppContainer(RootStack);
+export default App;

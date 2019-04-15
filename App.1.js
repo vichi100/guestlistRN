@@ -2,10 +2,10 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
-//import AppNavigatorx from "./screens/testNav"
+import ErrorBoundary from "./ErrorBoundary"
 
 import { SafeAreaView } from "react-navigation";
-
+ 
 if (Platform.OS === "android") {
   // removes extra space at top of header on android
   SafeAreaView.setStatusBarHeight(0);
@@ -31,16 +31,19 @@ export default class App extends React.Component {
 
       if(Platform.OS === 'ios'){
         return (
+          <ErrorBoundary>
           <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} forceInset={{'top': 'never'}}>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
             <AppNavigator />
           </View>
           </SafeAreaView>
+          </ErrorBoundary>
         );
       }else{
 
         return ( 
+          <ErrorBoundary>
           <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}} forceInset={{'top': 'never'}}>
           <View style={{flex: 1,
      marginTop: 25,
@@ -49,6 +52,7 @@ export default class App extends React.Component {
             <AppNavigator />
           </View>
           </SafeAreaView>
+          </ErrorBoundary>
         );
 
       }
@@ -76,7 +80,7 @@ export default class App extends React.Component {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
     console.warn(error);
-  };
+  }; 
 
   _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
@@ -86,7 +90,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-     //marginTop: 25,
+     //marginTop: 25, 
      backgroundColor: '#ffffff',
   },
 });

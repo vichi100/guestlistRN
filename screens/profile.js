@@ -21,6 +21,7 @@ import OfficeLocationDisplay from "../screens/gmap/OfficeLocationDisplay";
 import { OpenMapDirections } from '../screens/gmap/GMapDirectionDrive';
 import Dialog from "react-native-dialog";
 import { AsyncStorage } from "react-native";
+// import SnackBar from 'react-native-snackbar-component'
 
 
 var mePic = require('../images/sebas.jpg');
@@ -129,16 +130,22 @@ export default class Profile extends Component {
     this.setState({ dialogVisible: true });
   };
   handleCancel = () => {
-    this.setState({ dialogVisible: false, mobile: null });
+    this.setState({ dialogVisible: false, });
   };
 
   handleOk = () => {
     // The user has pressed the "Delete" button, so here you can do your own logic.
     // ...Your logic
     console.log("new mobile in OK : " + this.state.newMobile);
-    this.setState({ dialogVisible: false ,
-    mobile: this.state.newMobile});
-    this._storeDataMobile(this.state.mobile);
+    this.setState({ dialogVisible: false });
+    if(this.state.newMobile.length >= 10){  
+      this._storeDataMobile(this.state.newMobile);
+      this.setState({ mobile: this.state.newMobile});
+    }else{
+      console.log("snackbar button clicked!");
+      // <SnackBar visible={true} textMessage="Hello There!" actionHandler={()=>{console.log("snackbar button clicked!")}} actionText="let's go"/>
+    }
+    
     console.log("new mobile in OK : " + this.state.newMobile);
     setTimeout(() => { 
       
@@ -153,7 +160,7 @@ export default class Profile extends Component {
       
       }, 200);
     } catch (error) {
-      // Error saving data
+      console.log("eroor in store mobile"+ mobile);
     }
   };
 

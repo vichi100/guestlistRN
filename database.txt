@@ -1,3 +1,42 @@
+************ LOGIC ****************
+1) any user can not book more then one guestlist for same date
+2) posted by 'guestlist' will show pending status. other will always confirmed
+3) when ever a guestlist booked reduce 1 from total availbletickets if availbletickets count > 0; if zero then
+    return 0.
+4) only display ticket which have booking status 'pending' and 'confirmed' , do not show canceled one
+
+
+^^^^^^^^^^^^^^^^ TODO ^^^^^^^^^^^^^^^^
+1) OFFERS screen
+2) GMAIL LOGIN
+
+######### InstaMojo ########
+https://support.instamojo.com/hc/en-us/articles/208485675-Test-or-Sandbox-Account
+Test:
+ Url: test.instamojo.com 
+
+Prod
+ Url:  www.instamojo.com 
+
+You can create an account on https://test.instamojo.com
+
+For payments use the following card details:
+
+Card Number: 4242 4242 4242 4242
+
+Date: Any valid future date
+
+CVV: 111
+
+Name: abc
+
+3D-secure password: 1221
+
+$$$$$$$$$$  PayTm $$$$$$$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Test Instruments URL  :  https://developer.paytm.com/docs/testing-integration/
+
+**************************************
 clubs:
  clubid, clubname, location, city, imageurl, videourl, latlong, rating, followers, registered
 
@@ -143,14 +182,14 @@ email VARCHAR(100),
  postedby VARCHAR(100) ,
  offerid VARCHAR(100), tablediscountamt VARCHAR(5), tablediscountpercentage VARCHAR(5), 
  passdiscountamt VARCHAR(5), passdiscountpercentage VARCHAR(5), 
- totalprice VARCHAR(10), priceafterdiscount VARCHAR(10), paidamount VARCHAR(100), 
+ totalprice VARCHAR(10), priceafterdiscount VARCHAR(10), bookingamount VARCHAR(100), 
  remainingamount VARCHAR(100), guestlistgirlcount VARCHAR(5), guestlistcouplecount VARCHAR(5), passcouplecount VARCHAR(5), 
   passstagcount VARCHAR(5), tablenumber VARCHAR(5),
   tablepx VARCHAR(3), transactionnumber VARCHAR(100), paymentstatusmsg VARCHAR(900), bookingconfirm VARCHAR(10), 
   termncondition VARCHAR(1000), latlong VARCHAR(50), qrcode VARCHAR(900), bookingdate VARCHAR(100), 
   bookingtimestamp VARCHAR(100));
 
-
+ALTER TABLE ticketbookingdetails CHANGE `paidamount` `bookingamount` VARCHAR(100);
 
  djtable:
  djid, name, email, mobile, followers, eventscount, picurl
@@ -240,9 +279,25 @@ VALUES
 (	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
 (	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj');
 
-update tablesdata set eventdate = '05/Apr/2019' where eventdate = '19/Mar/2019';
-update tablesdata set eventdate = '06/Apr/2019' where eventdate = '20/Mar/2019';
-update tablesdata set eventdate = '07/Apr/2019' where eventdate = '21/Mar/2019';
-update tablesdata set eventdate = '08/Apr/2019' where eventdate = '22/Mar/2019';
-update tablesdata set eventdate = '09/Apr/2019' where eventdate = '23/Mar/2019';
-update tablesdata set eventdate = '10/Apr/2019' where eventdate = '24/Mar/2019';
+update tablesdata set eventdate = '11/Apr/2019' where eventdate = '05/Apr/2019';
+update tablesdata set eventdate = '12/Apr/2019' where eventdate = '06/Apr/2019';
+update tablesdata set eventdate = '13/Apr/2019' where eventdate = '07/Apr/2019';
+update tablesdata set eventdate = '14/Apr/2019' where eventdate = '08/Apr/2019';
+update tablesdata set eventdate = '15/Apr/2019' where eventdate = '09/Apr/2019';
+update tablesdata set eventdate = '16/Apr/2019' where eventdate = '10/Apr/2019';
+
+
+update events set eventdate='11/Apr/2019' where eventdate = '05/Apr/2019';
+update events set eventdate='12/Apr/2019' where eventdate = '06/Apr/2019';
+update events set eventdate='13/Apr/2019' where eventdate = '07/Apr/2019';
+update events set eventdate='14/Apr/2019' where eventdate = '08/Apr/2019';
+update events set eventdate='15/Apr/2019' where eventdate = '09/Apr/2019';
+update events set eventdate='16/Apr/2019' where eventdate = '10/Apr/2019';
+
+
+update ticketdetailsbyclubs set date = '11/Apr/2019' where date = '05/Apr/2019';
+update ticketdetailsbyclubs set date = '12/Apr/2019' where date = '06/Apr/2019';
+update ticketdetailsbyclubs set date = '13/Apr/2019' where date = '07/Apr/2019';
+update ticketdetailsbyclubs set date = '14/Apr/2019' where date = '08/Apr/2019';
+update ticketdetailsbyclubs set date = '15/Apr/2019' where date = '09/Apr/2019';
+update ticketdetailsbyclubs set date = '16/Apr/2019' where date = '10/Apr/2019';

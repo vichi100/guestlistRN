@@ -89,6 +89,7 @@ export default class BookingScreen extends React.Component {
       guestListTitleStr:"Guest List",
       totalAmount: 0,
       remainingamount: 0,
+      bookingAmount:0,
       clubTicketData:null,
       eventTicketDataByDj:null,
       eventTicketDataByPR:null,
@@ -101,6 +102,7 @@ export default class BookingScreen extends React.Component {
       guestlistgirlcount:0,
       guestlistcouplecount: 0,
       dialogVisible : false,
+      mybookingamount: 50,// Prod-500 , test-50
 
       
     };
@@ -187,10 +189,11 @@ export default class BookingScreen extends React.Component {
     }
   };
 
-  bookTicket = async eventData => {
-    // check if already logged in if not ask for login
-    //this._retrieveData();
 
+
+
+  bookTicket = async eventData => {
+    //check if guest is selected any ticket
     if(this.state.guestlistcouplecount == 0 && this.state.guestlistgirlcount ==0 
       && this.state.lastPassCoupleCount == 0 && this.state.lastPassStagCount ==0){
           this._showDialog();
@@ -200,22 +203,28 @@ export default class BookingScreen extends React.Component {
     email = await AsyncStorage.getItem("email");
     mobile = await AsyncStorage.getItem("mobile");
     var userid = await AsyncStorage.getItem("customerId");
+    var custName = await AsyncStorage.getItem("name");
+    console.log('email1 : ' + ": " + email);
+    console.log('mobile1 : ' + ": " + mobile); 
 
-    if (email == null && mobile == null) {
+    if (email == null && mobile == null) {  
+      // if (true) {
       // go to login form
-      console.log(email + ": " + mobile);
+      console.log('email2 : ' + ": " + email);
+      console.log('mobile2 : ' + ": " + mobile);
       //this.props.navigation.navigate('BookingScreen', {data:item});
-      this.props.navigation.navigate("LoginScreen", {
-        eventDataFromBookingScreen: eventData,
-        // fromScreen:'BookingScreen.js'
-      }); // move to login page
+      this.props.navigation.navigate("LoginScreen", {eventDataFromBookingScreen: eventData, me:'BookingScreen'}); // move to login page
       return;
-    }
-    
+    } 
+
+    //after payment send booking details to server for ticket
     var bookingTimeStamp = moment().valueOf();
+
+    console.log('eventData: '+JSON.stringify(eventData));
     var postData = {
       bookingid: bookingTimeStamp,
       userid: userid,
+      username: custName,
       mobilenumber: mobile,
       email: email,
       clubid: eventData.clubid,
@@ -226,24 +235,25 @@ export default class BookingScreen extends React.Component {
       imageurl: eventData.imageurl,
       postedby: eventData.postedby,
       offerid: eventData.offerid,
-      tablediscountamt: "", //eventData.tablediscount,
-      tablediscountpercentage: "",
-      passdiscountamt: "", //eventData.passdiscount,
-      passdiscountpercentage: "",
+      purpose: 'Pass Booking',
+      tablediscountamt: null, //eventData.tablediscount,
+      tablediscountpercentage: null,
+      passdiscountamt: null, //eventData.passdiscount,
+      passdiscountpercentage: null,
       totalprice: this.state.totalAmount,
       priceafterdiscount: this.state.totalAmount,
-      paidamount: this.state.totalAmount, //this.state.totalAmountAfterDiscount,
+      bookingamount: this.state.bookingAmount, //this.state.totalAmountAfterDiscount,
       remainingamount: this.state.remainingamount,
       guestlistgirlcount: this.state.guestlistgirlcount,
       guestlistcouplecount: this.state.guestlistcouplecount,
       passcouplecount: this.state.passcouplecount,
       passstagcount: this.state.passstagcount,
-      tablenumber: this.state.tablenumber,
-      tablepx: this.state.tablepx,
-      transactionnumber: "10000000000000003", //transactionnumber,
-      paymentstatusmsg: "success",
-      bookingconfirm: "yes",
-      termncondition: "",
+      tablenumber: null,
+      tablepx: null,
+      transactionnumber: bookingTimeStamp, //transactionnumber,
+      paymentstatusmsg: null,
+      bookingconfirm: null,
+      termncondition: null,
       latlong: eventData.latlong,
       qrcode:
         eventData.clubid +
@@ -261,30 +271,17 @@ export default class BookingScreen extends React.Component {
       bookingtimestamp: bookingTimeStamp // current date and time
     };
 
-    //https://stackoverflow.com/questions/43447106/how-to-send-data-to-server-and-fetched-response-using-react-native-application
 
-    // SEND BOOKING DETAILS TO SERVER -  START
-    return fetch("http://192.168.43.64:6000/bookTicket", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(postData)
-    })
-      .then(response => response.json())
-      .then(response => {
-        console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
-        this.props.navigation.navigate("TicketDisplayFromBooking", {
-          postData: postData
-        });
-        console.log("data send to server");
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    // SEND BOOKING DETAILS TO SERVER FINSH -END
+    // navigate to payment getway if total amount is > 0
+    console.log('bookingData: '+JSON.stringify(postData));
+
+    if(this.state.guestlistcouplecount > 0 || this.state.guestlistgirlcount > 0 
+      || this.state.lastPassCoupleCount > 0 || this.state.lastPassStagCount > 0){
+        console.log('totalprice: '+postData.totalprice);
+        // this.props.navigation.navigate("PaymentOptions", {bookingData: postData, me:'BookingScreen'});
+        this.props.navigation.navigate("PaymentOptions", {bookingData: postData, me:'BookingScreen'});
+      }
+ 
   };
 
   _showDialog = () => {
@@ -302,17 +299,36 @@ export default class BookingScreen extends React.Component {
     console.log("this.state.totalAmount stag " + this.state.totalAmount);
     console.log("lastPassStagCount " + this.state.lastPassStagCount);
 
+    if(this.state.bookingAmount == 0){
+      this.setState({bookingAmount:this.state.mybookingamount})// 500 for prod test 50
+    }
+    
+
     if (value.passstagcount > this.state.lastPassStagCount) {
       var totalAmountx =
         this.state.totalAmount + parseInt(this.state.clubTicketData.passStagCost);
-      this.setState({ totalAmount: totalAmountx });
+        this.setState({ totalAmount: totalAmountx });
+        if(totalAmountx > 0){
+          totalAmountx = totalAmountx - this.state.mybookingamount;
+        }
+      this.setState({ remainingamount: totalAmountx });
     } else if (value.passstagcount < this.state.lastPassStagCount) {
       var totalAmountx =
         this.state.totalAmount - parseInt(this.state.clubTicketData.passStagCost);
-      this.setState({ totalAmount: totalAmountx });
+        this.setState({ totalAmount: totalAmountx });
+        if(totalAmountx > 0){
+          totalAmountx = totalAmountx - this.state.mybookingamount;
+        }
+        
+      this.setState({ remainingamount: totalAmountx });
     }
     this.setState({ passstagcount: value.passstagcount });
     this.setState({ lastPassStagCount: value.passstagcount });
+
+    if(this.state.totalAmount == 0){  
+      this.setState({bookingAmount:0})
+    }
+     
     setTimeout(() => {}, 200);
   };
 
@@ -320,30 +336,53 @@ export default class BookingScreen extends React.Component {
     console.log(" current couple " + JSON.stringify(value));
     console.log("this.state.totalAmount couple " + this.state.totalAmount);
     console.log("lastPassCoupleCount " + this.state.lastPassCoupleCount);
+
+    if(this.state.bookingAmount == 0){
+      this.setState({bookingAmount:this.state.mybookingamount})
+    }
+    setTimeout(() => {}, 500);
+
+    console.log('bookingAmount: '+this.state.bookingAmount)
+    
+
     if (value.passcouplecount > this.state.lastPassCoupleCount) {
       var totalAmountx =
         this.state.totalAmount + parseInt(this.state.clubTicketData.passCoupleCost);
-      this.setState({ totalAmount: totalAmountx });
+        this.setState({ totalAmount: totalAmountx });
+        console.log('bookingAmount2: '+this.state.bookingAmount)
+        if(totalAmountx > 0){
+          totalAmountx = totalAmountx - this.state.mybookingamount;
+        }
+      this.setState({ remainingamount: totalAmountx });
     } else if (value.passcouplecount < this.state.lastPassCoupleCount) {
       var totalAmountx =
         this.state.totalAmount - parseInt(this.state.clubTicketData.passCoupleCost);
-      this.setState({ totalAmount: totalAmountx });
+        this.setState({ totalAmount: totalAmountx });
+        if(totalAmountx > 0){
+          totalAmountx = totalAmountx - this.state.mybookingamount;
+        }
+      this.setState({ remainingamount: totalAmountx });
     }
 
     this.setState({ passcouplecount: value.passcouplecount });
     //lastPassCoupleCount = value.passCouple;
     this.setState({ lastPassCoupleCount: value.passcouplecount });
+    if(this.state.totalAmount == 0){
+      this.setState({bookingAmount:0})
+    }
     setTimeout(() => {}, 200);
   };
 
   render() {
     const { navigation } = this.props;
     eventData = navigation.getParam("data");
+    var meValue = navigation.getParam("me");
+    console.log("me: " + JSON.stringify(meValue));
     console.log("data from events screen :" + JSON.stringify(eventData));
 
     if (this.state.isLoading) {
       return (
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, justifyContent: "center" }}> 
           <ActivityIndicator size="large" />
         </View>
       );
@@ -368,7 +407,6 @@ export default class BookingScreen extends React.Component {
           {/* <GuestListScreen /> Start   */}
 
           <View
-            //outer GuestList
             style={[
               styles.cardView,
               {
@@ -403,9 +441,7 @@ export default class BookingScreen extends React.Component {
             </View>
 
             <View
-              //Girls Section
-
-              style={[
+            style={[
                 styles.cardView,
                 {
                   backgroundColor: this.props.backgroundColor,
@@ -443,7 +479,7 @@ export default class BookingScreen extends React.Component {
                 }}
               >
                 <Text style={styles.instructions}>Girls/Free</Text>
-                {/* <TouchableOpacity onPress={()=>this.pressedLike()} > */}
+                
                 <NumericInput
                   initValue={this.state.guestlistgirlcount}
                   value={this.state.guestlistgirlcount}
@@ -529,6 +565,7 @@ export default class BookingScreen extends React.Component {
                 />
               </View>
             </View>
+          
           </View>
 
           {/* <GuestListScreen /> End */}
@@ -770,6 +807,99 @@ export default class BookingScreen extends React.Component {
                   marginRight: 10
                 }}
               >
+                <Text style={styles.instructions}>Booking Amount</Text>
+                <Text style={styles.instructions}>
+                  {this.state.bookingAmount} Rs
+                </Text>
+              </View>
+            </View>
+
+            
+            
+
+            <View
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 10,
+                  marginRight: 10
+                }}
+              >
+                <Text style={styles.instructions}>Payable at club</Text>
+                <Text style={styles.instructions}>
+                  {this.state.remainingamount} Rs
+                </Text>
+              </View>
+            </View>
+
+            
+
+            <View
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "space-between",
+                  flexDirection: "row",
+                  marginTop: 5,
+                  marginBottom: 5,
+                  marginLeft: 10,
+                  marginRight: 10
+                }}
+              >
                 <Text style={styles.instructions}>Total Amount</Text>
                 <Text style={styles.instructions}>
                   {this.state.totalAmount} Rs
@@ -777,6 +907,9 @@ export default class BookingScreen extends React.Component {
               </View>
             </View>
 
+            
+            
+            
             <View
               //Girls Section
 

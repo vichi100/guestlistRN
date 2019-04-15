@@ -172,17 +172,17 @@ export default class TicketDisplayFromBooking extends React.Component {
 
   render() {
     const { navigation } = this.props;  
-    var bookingDetailData = navigation.getParam("postData");
+    var bookingDetailData = navigation.getParam("bookingData");
     //this.setState({bookingDetailData: bookingDetailData});
     console.log("bookingDetailData "+ bookingDetailData)
     return (
-      <View style={styles.container}>
+      <View style={styles.container}> 
         <ScrollView
           style={styles.container}
-          contentContainerStyle={styles.contentContainer}
+          contentContainerStyle={styles.contentContainer} 
         >
           {/* <Card>
-          <QRCodeDisplay/>
+          <QRCodeDisplay/> 
        
           </Card> */}
 
@@ -190,7 +190,7 @@ export default class TicketDisplayFromBooking extends React.Component {
 
           <QRCodeDisplay qrCodeData={bookingDetailData}/>
           <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}>
-          <ClubLocationDisplay/>
+          <ClubLocationDisplay bookingDetailData={bookingDetailData}/>
           </TouchableOpacity>
 
           {/* <Text style={styles.title} numberOfLines={2} ellipsizeMode={"tail"}>

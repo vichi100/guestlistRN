@@ -96,7 +96,12 @@ export default class EventsOfOneClub extends Component {
     // navigate('GuestListScreen'); 
     console.log("date ; " + item.eventDate);
     console.log("clubid ; " + item.clubid);
-    this.props.navigation.navigate('BookingScreen', {data:item});  
+    if(item.postedby == 'guestlist'){
+      this.props.navigation.navigate("BookingScreenOnlyForGuestList", { data: item, me: "yo" });
+      
+    }else{
+      this.props.navigation.navigate("BookingScreen", { data: item, me: "yo" });
+    }  
 }
 
 goToTableScreen = (item) => { 
@@ -104,7 +109,12 @@ goToTableScreen = (item) => {
   // navigate('GuestListScreen'); 
   // console.log("date ; " + eventDate);
   // console.log("clubid ; " + clubid);
-  this.props.navigation.navigate('TableScreen', {data:item});  
+  if(item.postedby == 'club'){
+    this.props.navigation.navigate("TableScreen", { data: item, me: "yo" });
+    
+  }else{
+    this.props.navigation.navigate("TableScreenNoLayout", { data: item, me: "yo" });
+  }
 }
 
 _showMoreApp = () => {

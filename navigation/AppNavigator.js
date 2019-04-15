@@ -9,41 +9,27 @@ import {
   TouchableHighlight
 } from "react-native";
 
-import {
+import { 
   createAppContainer,
   createSwitchNavigator,
   createStackNavigator,
   createBottomTabNavigator
 } from "react-navigation";
 
-//import MainTabNavigator from "./MainTabNavigator";
 
 import GuestListScreen from "../screens/GuestListScreen";
 import PassScreen from "../screens/PassScreen";
 import ClubsEvents from "../screens/ClubsEvents";
-
-
 import BookingScreen from "../screens/BookingScreen";
 import TableScreen from "../screens/TableScreen";
 import TicketDisplayFromTableBooking from "../screens/TicketDisplayFromTableBooking";
-
-
-import MyProfile from "../screens/MyProfile";
-
-////////
-
 import TabBarIcon from "../components/TabBarIcon";
 import OffersListScreen from "../screens/offers/OffersListScreen";
-//import SettingsScreen from "../screens/SettingsScreen";
 import TicketsListScreen from "../screens/tickets/TicketsListScreen";
 import TicketDisplayScreen from "../screens/ticketDistpay/TicketDisplayScreen";
 import TicketDisplayFromBooking from "../screens/ticketDistpay/TicketDisplayFromBooking";
-
-//import Feed from "../screens/feed";
-import EventsScreen from "../screens/EventsScreen";
-import Icon from "@expo/vector-icons/FontAwesome";
+import TicketDisplayFromNoLayoutTableBooking from '../screens/TicketDisplayFromNoLayoutTableBooking.js';
 import Ionicons from "@expo/vector-icons/Ionicons";
-
 import Profile from "../screens/profile";
 import DJProfile from "../screens/DJProfile";
 import Search from  "../screens/SearchScreen";
@@ -53,9 +39,13 @@ import Login from "../screens/login/Login";
 import FBLogin from "../screens/login/FBLogin";
 import SelectCity from '../screens/changeCity/SelectCity';
 import chat from '../chat/Chat';
-// import screen2 from "../screens/screen2";
+import PayTm from '../paytm/paytm';
+import PaymentOptions from '../paymentgetway/PaymentOptions'
+import InstamojoWebview from '../paymentgetway/InstamojoWebView';
+import PayTmWebView from '../paymentgetway/PayTmWebView';
+import TableScreenNoLayout from '../screens/TableScreenNoLayout';
+import BookingScreenOnlyForGuestList from '../screens/BookingScreenOnlyForGuestList';
 
-// import MyHomeScreen from "../screens/MyHomeScreen";
 
 import MainTopTabs from "./TopTabNavigator";
 
@@ -346,12 +336,19 @@ const AppStack = createStackNavigator({
   TicketDisplayScreen: TicketDisplayScreen,  
   TicketDisplayFromBooking : TicketDisplayFromBooking,
   TicketDisplayFromTableBooking: TicketDisplayFromTableBooking,
-  BookingScreen: BookingScreen,
+  BookingScreen: BookingScreen, 
+  BookingScreenOnlyForGuestList:BookingScreenOnlyForGuestList,
+  PayTmScreen:PayTm,
   LoginScreen:Login,
   FBLogin: FBLogin,
   TableScreen: TableScreen,
+  TableScreenNoLayout: TableScreenNoLayout,
   GuestListScreen: GuestListScreen,
-  PassScreen: PassScreen
+  PassScreen: PassScreen,
+  PaymentOptions: PaymentOptions,
+  InstamojoWebview: InstamojoWebview,
+  PayTmWebView:PayTmWebView,
+  TicketDisplayFromNoLayoutTableBooking:TicketDisplayFromNoLayoutTableBooking,
 });
 
 export default createAppContainer( 

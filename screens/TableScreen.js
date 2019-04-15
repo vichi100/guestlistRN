@@ -9,7 +9,10 @@ import {
   View,
   Button,
   ImageBackground,
-  WebView
+  WebView,
+  ActivityIndicator,
+  Dimensions,
+  YellowBox,
 } from "react-native";
 import moment from 'moment';
 //import WebViewPostMessage from './react-native-web-view'
@@ -20,12 +23,17 @@ import NumericInput from "react-native-numeric-input";
 import { create, PREDEF_RES } from "react-native-pixel-perfect";
 import TableDetailsnPrice from "./TableDetailsnPrice";
 import Dialog from "react-native-dialog";
+import { AsyncStorage } from "react-native";
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 let eventData;
 var email;
 var mobile;
 
 var clickedTableid = null;
+YellowBox.ignoreWarnings(["Warning", 'Encountered an error loading page', ]);
 
 export default class TableScreen extends React.Component {
 
@@ -62,14 +70,14 @@ export default class TableScreen extends React.Component {
     this.state = {
       dialogVisible: false,
       calc_height: 0,
-      tableNumber: 0,
+      //tableNumber: null,
       dataSource:[],
-      tableNumber:'', 
-      tablePrice:'',
-      tableSize: '',
-      tableDetails:'',
-      tablelayoutURL: '',
-      tableData:{}
+      // tableNumber:null, 
+      // tablePrice:null,
+      // tableSize: null,
+      // tableDetails:null,
+      // tablelayoutURL: null,
+      tableData:null,
     }; 
   } 
 
@@ -110,42 +118,41 @@ bookTicket= async() =>{
         return; 
   }
 
+  email = await AsyncStorage.getItem("email");
+  mobile = await AsyncStorage.getItem("mobile");
+  var userid = await AsyncStorage.getItem("customerId");
+  var custName = await AsyncStorage.getItem("name");
   if (email == null && mobile == null) {
     // go to login form
     console.log(email + ": " + mobile);
     //this.props.navigation.navigate('BookingScreen', {data:item});
-    this.props.navigation.navigate("LoginScreen", {
-      eventDataFromBookingScreen: eventData
-    }); // move to login page
+    this.props.navigation.navigate("LoginScreen", {eventDataFromBookingScreen: eventData, me:'TableScreen'}); // move to login page
     return;
   }
-
-  email = await AsyncStorage.getItem("email");
-  mobile = await AsyncStorage.getItem("mobile");
-  var userid = await AsyncStorage.getItem("customerId");
-
 
   var bookingTimeStamp = moment().valueOf();
   var postData = {
     "bookingid": bookingTimeStamp,
-    "userid" : "9999",
-    "mobilenumber":"9867614466",
-    "email" : "vichi100@gmail.com",
+    "userid" : userid,
+    username: custName,
+    "mobilenumber":mobile,
+    "email" : email,
     "clubid" : eventData.clubid, 
     "clubname" : eventData.clubname,
     "eventid" : eventData.eventid,
     "eventname" : eventData.eventname,
     "eventdate" : eventData.eventdate,
     "imageurl": eventData.imageurl,
-    "postedby" : eventData.postedby,
+    "postedby" : eventData.postedby,//[guestlist, club, dj, pr]
     "offerid" : eventData.offerid, 
-    "tablediscountamt" : "",//eventData.tablediscount,
-    "tablediscountpercentage" : "",
-    "passdiscountamt" : "",//eventData.passdiscount,
-    "passdiscountpercentage": "", 
+    "tablediscountamt" : null,//eventData.tablediscount,
+    "tablediscountpercentage" : null,
+    "passdiscountamt" : null,//eventData.passdiscount,
+    "passdiscountpercentage": null, 
+    "purpose": 'Table Booking',
     "totalprice" : this.state.tableData.tablePrice,
     "priceafterdiscount": this.state.totalAmount,
-    "paidamount" : this.state.tableData.bookingAmount,//this.state.totalAmountAfterDiscount,
+    "bookingamount" : this.state.tableData.bookingAmount,//this.state.totalAmountAfterDiscount,
     "remainingamount" : this.state.tableData.remainingAmount,
     "guestlistgirlcount" : this.state.guestlistgirlcount,
     "guestlistcouplecount" : this.state.guestlistcouplecount,
@@ -153,7 +160,7 @@ bookTicket= async() =>{
     "passstagcount" : this.state.passstagcount,
     "tablenumber" : this.state.tableData.tableNumber,
     "tablepx" : this.state.tableData.tableSize,
-    "transactionnumber" : "10000000000000003",//transactionnumber,
+    "transactionnumber" : bookingTimeStamp,//transactionnumber,
     "paymentstatusmsg" : "success",
     "bookingconfirm" : "yes",
     "termncondition": "", 
@@ -164,29 +171,37 @@ bookTicket= async() =>{
     "bookingtimestamp" : bookingTimeStamp,// current date and time
 
   }
+
+  console.log('bookingData: '+JSON.stringify(postData));
+
+    if(parseInt(postData.totalprice) > 0 ){ 
+        console.log('totalprice: '+postData.totalprice);
+        //this.props.navigation.navigate("PayTmScreen", {bookingData: postData, me:'BookingScreen'});
+        this.props.navigation.navigate("PaymentOptions", {bookingData: postData, me:'BookingScreen'});
+      }
   
   //https://stackoverflow.com/questions/43447106/how-to-send-data-to-server-and-fetched-response-using-react-native-application
 
-  // SEND BOOKING DETAILS TO SERVER -  START
-  return fetch("http://192.168.43.64:6000/bookTicket",{
-    method: "POST",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body:  JSON.stringify(postData)
-  })
-  .then(response => response.json()) 
-  .then(response => {
-  console.log("data : " + response); 
-    this.setState({ dataSource: response, isLoading: false });
-    this.props.navigation.navigate('TicketDisplayFromTableBooking', { "postData":postData }); 
-  console.log("data send to server");
-  }) 
-  .catch(error => {
-    console.error(error); 
-  }); 
-  // SEND BOOKING DETAILS TO SERVER FINSH -END
+  // // SEND BOOKING DETAILS TO SERVER -  START
+  // return fetch("http://192.168.43.64:6000/bookTicket",{
+  //   method: "POST",
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body:  JSON.stringify(postData)
+  // })
+  // .then(response => response.json()) 
+  // .then(response => {
+  // console.log("data : " + response); 
+  //   this.setState({ dataSource: response, isLoading: false });
+  //   this.props.navigation.navigate('TicketDisplayFromTableBooking', { "postData":postData }); 
+  // console.log("data send to server");
+  // }) 
+  // .catch(error => {
+  //   console.error(error); 
+  // }); 
+  // // SEND BOOKING DETAILS TO SERVER FINSH -END
   
 
 }  
@@ -275,7 +290,8 @@ bookTicket= async() =>{
 
     const { navigation } = this.props;  
     eventData = navigation.getParam("data");
-
+    const meValue = navigation.getParam("me");
+    console.log("meValue: "+meValue)
     function replaceAll(str, find, replace) {
       return str.replace(new RegExp(find, 'g'), replace);
   }
@@ -324,8 +340,6 @@ bookTicket= async() =>{
           </View>
 
           <View
-            //Couple Section
-
             style={[
               styles.cardView,
               {
@@ -384,7 +398,27 @@ bookTicket= async() =>{
               onMessage={m => this.onMessage(m)} 
               onLoadEnd={e => console.log("end", e)}
               onLoadStart={e => console.log("start", e)}  
-              onError={e => console.log("error", e)}
+              onError={ (e) => {
+    
+    if(e){
+    //loads the error view only after the resolving of the above errors has failed
+        return(
+            <View>
+                Error occurred while loading the page.
+            </View>
+            );
+        }}}
+renderError={(e) => {
+//Renders this view while resolving the error 
+    return(
+        <View style={{ flex: 1, justifyContent:'center', backgroundColor:'#ffffff'}}>
+            <Image
+          style={{ resizeMode: "center" , height:300, width:width}}
+          source={require('../assets/images/error.png')}
+        />
+            </View>
+    );
+}}
               //onNavigationStateChange={this._onNavigationStateChange.bind(this)}
 
               onLoad={e => console.log("end", e)}
@@ -420,12 +454,6 @@ bookTicket= async() =>{
 
 <TouchableOpacity onPress={()=>this.bookTicket()} style ={{
                     height: 50,
-                    //width:160,
-                    //borderRadius:10,
-                    
-                    // marginLeft :50,
-                    // marginRight:50,
-                    // marginTop :20
                 }}>
     <View style={{
     flex: 1, 

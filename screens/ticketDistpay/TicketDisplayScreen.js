@@ -157,7 +157,7 @@ export default class TicketDisplayScreen extends React.Component {
 
           <QRCodeDisplay />
           <TouchableOpacity onPress={this.handleGetDirections}>
-          <ClubLocationDisplay />
+          <ClubLocationDisplay bookingDetailData={bookingDetailData}/>
           </TouchableOpacity>
 
           {/* <Text style={styles.title} numberOfLines={2} ellipsizeMode={"tail"}>

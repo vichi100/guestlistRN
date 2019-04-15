@@ -52,7 +52,7 @@ export default class TicketDisplayFromTableBooking extends React.Component {
     headerBackTitle: null,
     headerLeft: null,
     headerStyle: {
-      backgroundColor: '#263238',
+      backgroundColor: '#263238', 
       //Background Color of Navigation Bar
     },
 
@@ -176,8 +176,8 @@ export default class TicketDisplayFromTableBooking extends React.Component {
 
   render() {
     const { navigation } = this.props;  
-    var bookingDetailData = navigation.getParam("postData");
-    //this.setState({bookingDetailData: bookingDetailData});
+    var bookingDetailData = navigation.getParam("bookingData");
+    //this.setState({bookingDetailData: bookingDetailData}); 
     return (
       <View style={styles.container}>
         <ScrollView
@@ -190,7 +190,7 @@ export default class TicketDisplayFromTableBooking extends React.Component {
 
           <QRCodeDisplay qrCodeData={bookingDetailData}/>
           <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}> 
-          <ClubLocationDisplay />
+          <ClubLocationDisplay bookingDetailData={bookingDetailData}/>
           </TouchableOpacity>
 
           <View

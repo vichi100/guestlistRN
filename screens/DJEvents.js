@@ -69,7 +69,12 @@ export default class DJEvents extends Component {
     // navigate('GuestListScreen'); 
     // console.log("date ; " + eventDate);
     // console.log("clubid ; " + clubid);
-    this.props.navigation.navigate('BookingScreen', {data:item});  
+    if(item.postedby == 'guestlist'){
+      this.props.navigation.navigate("BookingScreenOnlyForGuestList", { data: item, me: "yo" });
+      
+    }else{
+      this.props.navigation.navigate("BookingScreen", { data: item, me: "yo" });
+    }  
 }
 
 goToTableScreen = (clubid, eventDate) => { 
@@ -77,7 +82,12 @@ goToTableScreen = (clubid, eventDate) => {
   // navigate('GuestListScreen'); 
 //   console.log("date ; " + eventDate);
 //   console.log("clubid ; " + clubid);
-  this.props.navigation.navigate('TableScreen', {data:item});  
+if(item.postedby == 'club'){
+  this.props.navigation.navigate("TableScreen", { data: item, me: "yo" });
+  
+}else{
+  this.props.navigation.navigate("TableScreenNoLayout", { data: item, me: "yo" });
+}
 }
 
 

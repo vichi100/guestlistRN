@@ -121,7 +121,7 @@ export default class BillDetailsScreen extends React.Component {
             >
               <Text style={styles.instructions}>Paid Amount</Text>
               <Text style={styles.instructions}>
-                  {data.paidamount} Rs
+                  {data.bookingamount} Rs
                   </Text>
             </View>
           </View>

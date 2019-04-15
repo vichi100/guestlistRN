@@ -32,22 +32,23 @@ export default class Login extends Component {
 
     render() {
         const { navigation } = this.props;  
-        eventData = navigation.getParam("eventDataFromBookingScreen");
-        var eventDatax = navigation.getParam("eventDataFromBookingScreen");
-        console.log("eventDatax "+JSON.stringify(eventDatax))
+        eventData = navigation.getParam("bookingData");
+        var mevalue = navigation.getParam("me");
+        console.log("mevalue: "+ mevalue);
+        console.log("eventData "+JSON.stringify(eventData))
         
         return (
         <View behavior="padding" style={styles.container}>
 
                 <View style={styles.loginContainer}>
                     <Image resizeMode="contain" style={styles.logo} 
-                    source={require('../../assets/images/logo-dark-bg.png')} />
+                    source={require('../../assets/images/logo-dark-bg.png')} /> 
                   
                     </View>
                <View>
                
-                   <FBLogin navigation={this.props.navigation} eventDataFromBookingScreen={eventData}/>
-                   <GLogin navigation={this.props.navigation} eventDataFromBookingScreen={eventData}/>
+                   <FBLogin navigation={this.props.navigation} eventDataFromBookingScreen={eventData}  gotoScreen={mevalue}/>
+                   <GLogin navigation={this.props.navigation} eventDataFromBookingScreen={eventData} gotoScreen={mevalue}/>
                </View>
                
          

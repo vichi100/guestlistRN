@@ -37,6 +37,8 @@ import { create, PREDEF_RES } from "react-native-pixel-perfect";
 const calcSize = create(PREDEF_RES.iphone7.px);
 import Dialog from "react-native-dialog";
 
+import axios from 'axios'
+
 const window = Dimensions.get("window");
 
 var email;
@@ -44,8 +46,7 @@ var mobile;
 
 let w = window.Width;
 let eventData;
-// var lastPassCoupleCount = 0;
-// var lastPassStagCount = 0;
+
 
 export default class BookingScreenOnlyForGuestList extends React.Component {
   static defaultProps = {
@@ -108,17 +109,18 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
   }
 
   componentDidMount() {
-    return fetch(
+    return axios.get(
       "http://192.168.43.64:6000/ticketDetails?clubid=" +
         eventData.clubid +
         "&eventDate=" +
         eventData.eventdate
     )
-      .then(response => response.json()) 
+      //.then(response => response.json()) 
       .then(response => {
-        console.log("ticketDetailsData : " + JSON.stringify(response));
+        console.log("ticketDetailsData : " + JSON.stringify(response.data));
 
         //TICKET DATA FOR CLUB 
+        response = response.data
         console.log(" clubTicketData "+response.clubTicketData.guestlistGirlAvailableCount) 
         this.setState({
           clubTicketData:response.clubTicketData,
@@ -206,12 +208,12 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
     console.log('email1 : ' + ": " + email);
     console.log('mobile1 : ' + ": " + mobile); 
 
-    if (email == null && mobile == null) {
+    if (email == null || mobile == null || userid == null) {
       // go to login form
       console.log('email2 : ' + ": " + email);
       console.log('mobile2 : ' + ": " + mobile);
       //this.props.navigation.navigate('BookingScreen', {data:item});
-      this.props.navigation.navigate("LoginScreen", {eventDataFromBookingScreen: eventData, me:'BookingScreen'}); // move to login page
+      this.props.navigation.navigate("LoginScreen", {bookingData: eventData, me:'BookingScreenOnlyForGuestList'}); // move to login page
       return;
     } 
 
@@ -250,7 +252,7 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
       tablepx: null,
       transactionnumber: bookingTimeStamp, //transactionnumber,
       paymentstatusmsg: null,
-      bookingconfirm: 'pending',
+      bookingconfirm: null,
       termncondition: null,
       latlong: eventData.latlong,
       qrcode:
@@ -270,14 +272,20 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
     };
 
 
-    // navigate to payment getway if total amount is > 0
-    console.log('bookingData: '+JSON.stringify(postData));
+    if(eventData.postedby == 'dj' || eventData.postedby == 'pr' || eventData.postedby == 'club'){
+      postData.bookingconfirm = 'confirm'
+    }else if(eventData.postedby == 'guestlist'){
+      postData.bookingconfirm = 'pending'
+    }
 
-    if(this.state.guestlistcouplecount > 0 || this.state.guestlistgirlcount > 0 
-      || this.state.lastPassCoupleCount > 0 || this.state.lastPassStagCount > 0){
-        console.log('totalprice: '+postData.totalprice);
+
+    // navigate to payment getway if total amount is > 0
+    console.log('bookingData in BookingScreenOnlyForGuestList: '+JSON.stringify(postData));
+
+    if(this.state.guestlistcouplecount > 0 || this.state.guestlistgirlcount > 0 ){
+        console.log('totalprice in BookingScreenOnlyForGuestList:  '+postData.totalprice);
         // this.props.navigation.navigate("PaymentOptions", {bookingData: postData, me:'BookingScreen'});
-        this.props.navigation.navigate("PaymentOptions", {bookingData: postData, me:'BookingScreen'});
+        this.props.navigation.navigate("PaymentOptions", {bookingData: postData, me:'BookingScreenOnlyForGuestList'});
       }
  
   };
@@ -372,11 +380,13 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
   };
 
   render() {
+
+    console.log("I am in BookingScreenOnlyForGuestList");
     const { navigation } = this.props;
     eventData = navigation.getParam("data");
     var meValue = navigation.getParam("me");
     console.log("me: " + JSON.stringify(meValue));
-    console.log("data from events screen :" + JSON.stringify(eventData));
+    console.log("data from events screen BookingScreenOnlyForGuestList:" + JSON.stringify(eventData));
 
     if (this.state.isLoading) {
       return (

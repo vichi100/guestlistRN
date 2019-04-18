@@ -13,8 +13,8 @@ import {
 
 import { BackHandler } from "react-native";
 
-import GuestListScreen from "./GuestListScreenForBilling";
-import PassScreen from "./PassScreenForBilling";
+import GuestListScreenForBilling from "./GuestListScreenForBilling";
+import PassScreenForBilling from "./PassScreenForBilling";
 import TermnCondition from "./TermnCondtion";
 import BillDetailsScreen from "./BillDetailsScreen";
 
@@ -37,7 +37,7 @@ let w = window.Width;
 
 import { StackActions, NavigationActions } from 'react-navigation';
 
-
+var navigatingFrom = null;
 
 export default class TicketDisplayFromBooking extends React.Component {
 
@@ -99,14 +99,20 @@ export default class TicketDisplayFromBooking extends React.Component {
   }
 
   onBack = () => {
-    console.log("back");
-    const resetAction = StackActions.reset({
-      index: 0, // <-- currect active route from actions array
-      actions: [
-        NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
-      ],
-    });
-    return this.props.navigation.dispatch(resetAction);
+    if(navigatingFrom != null && navigatingFrom == 'TicketsListScreen'){
+      this.props.navigation.goBack(null);
+      return;
+    }else{
+      console.log("back");
+      const resetAction = StackActions.reset({
+        index: 0, // <-- currect active route from actions array
+        actions: [
+          NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
+        ],
+      });
+      return this.props.navigation.dispatch(resetAction);
+    }
+    
   };  
 
  
@@ -172,9 +178,9 @@ export default class TicketDisplayFromBooking extends React.Component {
 
   render() {
     const { navigation } = this.props;  
-    var bookingDetailData = navigation.getParam("bookingData");
-    //this.setState({bookingDetailData: bookingDetailData});
-    console.log("bookingDetailData "+ bookingDetailData)
+    var bookingData = navigation.getParam("bookingData");
+    console.log("bookingData in TicketDisplayFromBooking: "+ JSON.stringify(bookingData));
+    navigatingFrom = navigation.getParam("navigatingFrom");
     return (
       <View style={styles.container}> 
         <ScrollView
@@ -188,9 +194,9 @@ export default class TicketDisplayFromBooking extends React.Component {
 
 
 
-          <QRCodeDisplay qrCodeData={bookingDetailData}/>
-          <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}>
-          <ClubLocationDisplay bookingDetailData={bookingDetailData}/>
+          <QRCodeDisplay bookingData={bookingData}/>
+          <TouchableOpacity onPress={() => this._callShowDirections(bookingData.latlong)}>
+          <ClubLocationDisplay bookingData={bookingData}/>
           </TouchableOpacity>
 
           {/* <Text style={styles.title} numberOfLines={2} ellipsizeMode={"tail"}>
@@ -199,9 +205,9 @@ export default class TicketDisplayFromBooking extends React.Component {
 
           
 
-          <GuestListScreen bookingDetailDataForGuestList={bookingDetailData}/>
-          <PassScreen bookingDetailDataForPass={bookingDetailData}/>
-          <BillDetailsScreen bookingDetailDataForBillDetail={bookingDetailData}/>
+          <GuestListScreenForBilling bookingData={bookingData}/>
+          <PassScreenForBilling bookingData={bookingData}/>
+          <BillDetailsScreen bookingData={bookingData}/>
           <TermnCondition/>
           
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   AppRegistry,
   StyleSheet,
@@ -9,50 +9,45 @@ import {
   Navigator,
   Platform,
   ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+  TouchableOpacity
+} from "react-native";
 
 //import TopBar from './topBar';
 //import TabProfile from './tabProfile';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Foundation } from "@expo/vector-icons"; 
+import { Foundation } from "@expo/vector-icons";
 import OfficeLocationDisplay from "../screens/gmap/OfficeLocationDisplay";
-import { OpenMapDirections } from '../screens/gmap/GMapDirectionDrive';
+import { OpenMapDirections } from "../screens/gmap/GMapDirectionDrive";
 import Dialog from "react-native-dialog";
 import { AsyncStorage } from "react-native";
 // import SnackBar from 'react-native-snackbar-component'
 
-
-var mePic = require('../images/sebas.jpg');
-var meName = 'Sebastian Diaz'
-var meUsername = 'holasebasdiaz'
-
+var signin = false;
 
 export default class Profile extends Component {
-
   static navigationOptions = {
     //To set the header image and title for the current Screen
-    title: 'Hey There !',
+    title: "Hey There !",
     headerBackTitle: null,
     headerStyle: {
-      backgroundColor: '#263238',
+      backgroundColor: "#263238"
       //Background Color of Navigation Bar
     },
     headerTitleStyle: {
-      justifyContent: 'center', 
-      color:'#ffffff',
-      textAlign:"left", 
-        flex:1
-  },
-  }
+      justifyContent: "center",
+      color: "#ffffff",
+      textAlign: "left",
+      flex: 1
+    }
+  };
 
   static defaultProps = {
-    backgroundColor: '#37474f',
+    backgroundColor: "#37474f",
     marginTop: 1,
     //width: 150,
     //height: 150,
-    shadowColor: 'rgb(50,50,50)',
+    shadowColor: "rgb(50,50,50)",
     shadowOpacity: 0.5,
     shadowRadius: 5,
     elevation: 3
@@ -60,61 +55,63 @@ export default class Profile extends Component {
 
   constructor(props) {
     super(props);
-  
+
     this.state = {
-      mobile:null,
+      mobile: null,
       name: null,
       photoUrl: null,
       dialogVisible: false,
-      newMobile:null,
+      newMobile: null,
+      userid: null
     };
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     this._retrieveData();
   }
 
   _callShowDirections = () => {
     //"latlong":19.074103, 72.869604
-    
 
-    const endPoint = { 
+    const endPoint = {
       longitude: 72.869604,
       latitude: 19.074103
-    }
+    };
 
-		const transportPlan = 'd';
+    const transportPlan = "d";
 
     OpenMapDirections(null, endPoint, transportPlan).then(res => {
-      console.log(res)
+      console.log(res);
     });
-  }
+  };
 
   //fetch data from AsyncStorage
-  _retrieveData = async () => { 
-    if(! this.state.dialogVisible){ 
-      console.log("in profile _retrieveData");  
+  _retrieveData = async () => {
+    if (!this.state.dialogVisible) {
+      console.log("in profile _retrieveData");
       try {
-        //email = await AsyncStorage.getItem('email');
+        var email = await AsyncStorage.getItem("email");
         var mobilex = await AsyncStorage.getItem("mobile");
-        console.log("get mobile"+ mobilex);
+        console.log("get mobile" + mobilex);
         var name = await AsyncStorage.getItem("name");
         var photoUrl = await AsyncStorage.getItem("photoUrl");
-        console.log("get name"+ name);
-        if (mobilex !== null) {
+        var useid = await AsyncStorage.getItem("customerId");
+        console.log("get name" + name);
+        if (mobilex !== null && email != null && useid != null) {
           // We have data!!
-          console.log(mobilex); 
-          this.setState({ mobile: mobilex,
+          signin = true;
+          console.log(mobilex);
+          this.setState({
+            mobile: mobilex,
             name: name,
-            photoUrl: photoUrl});
-          
+            photoUrl: photoUrl
+          });
         }
       } catch (error) {
         // Error retrieving data
-        console.log("Error retrieving data "+ error);
+        console.log("Error retrieving data " + error);
       }
     }
- 
   };
 
   setMobile = text => {
@@ -122,15 +119,14 @@ export default class Profile extends Component {
     var myMob = text;
     console.log("myMob : " + myMob);
     this.setState({ newMobile: myMob });
-    // var lastChar = myMob[myMob.length - 1];
-    // this.setState({ modiMob: myMob });
   };
 
-  editMobile = () => { 
+  editMobile = () => {
     this.setState({ dialogVisible: true });
   };
+
   handleCancel = () => {
-    this.setState({ dialogVisible: false, });
+    this.setState({ dialogVisible: false });
   };
 
   handleOk = () => {
@@ -138,118 +134,487 @@ export default class Profile extends Component {
     // ...Your logic
     console.log("new mobile in OK : " + this.state.newMobile);
     this.setState({ dialogVisible: false });
-    if(this.state.newMobile.length >= 10){  
+    if (this.state.newMobile.length >= 10) {
       this._storeDataMobile(this.state.newMobile);
-      this.setState({ mobile: this.state.newMobile});
-    }else{
+      this.setState({ mobile: this.state.newMobile });
+    } else {
       console.log("snackbar button clicked!");
-      // <SnackBar visible={true} textMessage="Hello There!" actionHandler={()=>{console.log("snackbar button clicked!")}} actionText="let's go"/>
     }
-    
+
     console.log("new mobile in OK : " + this.state.newMobile);
-    setTimeout(() => { 
-      
-    }, 200);
+    setTimeout(() => {}, 200);
   };
 
-  _storeDataMobile = async (mobile) => {
+  _storeDataMobile = async mobile => {
     try {
       await AsyncStorage.setItem("mobile", mobile);
-      console.log("store mobile"+ mobile);
-      setTimeout(() => { 
-      
-      }, 200);
+      console.log("store mobile" + mobile);
+      setTimeout(() => {}, 200);
     } catch (error) {
-      console.log("eroor in store mobile"+ mobile);
+      console.log("eroor in store mobile" + mobile);
     }
   };
 
+  login =() =>{
+    console.log('in login function')
+    this.props.navigation.navigate("LoginScreen", {bookingData:null, me:'profile'});
+
+  }
 
   render() {
-    
-    setTimeout(() => { 
-      
-    }, 200);
+    setTimeout(() => {}, 200);
 
-    console.log("in profile");   
-    return (
-     <View> 
+    console.log("in profile");
 
-        {/* <TopBar title={meUsername}/> */}
- 
-      <ScrollView automaticallyAdjustContentInsets={false} style={styles.scrollView}>
+    if (signin == true) {
+      return (
+        <View>
+          {/* <TopBar title={meUsername}/> */}
 
+          <ScrollView
+            automaticallyAdjustContentInsets={false}
+            style={styles.scrollView}
+          >
+            <View style={styles.headerContainer}>
+              <ImageBackground
+                style={styles.headerBackgroundImage}
+                blurRadius={10}
+                source={{
+                  uri:
+                    "http://199.180.133.121:3030" +
+                    "/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg"
+                }}
+              >
+                <View style={styles.headerColumn}>
+                  <Image
+                    style={styles.userImage}
+                    source={{
+                      // uri: "http://199.180.133.121:3030"+'/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg',
+                      uri: this.state.photoUrl
+                    }}
 
-      <View style={styles.headerContainer}>
-        <ImageBackground
-          style={styles.headerBackgroundImage}
-          blurRadius={10}
-          source={{
-            uri: "http://199.180.133.121:3030"+'/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg',
-          }}
-        >
-          <View style={styles.headerColumn}>
-            <Image
-              style={styles.userImage}
-              source={{
-                // uri: "http://199.180.133.121:3030"+'/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg',
-                uri: this.state.photoUrl  
-              }}
+                    
+                  />
+                  <MaterialCommunityIcons
+                    onPress={() => this.editMobile()}
+                    style={styles.heartwhite}
+                    name="account-edit"
+                    size={30}
+                  />
+
+                  <Text style={styles.userNameText}>{this.state.name}</Text>
+                  <Text style={styles.userMobileText}>
+                    +91 {this.state.mobile}
+                  </Text>
+                </View>
+              </ImageBackground>
+            </View>
+
+            <View
+              //outer GuestList
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  //margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialCommunityIcons
+                  style={styles.icons}
+                  name="untappd"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>
+                  Our Philosophy
+                </Text>
+              </View>
+
+              <View
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>
+                    Life is too short to go to bad parties. {"\n"}You should be
+                    able to discover, book & join the best events in town with
+                    your finger tips.
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <View
+              //outer GuestList
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  //margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <Foundation
+                  style={styles.icons}
+                  name="social-instagram"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>
+                  Follow us @ Instagram
+                </Text>
+              </View>
+
+              <View
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>@yoguestlist</Text>
+                </View>
+              </View>
+            </View>
+
+            <View
+              //outer GuestList
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  //margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialIcons
+                  style={styles.icons}
+                  name="contact-phone"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>
+                  Call & Chat with us
+                </Text>
+              </View>
+
+              <View
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>+91 986714466</Text>
+                </View>
+              </View>
+            </View>
+
+            <View
+              //outer GuestList
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  height: this.props.height,
+                  //margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
+                    }
+                  })
+                }
+              ]}
+            >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialIcons
+                  style={styles.icons}
+                  name="location-on"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>Find us</Text>
+              </View>
+
+              <View
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>
+                    GuestList {"\n"}
+                    91springboard, Kagalwala House{"\n"}
+                    Bandra Kurla Complex, Mumbai 400098
+                  </Text>
+                </View>
+              </View>
+            </View>
+
+            <TouchableOpacity onPress={() => this._callShowDirections()}>
+              <OfficeLocationDisplay />
+            </TouchableOpacity>
+          </ScrollView>
+
+          <Dialog.Container visible={this.state.dialogVisible}>
+            <Dialog.Title>Enter Mobile Number</Dialog.Title>
+            {/* <Dialog.Description>
+              Mobile number is required by bank and payment getway.
+            </Dialog.Description> */}
+
+            <Dialog.Input
+              style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+              onChangeText={text => this.setMobile(text)}
+              keyboardType="phone-pad"
+              maxLength={10}
+              autoCorrect={false}
+              //value={changeText}
+              textAlign={"center"}
+              autoFocus={true}
             />
-            <MaterialCommunityIcons
-          onPress={() => this.editMobile()}
-            style={styles.heartwhite}
-            name="account-edit"
-            size={30}
-          />
-           
-            <Text style={styles.userNameText}>{this.state.name}</Text>
-            <Text style={styles.userMobileText}>+91 {this.state.mobile}</Text>
-            </View>
-        </ImageBackground>
-      </View>
+            <Dialog.Button
+              style={{ fontFamily: "sans-serif" }}
+              label="Cancel"
+              onPress={this.handleCancel}
+            />
+            <Dialog.Button
+              style={{ fontFamily: "sans-serif" }}
+              label="OK"
+              onPress={() => this.handleOk()}
+            />
+          </Dialog.Container>
+        </View>
+      );
+
+    } else {
 
 
+      return (
+        <View>
+          {/* <TopBar title={meUsername}/> */}
 
-      <View
-            //outer GuestList
-            style={[
-              styles.cardView,
-              {  
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                //margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
+          <ScrollView
+            automaticallyAdjustContentInsets={false}
+            style={styles.scrollView}
           >
-            <View style={{ flexDirection: "row", margin: 10 }}>
-            <MaterialCommunityIcons
-                style={styles.icons} 
-                name="untappd"
-                size={20}
-              />
-              <Text style={{ fontSize: 14 , color:'#4caf50'}}>Our Philosophy</Text>
+            <View style={styles.headerContainer}>
+              <ImageBackground
+                style={styles.headerBackgroundImage}
+                blurRadius={10}
+                source={{
+                  uri:
+                    "http://199.180.133.121:3030" +
+                    "/images/club/tipplingstreetjuhu/tipplingstreetjuhu.jpg"
+                }}
+              >
+                <View style={styles.headerColumn}>
+
+                <TouchableOpacity onPress = {() => this.login()}>
+                  <Image
+                    style={styles.userImage}
+                    source={require("../assets/images/login.png")}
+                  />
+                  <Text style={styles.userNameText}>Sign in / Log in</Text>
+                  </TouchableOpacity>
+                </View>
+              </ImageBackground>
             </View>
-  
+
             <View
-              //Girls Section
-  
+              //outer GuestList
               style={[
                 styles.cardView,
                 {
@@ -257,7 +622,7 @@ export default class Profile extends Component {
                   marginTop: this.props.marginTop,
                   width: this.props.width,
                   height: this.props.height,
-                  margin: 5,
+                  //margin: 5,
                   ...Platform.select({
                     ios: {
                       shadowColor: this.props.shadowColor,
@@ -275,63 +640,67 @@ export default class Profile extends Component {
                 }
               ]}
             >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialCommunityIcons
+                  style={styles.icons}
+                  name="untappd"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>
+                  Our Philosophy
+                </Text>
+              </View>
+
               <View
-                style={{
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10,
-                  marginRight: 10
-                }}
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
               >
-                <Text style={styles.instructions}>Life is too short to go to bad parties. {"\n"}You should be able to discover, book & join the best events in town with your finger tips.</Text>
-                
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>
+                    Life is too short to go to bad parties. {"\n"}You should be
+                    able to discover, book & join the best events in town with
+                    your finger tips.
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        
-    
-          <View
-            //outer GuestList
-            style={[
-              styles.cardView,
-              {  
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                //margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View style={{ flexDirection: "row", margin: 10 }}>
-            <Foundation
-                style={styles.icons} 
-                name="social-instagram"
-                size={20}
-              />
-              <Text style={{ fontSize: 14 , color:'#4caf50'}}>Follow us</Text>
-            </View>
-  
+
             <View
-              //Girls Section
-  
+              //outer GuestList
               style={[
                 styles.cardView,
                 {
@@ -339,7 +708,7 @@ export default class Profile extends Component {
                   marginTop: this.props.marginTop,
                   width: this.props.width,
                   height: this.props.height,
-                  margin: 5,
+                  //margin: 5,
                   ...Platform.select({
                     ios: {
                       shadowColor: this.props.shadowColor,
@@ -357,63 +726,63 @@ export default class Profile extends Component {
                 }
               ]}
             >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <Foundation
+                  style={styles.icons}
+                  name="social-instagram"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>
+                  Follow us @ Instagram
+                </Text>
+              </View>
+
               <View
-                style={{
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10,
-                  marginRight: 10
-                }}
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
               >
-                <Text style={styles.instructions}>@yoguestlist</Text>
-                
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>@yoguestlist</Text>
+                </View>
               </View>
             </View>
-          </View>
-        
 
-          <View
-            //outer GuestList
-            style={[
-              styles.cardView,
-              {  
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                //margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View style={{ flexDirection: "row", margin: 10 }}>
-            <MaterialIcons
-                style={styles.icons} 
-                name="contact-phone"
-                size={20}
-              />
-              <Text style={{ fontSize: 14 , color:'#4caf50'}}>Call & Chat with us</Text>
-            </View>
-  
             <View
-              //Girls Section
-  
+              //outer GuestList
               style={[
                 styles.cardView,
                 {
@@ -421,7 +790,7 @@ export default class Profile extends Component {
                   marginTop: this.props.marginTop,
                   width: this.props.width,
                   height: this.props.height,
-                  margin: 5,
+                  //margin: 5,
                   ...Platform.select({
                     ios: {
                       shadowColor: this.props.shadowColor,
@@ -439,64 +808,63 @@ export default class Profile extends Component {
                 }
               ]}
             >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialIcons
+                  style={styles.icons}
+                  name="contact-phone"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>
+                  Call & Chat with us
+                </Text>
+              </View>
+
               <View
-                style={{
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10,
-                  marginRight: 10
-                }}
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
               >
-                <Text style={styles.instructions}>+91 986714466</Text>
-                
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>+91 986714466</Text>
+                </View>
               </View>
             </View>
-          </View>
-        
-    
-  
-          <View
-            //outer GuestList
-            style={[
-              styles.cardView,
-              {  
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                height: this.props.height,
-                //margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
-                    }
-                  },
-                  android: {
-                    elevation: this.props.elevation
-                  }
-                })
-              }
-            ]}
-          >
-            <View style={{ flexDirection: "row", margin: 10 }}>
-            <MaterialIcons
-                style={styles.icons} 
-                name="location-on"
-                size={20}
-              />
-              <Text style={{ fontSize: 14 , color:'#4caf50'}}>Find us</Text>
-            </View>
-  
+
             <View
-              //Girls Section
-  
+              //outer GuestList
               style={[
                 styles.cardView,
                 {
@@ -504,7 +872,7 @@ export default class Profile extends Component {
                   marginTop: this.props.marginTop,
                   width: this.props.width,
                   height: this.props.height,
-                  margin: 5,
+                  //margin: 5,
                   ...Platform.select({
                     ios: {
                       shadowColor: this.props.shadowColor,
@@ -522,79 +890,110 @@ export default class Profile extends Component {
                 }
               ]}
             >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialIcons
+                  style={styles.icons}
+                  name="location-on"
+                  size={20}
+                />
+                <Text style={{ fontSize: 14, color: "#4caf50" }}>Find us</Text>
+              </View>
+
               <View
-                style={{
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10,
-                  marginRight: 10
-                }}
+                //Girls Section
+
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    height: this.props.height,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
               >
-                <Text style={styles.instructions}>GuestList {"\n"}
-                91springboard, Kagalwala House{"\n"}
-Bandra Kurla Complex, Mumbai 400098</Text>
-                
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>
+                    GuestList {"\n"}
+                    91springboard, Kagalwala House{"\n"}
+                    Bandra Kurla Complex, Mumbai 400098
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
-        
-          <TouchableOpacity onPress={() => this._callShowDirections()}>
-          <OfficeLocationDisplay/>
-          </TouchableOpacity>
-  
-  
-  
 
+            <TouchableOpacity onPress={() => this._callShowDirections()}>
+              <OfficeLocationDisplay />
+            </TouchableOpacity>
+          </ScrollView>
 
-      </ScrollView>
+          <Dialog.Container visible={this.state.dialogVisible}>
+            <Dialog.Title>Enter Mobile Number</Dialog.Title>
+            {/* <Dialog.Description>
+              Mobile number is required by bank and payment getway.
+            </Dialog.Description> */}
 
-      <Dialog.Container visible={this.state.dialogVisible}>
-          <Dialog.Title>Enter Mobile Number</Dialog.Title>
-          <Dialog.Description>
-            Mobile number is required by bank and payment getway.
-          </Dialog.Description>
-
-          <Dialog.Input
-            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-            onChangeText={text => this.setMobile(text)}
-            keyboardType="phone-pad"
-            maxLength={10}
-            autoCorrect={false}
-            //value={changeText}
-            textAlign={"center"}
-            autoFocus={true}
-          />
-          <Dialog.Button
-            style={{ fontFamily: "sans-serif" }}
-            label="Cancel"
-            onPress={this.handleCancel}
-          />
-          <Dialog.Button
-            style={{ fontFamily: "sans-serif" }}
-            label="OK"
-            onPress={() => this.handleOk()}
-          />
-        </Dialog.Container>
-     
-    </View>
-    );
+            <Dialog.Input
+              style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+              onChangeText={text => this.setMobile(text)}
+              keyboardType="phone-pad"
+              maxLength={10}
+              autoCorrect={false}
+              //value={changeText}
+              textAlign={"center"}
+              autoFocus={true}
+            />
+            <Dialog.Button
+              style={{ fontFamily: "sans-serif" }}
+              label="Cancel"
+              onPress={this.handleCancel}
+            />
+            <Dialog.Button
+              style={{ fontFamily: "sans-serif" }}
+              label="OK"
+              onPress={() => this.handleOk()}
+            />
+          </Dialog.Container>
+        </View>
+      );
+    }
   }
 }
 
 const styles = StyleSheet.create({
-  scrollView:{
-    backgroundColor: '#fff',
+  scrollView: {
+    backgroundColor: "#fff"
     //marginBottom:110
   },
- 
-  container: {
 
+  container: {
     flex: 1,
     backgroundColor: "#fff"
-
   },
   heartwhite: {
     margin: 10,
@@ -608,107 +1007,104 @@ const styles = StyleSheet.create({
 
   headerBackgroundImage: {
     paddingBottom: 20,
-    paddingTop: 35,
+    paddingTop: 35
   },
 
   headerContainer: {},
   headerColumn: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     ...Platform.select({
       ios: {
-        alignItems: 'center',
+        alignItems: "center",
         elevation: 1,
-        marginTop: -1,
+        marginTop: -1
       },
       android: {
-        alignItems: 'center',
-      },
-    }),
+        alignItems: "center"
+      }
+    })
   },
 
   userImage: {
-    borderColor: '#01C89E',
+    borderColor: "#01C89E",
     borderRadius: 85,
     borderWidth: 3,
     height: 170,
     marginBottom: 15,
-    width: 170,
+    width: 170
   },
 
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    textAlign: "center",
+    margin: 10
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 15,
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 15
   },
-  mePic:{
-      width:70,
-      height:70,
-      borderRadius:35
+  mePic: {
+    width: 70,
+    height: 70,
+    borderRadius: 35
   },
-  meInfoWrap:{
-    paddingTop:5,
-    
-    flexDirection:'row'
+  meInfoWrap: {
+    paddingTop: 5,
+
+    flexDirection: "row"
   },
-  meData:{
-    flex:2,
-    paddingTop:20,
-    flexDirection:'row',
-    
+  meData: {
+    flex: 2,
+    paddingTop: 20,
+    flexDirection: "row"
   },
-  meInfo:{
-    alignItems:'center',
-    padding:15
+  meInfo: {
+    alignItems: "center",
+    padding: 15
   },
-  meName:{
-    fontWeight:'bold',
-    fontSize:12,
-    paddingTop:10
+  meName: {
+    fontWeight: "bold",
+    fontSize: 12,
+    paddingTop: 10
   },
-  data:{
-    flex:1,
-    
-    alignItems:'center'
+  data: {
+    flex: 1,
+
+    alignItems: "center"
   },
-  edit:{
-    borderWidth:1,
-    borderColor:'#ccc',
-    borderRadius:3,
-    alignItems:'center',
-    margin:15,
-    padding:2,
+  edit: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 3,
+    alignItems: "center",
+    margin: 15,
+    padding: 2
   },
   icons: {
-    width: 30, 
+    width: 30,
     height: 30,
-    color:'#0091ea'
-    //borderRadius: 30, 
-    //borderWidth: 2,  
+    color: "#0091ea"
+    //borderRadius: 30,
+    //borderWidth: 2,
     //borderColor: 'rgb(170, 207, 202)'
-},
-  instructions:{
-    color: '#e0e0e0'
+  },
+  instructions: {
+    color: "#e0e0e0"
   },
   userNameText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 20,
     //fontWeight: 'bold',
     paddingBottom: 8,
-    textAlign: 'center',
-  }, 
+    textAlign: "center"
+  },
 
   userMobileText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 14,
     //fontWeight: 'bold',
     paddingBottom: 8,
-    textAlign: 'center',
-  }, 
-
+    textAlign: "center"
+  }
 });
-

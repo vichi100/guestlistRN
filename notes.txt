@@ -60,7 +60,16 @@ watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && npm 
 
 
 
-------------------------------------------
+-----------------------   NOTIFICATION  -------------------
+notification:{
+  TITILE: 'title',
+  
+}
+
+
+
+
+--------------------
 
 ALTER TABLE events
 ADD offertitile CHAR(200),

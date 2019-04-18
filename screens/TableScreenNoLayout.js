@@ -24,6 +24,7 @@ import { create, PREDEF_RES } from "react-native-pixel-perfect";
 import TableDetailsnPrice from "./TableDetailsnPrice";
 import Dialog from "react-native-dialog";
 import { AsyncStorage } from "react-native";
+import axios from 'axios'
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -82,14 +83,15 @@ export default class TableScreenNoLayout extends React.Component {
 
   componentDidMount() {
     //return fetch("http://192.168.43.64:6000/tableDetails?clubid=1000001&eventDate=19/Mar/2019")
-    return fetch(
+    return axios.get(
       "http://192.168.43.64:6000/tableDetails?clubid=" +
         eventData.clubid +
         "&eventDate=" +
         eventData.eventdate
     )
-      .then(response => response.json())
+      //.then(response => response.json())
       .then(response => {
+        response = response.data
         console.log("Table data from response  : " + JSON.stringify(response));
         Object.keys(response).map((keyName, keyIndex) => {
           // use keyName to get current key's name
@@ -125,7 +127,7 @@ export default class TableScreenNoLayout extends React.Component {
       //this.props.navigation.navigate('BookingScreen', {data:item});
       this.props.navigation.navigate("LoginScreen", {
         eventDataFromBookingScreen: eventData,
-        me: "TableScreen"
+        me: "TableScreenNoLayout"
       }); // move to login page
       return;
     }
@@ -180,15 +182,51 @@ export default class TableScreenNoLayout extends React.Component {
     };
 
     console.log("bookingData: " + JSON.stringify(postData));
+    this.sendbookingDetailsToServer(postData);
 
-    if (true) {
-      console.log("totalprice: " + postData.totalprice);
-      //this.props.navigation.navigate("PayTmScreen", {bookingData: postData, me:'BookingScreen'});
-      this.props.navigation.navigate("TicketDisplayFromNoLayoutTableBooking", {
-        bookingData: postData,
-        me: "BookingScreen"
+    // if (true) {
+    //   console.log("totalprice: " + postData.totalprice);
+    //   //this.props.navigation.navigate("PayTmScreen", {bookingData: postData, me:'BookingScreen'});
+    //   this.props.navigation.navigate("TicketDisplayFromNoLayoutTableBooking", {
+    //     bookingData: postData,
+    //     me: "TicketDisplayFromNoLayoutTableBooking"
+    //   });
+    // }
+  };
+
+
+  sendbookingDetailsToServer = (bookingData) => {
+    // SEND BOOKING DETAILS TO SERVER -  START
+    // return fetch("http://192.168.43.64:6000/bookTicket", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(bookingData)
+    // })
+    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData, {
+      headers: {
+        'Content-Type': 'application/json',
+    },
+    })
+      //.then(response => response.json())
+      .then(response => {
+        console.log("data : " + response.data);
+        this.setState({ dataSource: response.data, isLoading: false });
+        
+        this.props.navigation.navigate("TicketDisplayFromNoLayoutTableBooking", {
+          bookingData: bookingData ,
+          me: "TicketDisplayFromNoLayoutTableBooking"
+        });
+        
+
+        console.log("PaymentOptions data send to server");
+      })
+      .catch(error => {
+        console.error(error);
       });
-    }
+    // SEND BOOKING DETAILS TO SERVER FINSH -END
   };
 
   _showDialog = () => {

@@ -13,7 +13,7 @@ const config = {
 class FirebaseSvc {
   constructor() {
     if (!firebase.apps.length) {
-      firebase.initializeApp(config);
+      //firebase.initializeApp(config);
     } else {
       console.log("firebase apps already running...")
     }

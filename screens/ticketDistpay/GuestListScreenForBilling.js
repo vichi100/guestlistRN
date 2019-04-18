@@ -17,7 +17,7 @@ import NumericInput from 'react-native-numeric-input'
 import { create, PREDEF_RES } from 'react-native-pixel-perfect'
 const calcSize = create(PREDEF_RES.iphone7.px)
 
-export default class GuestListScreen extends React.Component {
+export default class GuestListScreenForBilling extends React.Component {
 
     static defaultProps = {
     backgroundColor: '#37474f',
@@ -38,8 +38,8 @@ export default class GuestListScreen extends React.Component {
     }
 
     render() {
-        var data = this.props.bookingDetailDataForGuestList;
-        console.log(data);
+        var data = this.props.bookingData;
+        console.log("Bookingdata in GuestListScreenForBilling"+JSON.stringify(data));
         console.log("data.guestlistgirlcount "+data.guestlistgirlcount);
         if(data.guestlistgirlcount != null  && data.guestlistgirlcount > 0
             && data.guestlistcouplecount != null  && data.guestlistcouplecount > 0){

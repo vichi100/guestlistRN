@@ -32,7 +32,7 @@ import getDirections from "../screens/gmap/gmapsdirection";
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
 
-
+import axios from 'axios'
 
 export default class ClubsListScreen extends Component {
   constructor(props) {
@@ -48,11 +48,11 @@ export default class ClubsListScreen extends Component {
   }
 
   componentDidMount() {
-    return fetch("http://192.168.43.64:6000/clubsDetails?city=mumbai")
-      .then(response => response.json())
+    return axios.get("http://192.168.43.64:6000/clubsDetails?city=mumbai")
+      //.then(response => response.json())
       .then(response => { 
-        console.log("clubs list data : " + JSON.stringify(response)); 
-        this.setState({ dataSource: response, isLoading: false });
+        console.log("clubs list data : " + JSON.stringify(response.data)); 
+        this.setState({ dataSource: response.data, isLoading: false });
       })
       .catch(error => {
         console.error(error); 

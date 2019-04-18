@@ -15,7 +15,7 @@ export default class InstamojoWebview extends React.Component {
     }
     onNavigationChange(webViewState) {
         let hitUrl = webViewState.url;
-        console.log(hitUrl);
+        console.log("InstamojoWebview: hitUrl="+hitUrl);
         if (hitUrl.includes('yoguestlist')) {
             console.log(hitUrl);
             // we need the payment_req_id to get the status of paymnt
@@ -24,7 +24,7 @@ export default class InstamojoWebview extends React.Component {
                 url: hitUrl,
                 payment_final_id: payment_final_id
             }
-            bookingData.bookingconfirm = 'confirmed';
+            bookingData.bookingconfirm = 'confirm';
             bookingData.paymentstatusmsg = hitUrl;
             this.sendbookingDetailsToServer(bookingData);
             setTimeout(() => {}, 500);
@@ -43,18 +43,23 @@ export default class InstamojoWebview extends React.Component {
 
   sendbookingDetailsToServer = (bookingData) => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    return fetch("http://192.168.43.64:6000/bookTicket", {
-      method: "POST",
+    // return fetch("http://192.168.43.64:6000/bookTicket", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(bookingData)
+    // })
+    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData ,{
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bookingData)
+        'Content-Type': 'application/json',
+    },
     })
-      .then(response => response.json())
+      //.then(response => response.json())
       .then(response => {
-        console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
+        console.log("data : " + response.data);
+        this.setState({ dataSource: response.data, isLoading: false });
         if (bookingData.tablenumber != null) {
           this.props.navigation.navigate("TicketDisplayFromTableBooking", {
             postData: bookingData
@@ -80,8 +85,8 @@ export default class InstamojoWebview extends React.Component {
 
         //insted of this you can do whatever you wan with the response , loading a custom success page with details etc
         const self = this;
-        // axios.get(`https://www.instamojo.com/api/1.1/payment-requests/${trans_id}`, {//POST
-        axios.get(`https://test.instamojo.com/api/1.1/payment-requests/${trans_id}`, { //TEST
+        axios.get(`https://www.instamojo.com/api/1.1/payment-requests/${trans_id}`, {//PROD
+        //axios.get(`https://test.instamojo.com/api/1.1/payment-requests/${trans_id}`, { //TEST
             headers: {
                 'Content-Type': 'application/json',
                 //POST
@@ -108,6 +113,10 @@ export default class InstamojoWebview extends React.Component {
 
             })
     }
+
+
+
+
     render() {
         console.log('webview');
         const { navigation } = this.props;  

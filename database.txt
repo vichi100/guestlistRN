@@ -1,9 +1,9 @@
 ************ LOGIC ****************
 1) any user can not book more then one guestlist for same date
-2) posted by 'guestlist' will show pending status. other will always confirmed
+2) posted by 'guestlist' will show pending status. other will always confirm
 3) when ever a guestlist booked reduce 1 from total availbletickets if availbletickets count > 0; if zero then
     return 0.
-4) only display ticket which have booking status 'pending' and 'confirmed' , do not show canceled one
+4) only display ticket which have booking status 'pending' and 'confirm' , do not show canceled one
 
 
 ^^^^^^^^^^^^^^^^ TODO ^^^^^^^^^^^^^^^^
@@ -191,6 +191,8 @@ email VARCHAR(100),
 
 ALTER TABLE ticketbookingdetails CHANGE `paidamount` `bookingamount` VARCHAR(100);
 
+ALTER TABLE ticketbookingdetails ADD eventdateasdate DATE;
+
  djtable:
  djid, name, email, mobile, followers, eventscount, picurl
 
@@ -242,9 +244,12 @@ VALUES
 ();
 
  customer:
- CREATE TABLE customer (userid VARCHAR(100) PRIMARY KEY, customername VARCHAR(100), email VARCHAR(100), mobilenumber VARCHAR(15), firebasetoken VARCHAR(100));
+ CREATE TABLE customer (userid VARCHAR(100) PRIMARY KEY, customername VARCHAR(100), email VARCHAR(100), 
+ mobilenumber VARCHAR(15), expoToken VARCHAR(200));
  userid, email, mobilenumber, firebasetoken
 
+
+userid , customername,  mobilenumber ,  email
  followers:
  userid, clubid, djid, prid
 

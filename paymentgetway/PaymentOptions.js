@@ -24,10 +24,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackActions, NavigationActions } from 'react-navigation';
 
-// import GuestListScreen from "./GuestListScreenForBilling";
-// import PassScreen from "./PassScreenForBilling";
-// import TermnCondition from "./TermnCondtion";
-// import BillDetailsScreen from "./BillDetailsScreen";
+
 
 
 var bookingData;
@@ -102,41 +99,69 @@ export default class PaymentOptions extends Component {
     return jsCode;
   }
 
+    //http://192.168.43.64:3001/api/paytm/request
+    processInstamojoInfo = (bookingData) => {
+
+      console.log("bookingData: "+JSON.stringify(bookingData))
+  
+      if (bookingData.purpose !== null && bookingData.bookingamount !== null && bookingData.username !== null && bookingData.email !== null) {
+         const self =  this;
+         //this.props.navigation.navigate('InstamojoWebview')
+         //console.log("bookingData2: "+JSON.stringify(bookingData))
+          axios.post(`http://192.168.43.64:8089/api/makerequest`,{
+  
+              purpose: bookingData.purpose,
+              amount: bookingData.bookingamount,
+              buyer_name: bookingData.username,
+              email: bookingData.email,
+  
+          })
+              .then(function (response) {
+                 console.log("Pay: response from server: "+JSON.stringify(response));
+                  if (response.data.statusCode === 200) { 
+                      
+                      console.log('PaymentOptions success');
+                      self.props.navigation.navigate('InstamojoWebview',{bookingData: bookingData, url:response.data.url})
+                      
+                      console.log('PaymentOptions after navigation');
+                  }
+              })
+              .catch(function (error) {
+                  console.log("PaymentOptions error : "+JSON.stringify(error));
+                  //ToastAndroid.show('Error', ToastAndroid.SHORT); 
+              })
+      } else {
+          Alert.alert('All fields are needed');
+      }
+  
+  }
+
 
   sendbookingDetailsToServerForGuestList = () => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    return fetch("http://192.168.43.64:6000/bookTicket", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bookingData)
-    })
-      .then(response => response.json())
+    if(bookingData.postedby == 'club' || bookingData.postedby == 'dj' || bookingData.postedby == 'pr'){
+      bookingData.bookingconfirm = 'confirm'
+    }else if(bookingData.postedby == 'guestlist'){
+      bookingData.bookingconfirm = 'pending' 
+    }
+    return axios.post("http://192.168.43.64:6000/bookTicket",  bookingData ,{
+     
+    headers: {
+      'Content-Type': 'application/json',
+  },
+    
+})
+      //.then(response => response.json())
       .then(response => {
-        console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
-        // if(title == 'true'){
-        //   if (bookingData.tablenumber != null) {
-        //     this.props.navigation.navigate("TicketDisplayFromTableBooking", {
-        //       bookingData: bookingData
-        //     });
-        //   } else {
-        //     this.props.navigation.navigate("TicketDisplayFromBooking", {
-        //       bookingData: bookingData
-        //     });
-        //   }
-        // }else{
-        //   this.setState({dialogVisible: true})
-        // }
-
+        console.log("PaymentOptions: data: " + response.data);
+        this.setState({ dataSource: response.data, isLoading: false });
+        
         this.props.navigation.navigate("TicketDisplayFromBooking", {
           bookingData: bookingData
         });
         
 
-        console.log("PaymentOptions data send to server");
+        console.log("PaymentOptions data send to server"); 
       })
       .catch(error => {
         console.error(error);
@@ -148,18 +173,23 @@ export default class PaymentOptions extends Component {
 
   sendbookingDetailsToServer = (title) => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    return fetch("http://192.168.43.64:6000/bookTicket", {
-      method: "POST",
+    // return fetch("http://192.168.43.64:6000/bookTicket", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(bookingData)
+    // })
+    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData, {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bookingData)
+        'Content-Type': 'application/json',
+    },
     })
-      .then(response => response.json())
+      //.then(response => response.json())
       .then(response => {
-        console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
+        console.log("data : " + response.data);
+        this.setState({ dataSource: response.data, isLoading: false });
         if(title == 'true'){
           if (bookingData.tablenumber != null) {
             this.props.navigation.navigate("TicketDisplayFromTableBooking", {
@@ -193,7 +223,7 @@ export default class PaymentOptions extends Component {
       });
 
       bookingData.paymentstatusmsg = "success";
-      bookingData.bookingconfirm = 'confirmed';
+      bookingData.bookingconfirm = 'confirm';
       
       this.sendbookingDetailsToServer(title);
     } else if (title == "false") {
@@ -230,55 +260,21 @@ export default class PaymentOptions extends Component {
   };  
 
 
-  //http://192.168.43.64:3001/api/paytm/request
-  processInstamojoInfo = (bookingData) => {
 
-    console.log("bookingData: "+JSON.stringify(bookingData))
-
-    if (bookingData.purpose !== null && bookingData.bookingamount !== null && bookingData.username !== null && bookingData.email !== null) {
-       const self =  this;
-       //this.props.navigation.navigate('InstamojoWebview')
-       //console.log("bookingData2: "+JSON.stringify(bookingData))
-        axios.post(`http://192.168.43.64:8089/api/makerequest`,{
-
-            purpose: bookingData.purpose,
-            amount: bookingData.bookingamount,
-            buyer_name: bookingData.username,
-            email: bookingData.email,
-
-        })
-            .then(function (response) {
-               //console.log(JSON.stringify(response));
-                if (response.data.statusCode === 200) {
-                    
-                    console.log('PaymentOptions success');
-                    self.props.navigation.navigate('InstamojoWebview',{bookingData: bookingData, url:response.data.url})
-                    
-                    console.log('PaymentOptions after navigation');
-                }
-            })
-            .catch(function (error) {
-                console.log("PaymentOptions error : "+JSON.stringify(error));
-                //ToastAndroid.show('Error', ToastAndroid.SHORT); 
-            })
-    } else {
-        Alert.alert('All fields are needed');
-    }
-
-}
 
 
 
   render() {
     const { navigation } = this.props;
     bookingData = navigation.getParam("bookingData");
+    console.log("bookingData in PaymentOptions: "+JSON.stringify(bookingData))
     var mevalue = navigation.getParam("me");
     var weekDayName = moment(bookingData.eventdate, "DD/MMM/YYYY HH:mm:ssZZ")
     .format("ddd")
     .toUpperCase();
     var date = bookingData.eventdate.split("/");
-    console.log("mevalue: " + mevalue);
-    console.log("eventData " + JSON.stringify(bookingData));
+    // console.log("mevalue: " + mevalue);
+    // console.log("eventData " + JSON.stringify(bookingData));
 
     if (this.state.isLoading) {
       return (
@@ -289,6 +285,7 @@ export default class PaymentOptions extends Component {
     }
     
     if(parseInt(bookingData.bookingamount)  == 0){
+      console.log('sendbookingDetailsToServerForGuestList')
       this.sendbookingDetailsToServerForGuestList();// for Guestlist
       return (
         <View style={{flex: 1, justifyContent:'center'}}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Modal, WebView, TouchableOpacity } from "react-native";
 import Dialog from "react-native-dialog";
+import axios from "axios";
 
 var bookingData;
 export default class App extends React.Component {
@@ -52,20 +53,27 @@ export default class App extends React.Component {
     return jsCode;
   }
 
+
+
   sendbookingDetailsToServer = () => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    return fetch("http://192.168.43.64:6000/bookTicket", {
-      method: "POST",
+    // return fetch("http://192.168.43.64:6000/bookTicket", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(bookingData)
+    // })
+    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData, {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bookingData)
+        'Content-Type': 'application/json',
+    },
     })
-      .then(response => response.json())
+      //.then(response => response.json())
       .then(response => {
-        console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
+        console.log("data : " + response.data);
+        this.setState({ dataSource: response.data, isLoading: false });
         if(bookingData.tablenumber != null){
             this.props.navigation.navigate("TicketDisplayFromTableBooking", {
                 postData: bookingData

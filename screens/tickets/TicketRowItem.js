@@ -22,7 +22,7 @@ export default class TicketRowItem extends Component {
         .format("ddd")
         .toUpperCase();
       var date = data.eventdate.split("/");
-      if(data.bookingconfirm != null && data.bookingconfirm == 'confirmed'){
+      if(data.bookingconfirm != null && data.bookingconfirm == 'confirm'){
         return(
           
           <View style={styles.rowContainer}>

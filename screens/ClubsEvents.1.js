@@ -23,6 +23,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
+import axio from 'axios';
 
 var mydatasource = []
 var isDataChanged = false
@@ -50,11 +51,11 @@ export default class ClubsEvents extends Component {
   }
  
   componentDidMount() { 
-    return fetch("http://192.168.43.64:6000/eventsDetails?eventDate=29Jan2019")
-      .then(response => response.json())
+    return axio.get("http://192.168.43.64:6000/eventsDetails?eventDate=29Jan2019")
+      //.then(response => response.json())
       .then(response => {
        // console.log("data : " + response);
-       
+       response = response.data;
         mydatasource = response
         x = response.filter( (item) => {
           // console.log("item.date : " + item.eventdate);

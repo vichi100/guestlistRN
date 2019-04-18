@@ -5,25 +5,28 @@ import * as firebase from "firebase";
 import { AsyncStorage } from "react-native";
 import Dialog from "react-native-dialog";
 import { Facebook } from 'expo';
+import { StackActions, NavigationActions } from 'react-navigation';
+import axios from "axios";
 
 var changeText;
 
 //https://github.com/mmazzarolo/react-native-dialog
 
 // Initialize Firebase
-const firebaseConfig = {
-  // ADD YOUR FIREBASE CREDENTIALS
-  apiKey: "AIzaSyAAvPhHhFlKx1eu_PWRFmNm1pRl7LqTNh8",
-  authDomain: "https://guestlistandroid.firebaseio.com",
-  databaseURL: "",
-  projectId: "guestlistandroid",
-  storageBucket: "guestlistandroid.appspot.com"
-};
+// const firebaseConfig = {
+//   // ADD YOUR FIREBASE CREDENTIALS
+//   apiKey: "AIzaSyAAvPhHhFlKx1eu_PWRFmNm1pRl7LqTNh8",
+//   authDomain: "https://guestlistandroid.firebaseio.com",
+//   databaseURL: "",
+//   projectId: "guestlistandroid",
+//   storageBucket: "guestlistandroid.appspot.com"
+// };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
-//var mobile;
-
+var mobile;
+var eventDataFromBookingScreen;
+var gotoScreen;
 
 
 export default class FBLogin extends React.Component {
@@ -38,6 +41,7 @@ export default class FBLogin extends React.Component {
       mobile: null,
       email:null,
       id: null,
+      expoToken:null,
     };
   }
 
@@ -52,7 +56,7 @@ export default class FBLogin extends React.Component {
   _storeDataMobile = async (mobile) => {
     try {
       await AsyncStorage.setItem("mobile", mobile);
-      console.log("store mobile"+ mobile);
+      console.log("store mobile: "+ mobile);
     } catch (error) {
       // Error saving data
     }
@@ -68,6 +72,7 @@ export default class FBLogin extends React.Component {
       console.log("store mobile"+ mobile);
     } catch (error) {
       // Error saving data
+      console.log('Error in storing data when loging in FB: '+error)
     }
   };
 
@@ -75,11 +80,13 @@ export default class FBLogin extends React.Component {
   _retrieveData = async () => {
     try {
       //email = await AsyncStorage.getItem('email');
-      var mobilex = await AsyncStorage.getItem("mobile");
-      console.log("get mobile"+ mobilex);
-      if (mobilex !== null) {
+      mobile = await AsyncStorage.getItem("mobile");
+      var expoToken = await AsyncStorage.getItem("expoToken");
+      this.setState({mobile: mobile, expoToken:expoToken})
+      console.log("get mobile: "+ mobile);
+      if (mobile !== null) {
         // We have data!!
-        console.log(mobilex);
+        console.log(mobile);
       }
     } catch (error) {
       // Error retrieving data
@@ -98,13 +105,14 @@ export default class FBLogin extends React.Component {
     // ...Your logic
     this.setState({ dialogVisible: false });
     this._storeDataMobile(this.state.mobile);
+    this.loginWithFacebook();
   };
 
   setMobile = text => {
-    console.log(text);
+    //console.log(text);
     var myMob = text;
     changeText = myMob;
-    console.log("myMob : " + myMob);
+    //console.log("myMob : " + myMob);
     this.setState({ mobile: myMob });
     var lastChar = myMob[myMob.length - 1];
     this.setState({ modiMob: myMob });
@@ -116,24 +124,30 @@ export default class FBLogin extends React.Component {
       "mobilenumber":this.state.mobile,
       "email" : this.state.email,
       "name" : this.state.name, 
+      "expoToken": this.state.expoToken,
     }
 
     this._storeCustomerData();
 
     // SEND Customer DETAILS TO SERVER -  START
     console.log(" inserting customer" ); 
-    return fetch("http://192.168.43.64:6000/insertCustomerDetails",{  
-      method: "POST",
+    // return fetch("http://192.168.43.64:6000/insertCustomerDetails",{  
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',    
+    //   },
+    //   body:  JSON.stringify(postData)
+    // })
+    return axios.post("http://192.168.43.64:6000/insertCustomerDetails", postData, {  
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',    
-      },
-      body:  JSON.stringify(postData)
+        'Content-Type': 'application/json',
+    },
     })
-    .then(response => response.json()) 
+    //.then(response => response.json()) 
     .then(response => {
-    console.log("data : " + response); 
-      this.setState({ dataSource: response, isLoading: false });
+    console.log("data : " + response.data); 
+      this.setState({ dataSource: response.data, isLoading: false });
       
     console.log("data send to server");
     }) 
@@ -144,7 +158,7 @@ export default class FBLogin extends React.Component {
 
   }
 
-  async loginWithFacebook(eventDataFromBookingScreen, gotoScreen) {
+  async loginWithFacebook() {
 
     this._retrieveData();
     if (this.state.mobile == null) {
@@ -181,9 +195,24 @@ export default class FBLogin extends React.Component {
         }, 200);
 
         this.insertCustomerDetails();
-        console.log("fromScreen "+ gotoScreen)
+        console.log("gotoScreen: "+ gotoScreen)
         console.log("eventDataFromBookingScreen: "+eventDataFromBookingScreen);
-        this.props.navigation.navigate(gotoScreen, { "data":eventDataFromBookingScreen }); 
+
+        if(gotoScreen != null && (gotoScreen == 'TicketsListScreenXV' || gotoScreen == 'profile')){
+          console.log("back");
+          const resetAction = StackActions.reset({
+            index: 0, // <-- currect active route from actions array
+            actions: [
+              NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
+            ],
+          });
+          return this.props.navigation.dispatch(resetAction);
+        }else{
+          this.props.navigation.navigate(gotoScreen, { "bookingData":eventDataFromBookingScreen }); 
+        }
+
+
+        
 
         //const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
         //Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
@@ -233,10 +262,10 @@ export default class FBLogin extends React.Component {
   }
 
   render() {
-    var eventDataFromBookingScreen = this.props.eventDataFromBookingScreen;
-    var gotoScreen = this.props.gotoScreen;
-    console.log("gotoScreen: "+gotoScreen);
-    console.log("var eventDataFromBookingScreen: "+ eventDataFromBookingScreen);
+    eventDataFromBookingScreen = this.props.eventDataFromBookingScreen;
+    gotoScreen = this.props.gotoScreen;
+    console.log("gotoScreen FBLogin: "+gotoScreen);
+    console.log(" eventDataFromBookingScreen FBLogin: "+ eventDataFromBookingScreen);
     return ( 
       <View style={styles.container}>
         {/* <Button
@@ -248,7 +277,7 @@ export default class FBLogin extends React.Component {
         /> */}
 
         <TouchableOpacity
-          onPress={() => this.loginWithFacebook(eventDataFromBookingScreen, gotoScreen)}
+          onPress={() => this.loginWithFacebook()}
           style={{
             height: 50
           }}
@@ -275,9 +304,9 @@ export default class FBLogin extends React.Component {
 
         <Dialog.Container visible={this.state.dialogVisible}>
           <Dialog.Title>Enter Mobile Number</Dialog.Title>
-          <Dialog.Description>
+          {/* <Dialog.Description>
             Mobile number is required by bank and payment getway.
-          </Dialog.Description>
+          </Dialog.Description> */}
 
           <Dialog.Input
             style={{ height: 40, borderColor: "gray", borderWidth: 1 }}

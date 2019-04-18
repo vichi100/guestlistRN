@@ -14,7 +14,7 @@ import { withNavigation } from "react-navigation";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
+import axios from 'axios'
 //library-music
 
 class Search extends React.Component {
@@ -57,21 +57,21 @@ class Search extends React.Component {
     this.arrayholder = [];
   }
   componentDidMount() {
-    return fetch("http://192.168.43.64:6000/getSearchParameter?city=mumbai")
-      .then(response => response.json())
+    return axios.get("http://192.168.43.64:6000/getSearchParameter?city=mumbai")
+      //.then(response => response.json())
       .then(responseJson => {
-        console.log("search array " + JSON.stringify(responseJson));
+        console.log("search array " + JSON.stringify(responseJson.data));
         this.setState(
           {
             isLoading: false,
-            clubNameDataSource: responseJson.clubname,
-            locationDataSource: responseJson.location,
-            djNameDataSource: responseJson.djname
+            clubNameDataSource: responseJson.data.clubname,
+            locationDataSource: responseJson.data.location,
+            djNameDataSource: responseJson.data.djname
           },
           function() {
-            this.clubNameArrayholder = responseJson.clubname;
-            this.locationArrayholder = responseJson.location;
-            this.djNameArrayholder = responseJson.djname;
+            this.clubNameArrayholder = responseJson.data.clubname;
+            this.locationArrayholder = responseJson.data.location;
+            this.djNameArrayholder = responseJson.data.djname;
           }
         );
       })

@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "GuestList",
+    "version": "1.0.0",
     "slug": "guestlist",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -12,18 +13,22 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/guestlisticon.png", 
+      "image": "./assets/images/guestlistsplash.png", 
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0 
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false, 
+      "bundleIdentifier": "com.application.club.guestlist"
+    },
+    "android": {
+      "package": "com.application.club.guestlist"
     }
   }
 }

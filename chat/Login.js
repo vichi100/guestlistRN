@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import firebaseSvc from './FirebaseSvc';
 import firebase from 'firebase';
-import { auth, initializeApp, storage } from 'firebase';
+//import { auth, initializeApp, storage } from 'firebase';
 import uuid from 'uuid';
 
 class Login extends React.Component {

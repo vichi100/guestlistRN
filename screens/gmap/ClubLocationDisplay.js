@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { Constants, MapView, Location, Permissions } from "expo";
 
-var  bookingDetailData;
+var  bookingData;
 var latlongArr;
 export default class ClubLocationDisplay extends Component {
   //19.084097, 72.874318
@@ -42,8 +42,8 @@ export default class ClubLocationDisplay extends Component {
   };
 
   render() {
-    bookingDetailData = this.props.bookingDetailData;
-     latlongArr = bookingDetailData.latlong.split(",");
+    bookingData = this.props.bookingData;
+     latlongArr = bookingData.latlong.split(",");
     
     return (
       <View style={styles.container}>
@@ -64,7 +64,7 @@ export default class ClubLocationDisplay extends Component {
           <MapView.Marker coordinate={this.state.location.coords} />
 
           <View>
-            <Text style={styles.pinText}>{bookingDetailData.clubname} </Text>
+            <Text style={styles.pinText}>{bookingData.clubname} </Text>
             {/* <Text style={styles.title}> Sunday, March 9 </Text> */}
           </View>
         </MapView>

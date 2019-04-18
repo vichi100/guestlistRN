@@ -38,7 +38,7 @@ export default class PassScreen extends React.Component {
     }
 
     render() {
-        var data = this.props.bookingDetailDataForPass;
+        var data = this.props.bookingData;
         if(data.passcouplecount != null && data.passcouplecount > 0 && data.passstagcount != null && data.passstagcount > 0){
             return (
                 <View style={styles.container}>

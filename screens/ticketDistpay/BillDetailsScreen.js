@@ -43,7 +43,7 @@ export default class BillDetailsScreen extends React.Component {
   
 
   render() {
-    var data = this.props.bookingDetailDataForBillDetail;
+    var data = this.props.bookingData;
     return (
       <View style={styles.container}>
 

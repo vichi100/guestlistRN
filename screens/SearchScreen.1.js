@@ -13,6 +13,7 @@ import { withNavigation } from "react-navigation";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import axios from "axios";
 
 //library-music  
 
@@ -56,10 +57,11 @@ class Search extends React.Component {
     this.arrayholder = [];
   }
   componentDidMount() {
-    return fetch("http://192.168.43.64:6000/getSearchParameter?city=mumbai")
-      .then(response => response.json())
+    return axios.get("http://192.168.43.64:6000/getSearchParameter?city=mumbai")
+      //.then(response => response.json())
       .then(responseJson => {
         console.log("search array " + JSON.stringify(responseJson));
+        responseJson = responseJson.data;
         this.setState(
           {
             isLoading: false,

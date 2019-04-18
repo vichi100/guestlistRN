@@ -27,6 +27,7 @@ import { EvilIcons } from "@expo/vector-icons";
 
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
+import axios from 'axios';
 
 var mydatasource = [];
 var isDataChanged = false;
@@ -53,13 +54,13 @@ export default class ClubsEvents extends Component {
   }
 
   componentDidMount() {
-    return fetch("http://192.168.43.64:6000/eventsDetails?eventDate=29Jan2019")
-      .then(response => response.json())
+    return axios.get("http://192.168.43.64:6000/eventsDetails?eventDate=29Jan2019")
+      //.then(response => response.json())
       .then(response => {
-        // console.log("data : " + response);
+        console.log("ClubsEvents: response data from server: " + response.data);
 
-        mydatasource = response;
-        x = response.filter(item => {
+        mydatasource = response.data;
+        x = response.data.filter(item => {
           // console.log("item.date : " + item.eventdate);
           // console.log("item.clubname : " + item.clubname);
           // console.log("filter date : " + moment().format('DD/MMM/YYYY'));
@@ -83,9 +84,9 @@ export default class ClubsEvents extends Component {
     // navigate('GuestListScreen');
     // console.log("date ; " + eventDate);
     // console.log("clubid ; " + clubid);
-    if(item.postedby == 'guestlist'){
+    // DJ, PR and guestlist is allowed to post only guestlist
+    if(item.postedby == 'guestlist' || item.postedby == 'dj' || item.postedby == 'pr'){
       this.props.navigation.navigate("BookingScreenOnlyForGuestList", { data: item, me: "yo" });
-      
     }else{
       this.props.navigation.navigate("BookingScreen", { data: item, me: "yo" });
     }

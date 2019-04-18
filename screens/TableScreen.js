@@ -24,6 +24,7 @@ import { create, PREDEF_RES } from "react-native-pixel-perfect";
 import TableDetailsnPrice from "./TableDetailsnPrice";
 import Dialog from "react-native-dialog";
 import { AsyncStorage } from "react-native";
+import axios from 'axios'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -83,9 +84,10 @@ export default class TableScreen extends React.Component {
 
   componentDidMount() { 
     //return fetch("http://192.168.43.64:6000/tableDetails?clubid=1000001&eventDate=19/Mar/2019")
-    return fetch("http://192.168.43.64:6000/tableDetails?clubid="+eventData.clubid+"&eventDate="+eventData.eventdate)
-      .then(response => response.json())   
+    return axios.get("http://192.168.43.64:6000/tableDetails?clubid="+eventData.clubid+"&eventDate="+eventData.eventdate)
+      //.then(response => response.json())   
       .then(response => {
+        response = response.data;
        console.log("Table data from response  : " + JSON.stringify(response));   
        Object.keys(response).map((keyName, keyIndex) =>{ 
         // use keyName to get current key's name
@@ -247,17 +249,16 @@ bookTicket= async() =>{
           this.setState({tableDetails:tableDetails});
           var bookingAmount = 0;
           var tablePrice = parseInt(tablePriceStr);  
-          if(tablePrice <= 5000){ 
-            bookingAmount = 2000;
-          }else if(tablePrice <= 10000){
-            bookingAmount = 3000;
-          }else if(tablePrice <= 20000){
-            bookingAmount = 5000
-          }else if(tablePrice <= 35000){ 
-            bookingAmount = 7000;
-          }else{
-            bookingAmount = 10000;
-          }
+          // if(tablePrice <= 5000){ 
+          //   bookingAmount = 1000;
+          // }else if(tablePrice <= 10000){
+          //   bookingAmount = 2000;
+          // }else {
+          //   bookingAmount = 5000;
+          // }
+          //FOR TESTING
+          bookingAmount = 100;
+          // TESTING END
           var remainingAmount = tablePrice -bookingAmount;
           var tableData = {
             "tableNumber": this.state.dataSource[keyName].tablenumber,

@@ -41,9 +41,10 @@ const window = Dimensions.get("window");
 let w = window.Width;
 
 import { StackActions, NavigationActions } from 'react-navigation';
+import TermnConditionForTable from "./ticketDistpay/TermnCondtionForTable";
 
 
-
+var navigatingFrom = null;
 export default class TicketDisplayFromTableBooking extends React.Component {
 
   static navigationOptions = {
@@ -87,7 +88,7 @@ export default class TicketDisplayFromTableBooking extends React.Component {
 
     this.state = {
       calc_height: 0,
-      bookingDetailData:"",
+      bookingData:"",
     };
   }
 
@@ -104,7 +105,12 @@ export default class TicketDisplayFromTableBooking extends React.Component {
   }
 
   onBack = () => {
-    console.log("back");
+    console.log('TicketDisplayFromTableBooking: navigatingFrom:'+navigatingFrom)
+    if(navigatingFrom != null && navigatingFrom == 'TicketsListScreen'){
+      this.props.navigation.goBack(null);
+      return;
+    }
+    console.log("TicketDisplayFromTableBooking: back");
     const resetAction = StackActions.reset({
       index: 0, // <-- currect active route from actions array
       actions: [
@@ -176,8 +182,9 @@ export default class TicketDisplayFromTableBooking extends React.Component {
 
   render() {
     const { navigation } = this.props;  
-    var bookingDetailData = navigation.getParam("bookingData");
-    //this.setState({bookingDetailData: bookingDetailData}); 
+    var bookingData = navigation.getParam("bookingData");
+    navigatingFrom = navigation.getParam("navigatingFrom");
+    console.log('navigatingFrom: '+navigatingFrom);
     return (
       <View style={styles.container}>
         <ScrollView
@@ -188,9 +195,9 @@ export default class TicketDisplayFromTableBooking extends React.Component {
 
 
 
-          <QRCodeDisplay qrCodeData={bookingDetailData}/>
-          <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}> 
-          <ClubLocationDisplay bookingDetailData={bookingDetailData}/>
+          <QRCodeDisplay bookingData={bookingData}/>
+          <TouchableOpacity onPress={() => this._callShowDirections(bookingData.latlong)}> 
+          <ClubLocationDisplay bookingData={bookingData}/>
           </TouchableOpacity>
 
           <View
@@ -270,7 +277,7 @@ export default class TicketDisplayFromTableBooking extends React.Component {
               >
                 <Text style={styles.instructions}>Table No.</Text>
                 <Text style={styles.instructions}>
-                {bookingDetailData.tablenumber}
+                {bookingData.tablenumber}
                     </Text>
               </View>
             </View>
@@ -316,24 +323,13 @@ export default class TicketDisplayFromTableBooking extends React.Component {
               >
                 <Text style={styles.instructions}>Table Size</Text>
                 <Text style={styles.instructions}>
-                {bookingDetailData.tablepx} guests
+                {bookingData.tablepx} guests
                     </Text>
               </View>
             </View>
-  
-      
-  
-
-  
           </View>
-
-          
-
-           
-          <BillDetailsScreen bookingDetailDataForBillDetail={bookingDetailData}/>
-          <TermnCondition/>
-          
-
+          <BillDetailsScreen bookingData={bookingData}/>
+          <TermnConditionForTable/>
         </ScrollView>
 
         <TouchableOpacity onPress={()=>this.onBack()} style ={{

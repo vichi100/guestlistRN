@@ -26,6 +26,7 @@ import TicketDisplayFromTableBooking from "../screens/TicketDisplayFromTableBook
 import TabBarIcon from "../components/TabBarIcon";
 import OffersListScreen from "../screens/offers/OffersListScreen";
 import TicketsListScreen from "../screens/tickets/TicketsListScreen";
+import TicketsListScreenX from "../screens/tickets/TicketsListScreen";
 import TicketDisplayScreen from "../screens/ticketDistpay/TicketDisplayScreen";
 import TicketDisplayFromBooking from "../screens/ticketDistpay/TicketDisplayFromBooking";
 import TicketDisplayFromNoLayoutTableBooking from '../screens/TicketDisplayFromNoLayoutTableBooking.js';
@@ -36,6 +37,7 @@ import Search from  "../screens/SearchScreen";
 import EventsOfOneClub from '../screens/EventsOfOneClub'
 import CardImageOverlayEvents from '../screens/CardImageOverlayEvents';
 import Login from "../screens/login/Login";
+import LoginFromTicketList from '../screens/login/LoginFromTicketList';
 import FBLogin from "../screens/login/FBLogin";
 import SelectCity from '../screens/changeCity/SelectCity';
 import chat from '../chat/Chat';
@@ -335,8 +337,10 @@ const AppStack = createStackNavigator({
   CardImageOverlayEvents: CardImageOverlayEvents, 
   TicketDisplayScreen: TicketDisplayScreen,  
   TicketDisplayFromBooking : TicketDisplayFromBooking,
+  LoginFromTicketList: LoginFromTicketList,
   TicketDisplayFromTableBooking: TicketDisplayFromTableBooking,
   BookingScreen: BookingScreen, 
+  //TicketsListScreen: TicketsListScreen,
   BookingScreenOnlyForGuestList:BookingScreenOnlyForGuestList,
   PayTmScreen:PayTm,
   LoginScreen:Login,

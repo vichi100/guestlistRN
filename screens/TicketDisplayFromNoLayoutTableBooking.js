@@ -42,7 +42,7 @@ let w = window.Width;
 
 import { StackActions, NavigationActions } from 'react-navigation';
 
-
+var navigatingFrom = null;
 
 export default class TicketDisplayFromNoLayoutTableBooking extends React.Component {
 
@@ -87,7 +87,7 @@ export default class TicketDisplayFromNoLayoutTableBooking extends React.Compone
 
     this.state = {
       calc_height: 0,
-      bookingDetailData:"",
+      bookingData:"",
     };
   }
 
@@ -104,14 +104,20 @@ export default class TicketDisplayFromNoLayoutTableBooking extends React.Compone
   }
 
   onBack = () => {
-    console.log("back");
-    const resetAction = StackActions.reset({
-      index: 0, // <-- currect active route from actions array
-      actions: [
-        NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
-      ],
-    });
-    return this.props.navigation.dispatch(resetAction);
+    if(navigatingFrom != null && navigatingFrom == 'TicketsListScreen'){
+      this.props.navigation.goBack(null);
+      return;
+    }else{
+      console.log("back");
+      const resetAction = StackActions.reset({
+        index: 0, // <-- currect active route from actions array
+        actions: [
+          NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
+        ],
+      });
+      return this.props.navigation.dispatch(resetAction);
+    }
+    
   };  
 
  
@@ -176,21 +182,18 @@ export default class TicketDisplayFromNoLayoutTableBooking extends React.Compone
 
   render() {
     const { navigation } = this.props;  
-    var bookingDetailData = navigation.getParam("bookingData");
-    //this.setState({bookingDetailData: bookingDetailData});
+    var bookingData = navigation.getParam("bookingData");
+    console.log("bookingData in TicketDisplayFromNoLayoutTableBooking: "+JSON.stringify(bookingData));
+    navigatingFrom = navigation.getParam("navigatingFrom");
     return (
       <View style={styles.container}>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-         
-
-
-
-          <QRCodeDisplay qrCodeData={bookingDetailData}/>
-          <TouchableOpacity onPress={() => this._callShowDirections(bookingDetailData.latlong)}> 
-          <ClubLocationDisplay bookingDetailData={bookingDetailData}/>
+          <QRCodeDisplay bookingData={bookingData}/>
+          <TouchableOpacity onPress={() => this._callShowDirections(bookingData.latlong)}> 
+          <ClubLocationDisplay bookingData={bookingData}/>
           </TouchableOpacity>
 
           <View
@@ -270,7 +273,7 @@ export default class TicketDisplayFromNoLayoutTableBooking extends React.Compone
               >
                 <Text style={styles.instructions}>Number of guest</Text>
                 <Text style={styles.instructions}>
-                {bookingDetailData.tablepx}
+                {bookingData.tablepx}
                     </Text>
               </View>
             </View>
@@ -450,13 +453,8 @@ export default class TicketDisplayFromNoLayoutTableBooking extends React.Compone
             </View>
           </View>
         </View>
-      
-      
-
-           
-          {/* <BillDetailsScreen bookingDetailDataForBillDetail={bookingDetailData}/> */}
+          {/* <BillDetailsScreen bookingData={bookingData}/> */}
           <TermnConditionForTable/>
-          
 
         </ScrollView>
 

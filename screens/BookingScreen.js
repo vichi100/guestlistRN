@@ -36,6 +36,7 @@ import NumericInput from "../screens/numericInput/NumericInput";
 import { create, PREDEF_RES } from "react-native-pixel-perfect";
 const calcSize = create(PREDEF_RES.iphone7.px);
 import Dialog from "react-native-dialog";
+import axios from 'axios';
 
 const window = Dimensions.get("window");
 
@@ -109,17 +110,18 @@ export default class BookingScreen extends React.Component {
   }
 
   componentDidMount() {
-    return fetch(
+    return axios.get(
       "http://192.168.43.64:6000/ticketDetails?clubid=" +
         eventData.clubid +
         "&eventDate=" +
         eventData.eventdate
     )
-      .then(response => response.json()) 
+      //.then(response => response.json()) 
       .then(response => {
-        console.log("ticketDetailsData : " + JSON.stringify(response));
+        console.log("ticketDetailsData : " + JSON.stringify(response.data));
 
         //TICKET DATA FOR CLUB 
+        response = response.data;
         console.log(" clubTicketData "+response.clubTicketData.guestlistGirlAvailableCount) 
         this.setState({
           clubTicketData:response.clubTicketData,
@@ -207,13 +209,13 @@ export default class BookingScreen extends React.Component {
     console.log('email1 : ' + ": " + email);
     console.log('mobile1 : ' + ": " + mobile); 
 
-    if (email == null && mobile == null) {  
+    if (email == null || mobile == null || userid == null) {  
       // if (true) {
       // go to login form
       console.log('email2 : ' + ": " + email);
       console.log('mobile2 : ' + ": " + mobile);
       //this.props.navigation.navigate('BookingScreen', {data:item});
-      this.props.navigation.navigate("LoginScreen", {eventDataFromBookingScreen: eventData, me:'BookingScreen'}); // move to login page
+      this.props.navigation.navigate("LoginScreen", {bookingData: eventData, me:'BookingScreen'}); // move to login page
       return;
     } 
 

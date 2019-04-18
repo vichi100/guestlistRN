@@ -25,6 +25,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import axios from "axios";
 
 export default class DJsListScreen extends Component {
   constructor(props) {
@@ -40,11 +41,11 @@ export default class DJsListScreen extends Component {
   };
 
   componentDidMount() {
-    return fetch("http://192.168.43.64:6000/djDetails?city=mumbai")
-      .then(response => response.json())
+    return axios.get("http://192.168.43.64:6000/djDetails?city=mumbai")
+      //.then(response => response.json())
       .then(response => {
         //console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
+        this.setState({ dataSource: response.data, isLoading: false });
       })
       .catch(error => {
         console.error(error);

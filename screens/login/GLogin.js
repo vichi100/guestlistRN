@@ -11,8 +11,13 @@ import {
 import * as Expo from "expo";
 import { AsyncStorage } from "react-native";
 import Dialog from "react-native-dialog";
+import { StackActions, NavigationActions } from 'react-navigation';
+import axios from "axios";
 
 //https://github.com/mmazzarolo/react-native-dialog
+var myMob;
+var eventDataFromBookingScreen;
+var gotoScreen;
 
 export default class GLogin extends React.Component {
   constructor(props) {
@@ -23,16 +28,17 @@ export default class GLogin extends React.Component {
       dialogVisible: false,
       photoUrl: null,
       mobile: null,
-      modiMob: null,
       email:null,
-      id: null,
+      userid: null,
+      expoToken: null,
     };
   }
 
 
   signIn = async () => {
-    this._retrieveData();
-    if (this.state.mobile == null) {
+    console.log('I am in Google signIn')
+    var mobilex = await AsyncStorage.getItem("mobile");
+    if (mobilex == null) {
       this.showDialog();
       return;
     }
@@ -49,7 +55,7 @@ export default class GLogin extends React.Component {
           signedIn: true,
           name: result.user.name,
           photoUrl: result.user.photoUrl,
-          id:result.user.id,
+          userid:result.user.id, 
           email:result.user.email,
         });  
   
@@ -58,13 +64,26 @@ export default class GLogin extends React.Component {
         }, 200);   
 
         this.insertCustomerDetails();
-        this.props.navigation.navigate('TicketDisplayFromBooking', { "data":eventDataFromBookingScreen }); 
+        console.log('GLogin: navigating to '+gotoScreen);
+        if(gotoScreen != null && (gotoScreen == 'TicketsListScreenXV' || gotoScreen == 'profile')){
+          console.log("back");
+          const resetAction = StackActions.reset({
+            index: 0, // <-- currect active route from actions array
+            actions: [
+              NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
+            ],
+          });
+          return this.props.navigation.dispatch(resetAction);
+        }else{
+          this.props.navigation.navigate(gotoScreen, { "bookingData":eventDataFromBookingScreen }); 
+        }
+        
 
       } else {
-        console.log("cancelled");
+        console.log("Google sign in cancelled");
       } 
-    } catch (e) {
-      console.log("error", e);
+    } catch (error) {
+      console.log("Google sign in error: "+error);
     }
   };
 
@@ -83,7 +102,7 @@ export default class GLogin extends React.Component {
       await AsyncStorage.setItem("email", this.state.email);
       await AsyncStorage.setItem("name", this.state.name);
       await AsyncStorage.setItem("photoUrl", this.state.photoUrl);
-      await AsyncStorage.setItem("customerId", this.state.id);
+      await AsyncStorage.setItem("customerId", this.state.userid);
       console.log("store mobile"+ mobile);
     } catch (error) {
       // Error saving data
@@ -95,11 +114,12 @@ export default class GLogin extends React.Component {
     try {
       //email = await AsyncStorage.getItem('email');
       var mobilex = await AsyncStorage.getItem("mobile");
+      var expoToken = await AsyncStorage.getItem("expoToken")
       console.log("get mobile"+ mobilex);
       if (mobilex !== null) {
         // We have data!!
         console.log(mobilex);
-        this.state({ mobile: mobilex });
+        this.state({ mobile: mobilex , expoToken: expoToken});
       }
     } catch (error) {
       // Error retrieving data
@@ -108,27 +128,36 @@ export default class GLogin extends React.Component {
 
   insertCustomerDetails=() =>{
     var postData = {
-      "userid" : this.state.id,
+      "userid" : this.state.userid,
       "mobilenumber":this.state.mobile,
       "email" : this.state.email,
       "name" : this.state.name, 
+      "expoToken": this.state.expoToken,
     }
 
     this._storeCustomerData();
 
+
+
     // SEND Customer DETAILS TO SERVER -  START
-    return fetch("http://192.168.43.64:6000/insertCustomerDetails",{  
-      method: "POST",
+    // return fetch("http://192.168.43.64:6000/insertCustomerDetails",{  
+    //   method: "POST",
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',   
+    //   },
+    //   body:  JSON.stringify(postData)
+    // })
+    return axios.post("http://192.168.43.64:6000/insertCustomerDetails", postData,  {
+
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',   
-      },
-      body:  JSON.stringify(postData)
+        'Content-Type': 'application/json',
+    },
     })
-    .then(response => response.json()) 
+   // .then(response => response.json()) 
     .then(response => {
-    console.log("data : " + response); 
-      this.setState({ dataSource: response, isLoading: false });
+    console.log("data : " + response.data); 
+      this.setState({ dataSource: response.data, isLoading: false });
       
     console.log("data send to server");
     }) 
@@ -150,20 +179,24 @@ export default class GLogin extends React.Component {
     // The user has pressed the "Delete" button, so here you can do your own logic.
     // ...Your logic
     this.setState({ dialogVisible: false });
-    this._storeData(this.state.mobile);
+    this.setState({ mobile: myMob });
+    //console.log("final mob num: "+myMob)
+    this._storeData(myMob);
+    this.signIn();
   };
 
   setMobile = text => {
-    console.log(text);
-    //var myMob = "91" + text;
-    //changeText = myMob;
+    //console.log(text);
+    myMob = text;
     //console.log("myMob : " + myMob);
-    this.setState({ mobile: myMob });
-    //var lastChar = myMob[myMob.length - 1];
-    //this.setState({ modiMob: myMob });
+    
   };
 
   render() {
+    eventDataFromBookingScreen = this.props.eventDataFromBookingScreen;
+    gotoScreen = this.props.gotoScreen;
+    console.log("gotoScreen: "+gotoScreen);
+    console.log("eventDataFromBookingScreen GLogin: "+ JSON.stringify(eventDataFromBookingScreen));
     return (
       <View style={styles.container}>
         {/* {this.state.signedIn ? (
@@ -171,12 +204,12 @@ export default class GLogin extends React.Component {
         ) : (
           <LoginPage signIn={this.signIn} />
         )} */}
-        <LoginPage signIn={this.signIn} />
+        <LoginPage signIn={ () =>this.signIn(eventDataFromBookingScreen, gotoScreen)} />
         <Dialog.Container visible={this.state.dialogVisible}>
           <Dialog.Title>Enter Mobile Number</Dialog.Title>
-          <Dialog.Description>
+          {/* <Dialog.Description>
             Mobile number is required by bank and payment getway.
-          </Dialog.Description>
+          </Dialog.Description> */}
 
           <Dialog.Input
             style={{ height: 40, borderColor: "gray", borderWidth: 1 }}

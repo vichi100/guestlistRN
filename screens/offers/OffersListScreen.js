@@ -12,6 +12,7 @@ import {
 
 import OfferRowItem from './OfferRowItem';
 import CardDark from "../CardDark";
+import axios from 'axios';
 
 export default class OffersListScreen extends Component {
   constructor(props) {
@@ -24,11 +25,11 @@ export default class OffersListScreen extends Component {
   }
 
   componentDidMount() {
-    return fetch("http://192.168.43.64:6000/offersDetails?city=mumbai")
-      .then(response => response.json())
+    return axios.get("http://192.168.43.64:6000/offersDetails?city=mumbai")
+      //.then(response => response.json())
       .then(response => { 
-        console.log("data : " + response);
-        this.setState({ dataSource: response, isLoading: false });
+        console.log("data : " + response.data);
+        this.setState({ dataSource: response.data, isLoading: false });
       })
       .catch(error => { 
         console.error(error);

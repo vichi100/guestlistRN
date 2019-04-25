@@ -36,7 +36,7 @@ var isDataChanged = false
 
 
 
-let clubDetailData;
+let clubid;
 
 export default class EventsOfOneClub extends Component {  
 
@@ -71,7 +71,7 @@ export default class EventsOfOneClub extends Component {
   }
  
   componentDidMount() { 
-    return axios.get("http://192.168.43.64:6000/eventsDetails?clubid=29Jan2019")// pass club id rather than date
+    return axios.get("http://192.168.43.64:6000/eventsDetails?clubid="+clubid)// pass club id rather than date
       //.then(response => response.json())
       .then(response => {
         console.log("data : " + response.data);
@@ -124,12 +124,8 @@ _showMoreApp = () => {
 };
 
   render() {
-
-    
-    
-
     const { navigation } = this.props;  
-    clubDetailData = navigation.getParam("clubDetailData");
+    clubid = navigation.getParam("clubid");
     
     if (this.state.isLoading) {
       return ( 

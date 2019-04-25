@@ -45,13 +45,13 @@ export default class FBLogin extends React.Component {
     };
   }
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user != null) {
-        console.log(user);
-      }
-    });
-  }
+  // componentDidMount() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (user != null) {
+  //       console.log(user);
+  //     }
+  //   });
+  // }
 
   _storeDataMobile = async (mobile) => {
     try {

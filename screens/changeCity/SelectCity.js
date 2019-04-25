@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Dimensions, Image } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, Image , TouchableOpacity, ActivityIndicator} from 'react-native';
 import Card from '../Card'
-
+import { StackActions, NavigationActions } from 'react-navigation';
+import { AsyncStorage } from "react-native";
 
 // const data = [
 //   { key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }, { key: 'J' },
@@ -29,7 +30,59 @@ const formatData = (data, numColumns) => {
 };
 
 const numColumns = 2;
+
 export default class App extends React.Component {
+  static navigationOptions = {
+    //To set the header image and title for the current Screen
+    title: "City",
+    headerBackTitle: null,
+    headerStyle: {
+      backgroundColor: "#263238"
+      //Background Color of Navigation Bar
+    },
+
+    headerTitleStyle: {
+      justifyContent: "center",
+      color: "#ffffff",
+      textAlign: "left",
+      flex: 1
+    },
+
+    headerTintColor: "#606070"
+    //Text Color of Navigation Bar
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      city: null,
+      isLoading:true,
+    };
+  }
+  componentDidMount() {
+    this.setState({city:global.city});
+    this.setState({isLoading:false})
+    
+  }
+
+  changeCity = async (item) =>{
+    var newCity = item.id;
+    global.city = newCity;
+    this.setState({city:global.city})
+    await AsyncStorage.setItem("city", newCity);
+  }
+
+
+  onChange = () => {
+    console.log("back");
+    const resetAction = StackActions.reset({
+      index: 0, // <-- currect active route from actions array
+      actions: [
+        NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
+      ],
+    });
+    return this.props.navigation.dispatch(resetAction);
+  };
 
   renderItem = ({ item, index }) => {
       console.log(item.src) 
@@ -40,14 +93,16 @@ export default class App extends React.Component {
       <View
         style={styles.item}
       >
-        {/* <Text style={styles.itemText}>{item.id}</Text> */}
+        
         <Card>
+        <TouchableOpacity onPress={() => this.changeCity(item)}>
         <Image
           resizeMode = "stretch"
           style = {{ flex: 1 , height:259, width:200}}
           source = {item.src}
           //source={require('/react-native/img/favicon.png')}
         />
+        </TouchableOpacity>
         </Card> 
         
       </View>
@@ -55,7 +110,17 @@ export default class App extends React.Component {
   };
 
   render() {
+
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, justifyContent: "center" }}>
+          <ActivityIndicator size="large" />
+        </View>
+      );
+    }
     return (
+      <View style={styles.container}>
+      <Text style={styles.itemText}>You are in {this.state.city.toUpperCase()}</Text>
       <FlatList
         data={formatData(data, numColumns)}
         style={styles.container}
@@ -63,6 +128,35 @@ export default class App extends React.Component {
         numColumns={numColumns}
         keyExtractor={(item, index) => index.toString()}
       />
+
+<TouchableOpacity
+          onPress={() => this.onChange()}
+          style={{
+            height: 50
+          }}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#2196f3"
+            }}
+          >
+            <Text
+              style={{
+                color: "#ffffff",
+                fontFamily: "sans-serif",
+                fontWeight: "bold"
+              }}
+            >
+              CHANGE
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+      </View>
+      
     );
   }
 }
@@ -70,7 +164,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
+    backgroundColor: '#2c3e50',
+    paddingTop: 2
   },
   item: {
     //backgroundColor: '#4D243D',
@@ -84,6 +179,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   itemText: {
-    color: '#fff',
+    marginTop: 50,
+    marginBottom: 50,
+    color: '#FFFFFF',
+    fontSize:18,
+    textAlign:'center'
   },
 });

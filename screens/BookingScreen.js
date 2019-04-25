@@ -104,6 +104,8 @@ export default class BookingScreen extends React.Component {
       guestlistcouplecount: 0,
       dialogVisible : false,
       mybookingamount: 50,// Prod-500 , test-50
+      ticketIdForGirl: null,
+      ticketIdForCouple: null,
 
       
     };
@@ -118,49 +120,68 @@ export default class BookingScreen extends React.Component {
     )
       //.then(response => response.json()) 
       .then(response => {
-        console.log("ticketDetailsData : " + JSON.stringify(response.data));
 
-        //TICKET DATA FOR CLUB 
+        console.log("BookingScreenOnlyForGuestList: ticketDetailsData : " + JSON.stringify(response.data));
+        // check if tickets are availbale in guestlist or not
         response = response.data;
-        console.log(" clubTicketData "+response.clubTicketData.guestlistGirlAvailableCount) 
-        this.setState({
-          clubTicketData:response.clubTicketData,
-          eventTicketDataByDj: response.eventTicketDataByDj,
-          eventTicketDataByPR: response.eventTicketDataByPR,
-          eventTicketDataByGuestList: response.eventTicketDataByGuestList,
+        let availbleticketsForCouple = 0;
+        let availbleticketsForGirl = 0; 
+        let ticketIdForGirl = null;
+        let ticketIdForCouple = null;
+        var passCoupleCost = 0;
+        var passStagCost = 0;
+        Object.keys(response).map((keyName, keyIndex) =>{ 
+          //CHECK IF COUPLE TICKET IS AVAILABLE
+          if(response[keyName].category == 'couple' && parseInt(response[keyName].availbletickets) > 0 && response[keyName].type == 'guest list'){ 
+            availbleticketsForCouple = availbleticketsForCouple + parseInt(response[keyName].availbletickets);
+            if(ticketIdForCouple == null){
+              ticketIdForCouple = response[keyName].ticketid;
+              this.setState({ticketIdForCouple: ticketIdForCouple})
+            }
+          }
+
+          //CHECK IF GIRL TICKET IS AVAILABLE
+          if(response[keyName].category == 'girl' && parseInt(response[keyName].availbletickets) > 0 && response[keyName].type == 'guest list'){
+            availbleticketsForGirl = availbleticketsForGirl + parseInt(response[keyName].availbletickets);
+            if(ticketIdForGirl == null){
+              ticketIdForGirl = response[keyName].ticketid;
+              this.setState({ticketIdForGirl: ticketIdForGirl})
+            }
+          }
+          
+          // get couple pass cost
+          if(response[keyName].category == 'couple' && response[keyName].type == 'pass' ){
+              passCoupleCost = response[keyName].cost;
+              //this.setState({clubTicketData: {passCoupleCost: passCoupleCost}})
+          }
+
+          // get couple pass cost
+          if(response[keyName].category == 'stag' && response[keyName].type == 'pass' ){
+            passStagCost = response[keyName].cost;
+            //this.setState({clubTicketData: {passStagCost: passStagCost}})
+          }
+          
         })
 
+        this.setState({clubTicketData: {passStagCost: passStagCost, passCoupleCost: passCoupleCost}})
 
-        var guestlistGirlAvailableCountByClub = parseInt(response.clubTicketData.guestlistGirlAvailableCount);
-        var guestlistGirlAvailableCountByDj = parseInt(response.eventTicketDataByDj.guestlistGirlAvailableCount);
-        var guestlistGirlAvailableCountByPR = parseInt(response.eventTicketDataByPR.guestlistGirlAvailableCount);
-        var guestlistGirlAvailableCountByGuestList = parseInt(response.eventTicketDataByGuestList.guestlistGirlAvailableCount);
+        console.log("BookingScreenOnlyForGuestList: availbleticketsForCouple:  "+availbleticketsForCouple);
+        console.log("BookingScreenOnlyForGuestList: availbleticketsForGirl:  "+availbleticketsForGirl);
+        this.setState({availbleticketsForCouple: availbleticketsForCouple});
+        this.setState({availbleticketsForGirl: availbleticketsForGirl});
 
-        var guestlistCouplelAvailableCountByClub = parseInt(response.clubTicketData.guestlistCoupleAvailableCount);
-        var guestlistCoupleAvailableCountByDj = parseInt(response.eventTicketDataByDj.guestlistCoupleAvailableCount);
-        var guestlistCoupleAvailableCountByPR = parseInt(response.eventTicketDataByPR.guestlistCoupleAvailableCount);
-        var guestlistCoupleAvailableCountByGuestList = parseInt(response.eventTicketDataByGuestList.guestlistCoupleAvailableCount);
-        
-        totalGirlGuestListCount = guestlistGirlAvailableCountByClub+guestlistGirlAvailableCountByDj
-                                  +guestlistGirlAvailableCountByPR+guestlistGirlAvailableCountByGuestList;
-        totalCoupleGuestListCount = guestlistCouplelAvailableCountByClub+guestlistCoupleAvailableCountByDj
-                                  +guestlistCoupleAvailableCountByPR+guestlistCoupleAvailableCountByGuestList;
-
-        if(guestlistCouplelAvailableCountByClub > 0 || guestlistGirlAvailableCountByClub > 0  ){
-          this.setState({guestListTitleStr: "Guest List"})
-        }else if(guestlistCoupleAvailableCountByDj > 0 || guestlistGirlAvailableCountByDj > 0){
-          this.setState({guestListTitleStr: "Guest List with love by "+response.eventTicketDataByDj.postedByName})
-        }else if(guestlistCoupleAvailableCountByPR || guestlistGirlAvailableCountByPR > 0){
-          this.setState({guestListTitleStr: "Guest List with love by "+response.eventTicketDataByPR.postedByName})
-        }else if(guestlistCoupleAvailableCountByGuestList > 0 || guestlistGirlAvailableCountByGuestList > 0){
-          this.setState({guestListTitleStr: "Guest List"})
-        }else{
-          this.setState({ guestListTitleStr: "Guest List",
-                          guestListCoupleAvailableStr: "Couple/Sold Out",
-                        })
+        if(availbleticketsForGirl <= 0){
+          this.setState({guestListGirlAvailableStr: 'Girl/Sold Out'});
         }
-        
+
+        if(availbleticketsForCouple <= 0){
+          this.setState({guestListCoupleAvailableStr: 'Couples/Sold Out'});
+        }
+        // check from which ticketid count need to reduce for girl and couple
+
         this.setState({ dataSource: response, isLoading: false }); 
+      
+
       })
       .catch(error => {
         console.error(error);
@@ -256,6 +277,8 @@ export default class BookingScreen extends React.Component {
       paymentstatusmsg: null,
       bookingconfirm: null,
       termncondition: null,
+      ticketIdForCouple: this.state.ticketIdForCouple,
+      ticketIdForGirl: this.state.ticketIdForGirl,
       latlong: eventData.latlong,
       qrcode:
         eventData.clubid +

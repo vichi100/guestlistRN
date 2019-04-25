@@ -131,7 +131,7 @@ export default class CardImageOverlayEvents extends Component {
                   numberOfLines={2}
                   ellipsizeMode={"tail"}
                 >
-                  Free shots for girls 
+                  Freex shots for girls 
                 </Text>
                 <Text
                   style={{textAlign: 'right', color: "#ff9800"}}

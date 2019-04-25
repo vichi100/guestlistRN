@@ -19,6 +19,10 @@ import { Permissions, Notifications } from "expo";
 import firebase from "firebase";
 import { AsyncStorage } from "react-native";
 import OfflineNotice from "./screens/OfflineNotice";
+// import { withNavigation } from 'react-navigation';
+// import { NavigationActions } from 'react-navigation';
+import { StackActions, NavigationActions } from 'react-navigation';
+
 
 YellowBox.ignoreWarnings(["Warning", "Setting a timer"]);
 
@@ -50,7 +54,7 @@ if (Platform.OS === "android") {
   SafeAreaView.setStatusBarHeight(0);
 }
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     isLoadingComplete: false,
     showRealApp: false,
@@ -59,12 +63,14 @@ export default class App extends React.Component {
   };
 
   async componentDidMount() {
-    await AsyncStorage.clear();
+    //await AsyncStorage.clear();
     await this.init();
     setTimeout(() => {}, 200);
   }
 
   async init() {
+    await AsyncStorage.setItem("city", 'mumbai');
+    global.city='mumbai';
     var expoToken = await AsyncStorage.getItem("expoToken");
     if (expoToken == null) {
       this.registerForPushNotifications();
@@ -129,7 +135,7 @@ export default class App extends React.Component {
       })
       .then(data => {
         //success callback
-        console.log("data ", data);
+        console.log("App: successfully written expo token in firebase: ", data);
         this._storeDataExpoToken(token);
       })
       .catch(error => {
@@ -144,12 +150,39 @@ export default class App extends React.Component {
       console.log("store expoToken" + expoToken);
       setTimeout(() => {}, 200);
     } catch (error) {
-      console.log("error in store expoToken" + error);
+      console.log("error in store expoT token" + error);
     }
   };
 
   handleNotification = notification => {
-    console.log("notification recived");
+    console.log("notification recived"+ JSON.stringify(notification));
+    console.log("notification recived clubid: "+ JSON.stringify(notification.data.clubid));
+    var clubid = '1000002';//notification.data.clubid
+    if(clubid != null){
+      // this.navigator && this.navigator.dispatch({ type: 'Navigate', routeName, params });
+      //this.navigator && this.navigator.dispatch({ type: 'Navigate', routeName:'EventsOfOneClub', params:{ clubid: clubid }});
+      // this.props.navigation.navigate("EventsOfOneClub", { clubid: clubid });
+      this.props.navigator && this.props.navigator.dispatch(NavigationActions.navigate({routeName: 'EventsOfOneClub'})) //{friend: chatInfo}
+    
+    
+//       const resetAction = NavigationActions.reset({
+//         index: 0,
+//         actions: [ 
+//             NavigationActions.navigate({ 
+//                 routeName: 'EventsOfOneClub',      // name of the screen you want to navigate
+//                 params: {
+//                   clubid: clubid   // this second parameter is for sending the params
+//                 } 
+//             })
+//         ],
+// });
+// this.props.navigation.dispatch(resetAction);
+    
+    
+    
+    
+    
+    }
     this.setState({
       notification
     });
@@ -332,3 +365,7 @@ const slides = [
   //   backgroundColor: '#febe29',
   // },
 ];
+
+
+
+export default App;

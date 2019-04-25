@@ -47,8 +47,9 @@ export default class ClubsListScreen extends Component {
     this.setState({liked: !this.state.liked, })
   }
 
-  componentDidMount() {
-    return axios.get("http://192.168.43.64:6000/clubsDetails?city=mumbai")
+  async componentDidMount() {
+    var city = global.city;
+    return await axios.get("http://192.168.43.64:6000/clubsDetails?city="+city)
       //.then(response => response.json())
       .then(response => { 
         console.log("clubs list data : " + JSON.stringify(response.data)); 
@@ -68,7 +69,7 @@ export default class ClubsListScreen extends Component {
     // console.log("date ; " + eventDate);
     console.log("clubid ; " + item.clubid);
     this.props.navigation.navigate("EventsOfOneClub", {
-      clubDetailData: item,
+      clubid: item.clubid,
 
     });
   };

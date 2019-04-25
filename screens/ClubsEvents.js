@@ -54,7 +54,8 @@ export default class ClubsEvents extends Component {
   }
 
   componentDidMount() {
-    return axios.get("http://192.168.43.64:6000/eventsDetails?eventDate=29Jan2019")
+    var city = global.city;
+    return axios.get("http://192.168.43.64:6000/eventsDetails?city="+city)
       //.then(response => response.json())
       .then(response => {
         console.log("ClubsEvents: response data from server: " + response.data);
@@ -197,15 +198,15 @@ export default class ClubsEvents extends Component {
                       numberOfLines={2}
                       ellipsizeMode={"tail"}
                     >
-                      Free shots for girls
+                     {item.offertitile}
                     </Text>
-                    <Text
+                    {/* <Text
                       style={{ textAlign: "right", color: "#ff9800" }}
                       numberOfLines={1}
                       ellipsizeMode={"tail"}
                     >
                       upto 1:00PM
-                    </Text>
+                    </Text> */}
                   </View>
                 </View>
 

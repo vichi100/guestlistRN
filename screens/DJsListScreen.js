@@ -41,7 +41,8 @@ export default class DJsListScreen extends Component {
   };
 
   componentDidMount() {
-    return axios.get("http://192.168.43.64:6000/djDetails?city=mumbai")
+    var city = global.city;
+    return axios.get("http://192.168.43.64:6000/djDetails?city="+city)
       //.then(response => response.json())
       .then(response => {
         //console.log("data : " + response);

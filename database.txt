@@ -4,7 +4,8 @@
 3) when ever a guestlist booked reduce 1 from total availbletickets if availbletickets count > 0; if zero then
     return 0.
 4) only display ticket which have booking status 'pending' and 'confirm' , do not show canceled one
-
+5) when ever changing city store in firebase data with expoToken, so we can send notification to only 
+    those who lives in that city.
 
 ^^^^^^^^^^^^^^^^ TODO ^^^^^^^^^^^^^^^^
 1) OFFERS screen
@@ -274,15 +275,15 @@ CREATE TABLE ticketsforevents (clubid int, clubname VARCHAR(50), tablesize VARCH
 
 postedby: PR, DJ
 
-INSERT INTO ticketsforevents ( clubid, clubname,type, tablesize, category, cost, details, Day, date, totaltickets, availbletickets, eventid,
+INSERT INTO ticketdetailsbyclubs ( clubid, clubname,type,  category, cost, details, Day, date, totaltickets, availbletickets, eventid,
 postedbyname, postedbyid, postedby)
 VALUES
-(	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '05/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
-(	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '05/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
-(	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '06/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
-(	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '06/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
-(	'1000002' ,'Barrel',	'guest list', '0',	'couple',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
-(	'1000002' ,'Barrel',	'guest list', '0',	'girl',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj');
+(	'1000002' ,'Barrel',	'guest list', 	'couple',	'0', null,	'Tuesday', '24/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'pr'),
+(	'1000002' ,'Barrel',	'guest list', 	'girl',	'0', null,	'Tuesday', '24/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'pr'),
+(	'1000002' ,'Barrel',	'guest list', 	'couple',	'0', null,	'Tuesday', '06/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', 	'girl',	'0', null,	'Tuesday', '06/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', 	'couple',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj'),
+(	'1000002' ,'Barrel',	'guest list', 	'girl',	'0', null,	'Tuesday', '07/Apr/2019', '5', '5', '10002', 'DJ Cyrus', '1000', 'dj');
 
 update tablesdata set eventdate = '11/Apr/2019' where eventdate = '05/Apr/2019';
 update tablesdata set eventdate = '12/Apr/2019' where eventdate = '06/Apr/2019';
@@ -306,3 +307,18 @@ update ticketdetailsbyclubs set date = '13/Apr/2019' where date = '07/Apr/2019';
 update ticketdetailsbyclubs set date = '14/Apr/2019' where date = '08/Apr/2019';
 update ticketdetailsbyclubs set date = '15/Apr/2019' where date = '09/Apr/2019';
 update ticketdetailsbyclubs set date = '16/Apr/2019' where date = '10/Apr/2019';
+
+
+
+ALTER TABLE ticketsforevents ADD ticketid int NOT NULL AUTO_INCREMENT primary key FIRST;
+
+ALTER TABLE ticketdetailsbyclubs DROP COLUMN size;
+
+ALTER TABLE ticketsforevents AUTO_INCREMENT = 1000;
+
+
+
+
+ALTER TABLE ticketdetailsbyclubs ADD postedbyname VARCHAR(50);
+ALTER TABLE ticketdetailsbyclubs ADD postedbyid VARCHAR(50);
+ALTER TABLE ticketdetailsbyclubs ADD postedby VARCHAR(50);

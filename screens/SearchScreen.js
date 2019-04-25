@@ -57,7 +57,8 @@ class Search extends React.Component {
     this.arrayholder = [];
   }
   componentDidMount() {
-    return axios.get("http://192.168.43.64:6000/getSearchParameter?city=mumbai")
+    var city = global.city;
+    return axios.get("http://192.168.43.64:6000/getSearchParameter?city="+city)
       //.then(response => response.json())
       .then(responseJson => {
         console.log("search array " + JSON.stringify(responseJson.data));

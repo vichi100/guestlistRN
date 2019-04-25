@@ -12,34 +12,30 @@ import {
   ScrollView,
   Modal,
   WebView,
-  ActivityIndicator,
+  ActivityIndicator
 } from "react-native";
 import Dialog from "react-native-dialog";
-import axios from 'axios';
+import axios from "axios";
 
 import moment from "moment";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { StackActions, NavigationActions } from 'react-navigation';
-
-
-
+import { StackActions, NavigationActions } from "react-navigation";
 
 var bookingData;
 export default class PaymentOptions extends Component {
-
-    static defaultProps = {
-        backgroundColor: "#2c3e50",
-        marginTop: 1,
-        //width: 150,
-        //height: 150,
-        shadowColor: "rgb(50,50,50)",
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        elevation: 3
-      };
+  static defaultProps = {
+    backgroundColor: "#2c3e50",
+    marginTop: 1,
+    //width: 150,
+    //height: 150,
+    shadowColor: "rgb(50,50,50)",
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 3
+  };
   static navigationOptions = {
     //To set the header image and title for the current Screen
     title: "Payment",
@@ -64,7 +60,7 @@ export default class PaymentOptions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading:true,
+      isLoading: true,
       dialogVisible: false,
       showModal: false,
       ack: null, //"",
@@ -81,14 +77,14 @@ export default class PaymentOptions extends Component {
       TXN_AMOUNT: bookingData.bookingamount,
       CUST_ID: bookingData.userid,
       MOBILE_NO: bookingData.mobilenumber,
-      isLoading: false,
+      isLoading: false
     });
   }
 
   generateJSCode() {
-    console.log('ORDER_ID: '+this.state.ORDER_ID)
-    console.log('TXN_AMOUNT: '+this.state.TXN_AMOUNT)
-    console.log('CUST_ID: '+this.state.CUST_ID)
+    console.log("PaymentOptions: ORDER_ID: " + this.state.ORDER_ID);
+    console.log("PaymentOptions: TXN_AMOUNT: " + this.state.TXN_AMOUNT);
+    console.log("PaymentOptions: CUST_ID: " + this.state.CUST_ID);
     let jsCode = `document.getElementById("ORDER_ID").value = "${
       this.state.ORDER_ID
     }"; document.getElementById("TXN_AMOUNT").value = "${
@@ -99,123 +95,139 @@ export default class PaymentOptions extends Component {
     return jsCode;
   }
 
-    //http://192.168.43.64:3001/api/paytm/request
-    processInstamojoInfo = (bookingData) => {
+  //http://192.168.43.64:3001/api/paytm/request
+  processInstamojoInfo = bookingData => {
+    console.log(
+      "PaymentOptions: bookingData in processInstamojoInfo: " +
+        JSON.stringify(bookingData)
+    );
 
-      console.log("bookingData: "+JSON.stringify(bookingData))
-  
-      if (bookingData.purpose !== null && bookingData.bookingamount !== null && bookingData.username !== null && bookingData.email !== null) {
-         const self =  this;
-         //this.props.navigation.navigate('InstamojoWebview')
-         //console.log("bookingData2: "+JSON.stringify(bookingData))
-          axios.post(`http://192.168.43.64:8089/api/makerequest`,{
-  
-              purpose: bookingData.purpose,
-              amount: bookingData.bookingamount,
-              buyer_name: bookingData.username,
-              email: bookingData.email,
-  
-          })
-              .then(function (response) {
-                 console.log("Pay: response from server: "+JSON.stringify(response));
-                  if (response.data.statusCode === 200) { 
-                      
-                      console.log('PaymentOptions success');
-                      self.props.navigation.navigate('InstamojoWebview',{bookingData: bookingData, url:response.data.url})
-                      
-                      console.log('PaymentOptions after navigation');
-                  }
-              })
-              .catch(function (error) {
-                  console.log("PaymentOptions error : "+JSON.stringify(error));
-                  //ToastAndroid.show('Error', ToastAndroid.SHORT); 
-              })
-      } else {
-          Alert.alert('All fields are needed');
-      }
-  
-  }
+    if (
+      bookingData.purpose !== null &&
+      bookingData.bookingamount !== null &&
+      bookingData.username !== null &&
+      bookingData.email !== null
+    ) {
+      const self = this;
+      //this.props.navigation.navigate('InstamojoWebview')
+      //console.log("PaymentOptions: bookingData2: "+JSON.stringify(bookingData))
+      axios
+        .post(`http://192.168.43.64:8089/api/makerequest`, {
+          purpose: bookingData.purpose,
+          amount: bookingData.bookingamount,
+          buyer_name: bookingData.username,
+          email: bookingData.email
+        })
+        .then(function(response) {
+          console.log(
+            "PaymentOptions: Pay: response from server: " +
+              JSON.stringify(response)
+          );
+          if (response.data.statusCode === 200) {
+            console.log("PaymentOptions: PaymentOptions success");
+            self.props.navigation.navigate("InstamojoWebview", {
+              bookingData: bookingData,
+              url: response.data.url
+            });
 
+            console.log("PaymentOptions: PaymentOptions after navigation");
+          }
+        })
+        .catch(function(error) {
+          console.log(
+            "PaymentOptions: PaymentOptions error : " + JSON.stringify(error)
+          );
+          //ToastAndroid.show('Error', ToastAndroid.SHORT);
+        });
+    } else {
+      Alert.alert("All fields are needed");
+    }
+  };
 
   sendbookingDetailsToServerForGuestList = () => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    if(bookingData.postedby == 'club' || bookingData.postedby == 'dj' || bookingData.postedby == 'pr'){
-      bookingData.bookingconfirm = 'confirm'
-    }else if(bookingData.postedby == 'guestlist'){
-      bookingData.bookingconfirm = 'pending' 
+    if (
+      bookingData.postedby == "club" ||
+      bookingData.postedby == "dj" ||
+      bookingData.postedby == "pr"
+    ) {
+      bookingData.bookingconfirm = "confirm";
+    } else if (bookingData.postedby == "guestlist") {
+      bookingData.bookingconfirm = "pending";
     }
-    return axios.post("http://192.168.43.64:6000/bookTicket",  bookingData ,{
-     
-    headers: {
-      'Content-Type': 'application/json',
-  },
-    
-})
-      //.then(response => response.json())
-      .then(response => {
-        console.log("PaymentOptions: data: " + response.data);
-        this.setState({ dataSource: response.data, isLoading: false });
-        
-        this.props.navigation.navigate("TicketDisplayFromBooking", {
-          bookingData: bookingData
-        });
-        
+    return (
+      // axios
+      //   .post("http://192.168.43.64:6000/bookTicket", bookingData, {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Access-Control-Allow-Origin": "*",
+      //     }
+      //   })
 
-        console.log("PaymentOptions data send to server"); 
-      })
-      .catch(error => {
-        console.error(error);
-      });
+        // SEND BOOKING DETAILS TO SERVER -  START
+    fetch("http://192.168.43.64:6000/bookTicket", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bookingData)
+    })
+        .then(response => response.json())
+        .then(response => {
+          console.log("PaymentOptions: data: " + response);
+          this.setState({ dataSource: response, isLoading: false });
+
+          this.props.navigation.navigate("TicketDisplayFromBooking", {
+            bookingData: bookingData
+          });
+
+          console.log("PaymentOptions: PaymentOptions data send to server");
+        })
+        .catch(error => {
+          console.error(error);
+        })
+    );
     // SEND BOOKING DETAILS TO SERVER FINSH -END
   };
 
-
-
-  sendbookingDetailsToServer = (title) => {
-    // SEND BOOKING DETAILS TO SERVER -  START
-    // return fetch("http://192.168.43.64:6000/bookTicket", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(bookingData)
-    // })
-    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData, {
-      headers: {
-        'Content-Type': 'application/json',
-    },
-    })
-      //.then(response => response.json())
-      .then(response => {
-        console.log("data : " + response.data);
-        this.setState({ dataSource: response.data, isLoading: false });
-        if(title == 'true'){
-          if (bookingData.tablenumber != null) {
-            this.props.navigation.navigate("TicketDisplayFromTableBooking", {
-              bookingData: bookingData
-            });
-          } else {
-            this.props.navigation.navigate("TicketDisplayFromBooking", {
-              bookingData: bookingData
-            });
+  sendbookingDetailsToServerxx = title => {
+    return (
+      axios
+        .post("http://192.168.43.64:6000/bookTicket", bookingData, {
+          headers: {
+            "Content-Type": "application/json"
           }
-        }else{
-          this.setState({dialogVisible: true})
-        }
+        })
+        //.then(response => response.json())
+        .then(response => {
+          console.log("PaymentOptions: data : " + response.data);
+          this.setState({ dataSource: response.data, isLoading: false });
+          if (title == "true") {
+            if (bookingData.tablenumber != null) {
+              this.props.navigation.navigate("TicketDisplayFromTableBooking", {
+                bookingData: bookingData
+              });
+            } else {
+              this.props.navigation.navigate("TicketDisplayFromBooking", {
+                bookingData: bookingData
+              });
+            }
+          } else {
+            this.setState({ dialogVisible: true });
+          }
 
-        
-
-        console.log("PaymentOptions data send to server");
-      })
-      .catch(error => {
-        console.error(error);
-      });
+          console.log("PaymentOptions: PaymentOptions data send to server");
+        })
+        .catch(error => {
+          console.error(error);
+        })
+    );
     // SEND BOOKING DETAILS TO SERVER FINSH -END
   };
 
   handelResponse = title => {
-    console.log("PaymentOptions handelResponse : " + title);
+    console.log("PaymentOptions: PaymentOptions handelResponse : " + title);
     if (title == "true") {
       this.setState({
         showModal: false,
@@ -223,13 +235,13 @@ export default class PaymentOptions extends Component {
       });
 
       bookingData.paymentstatusmsg = "success";
-      bookingData.bookingconfirm = 'confirm';
-      
+      bookingData.bookingconfirm = "confirm";
+
       this.sendbookingDetailsToServer(title);
     } else if (title == "false") {
       this.setState({ showModal: false, ack: "Oops! Something went wrong" });
       bookingData.paymentstatusmsg = "fail";
-      bookingData.bookingconfirm = 'cancel';
+      bookingData.bookingconfirm = "cancel";
       this.sendbookingDetailsToServer(title);
       //this.showDialog();
     } else {
@@ -238,18 +250,16 @@ export default class PaymentOptions extends Component {
   };
 
   onBack = () => {
-    console.log("back");
+    console.log("PaymentOptions: back");
     const resetAction = StackActions.reset({
       index: 0, // <-- currect active route from actions array
-      actions: [
-        NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
-      ],
+      actions: [NavigationActions.navigate({ routeName: "MainTabNavigator" })]
     });
     return this.props.navigation.dispatch(resetAction);
   };
 
   handleCancel = () => {
-    this.setState({ dialogVisible: false});
+    this.setState({ dialogVisible: false });
     this.onBack();
   };
 
@@ -257,239 +267,250 @@ export default class PaymentOptions extends Component {
     // The user has pressed the "Delete" button, so here you can do your own logic.
     // ...Your logic
     this.setState({ dialogVisible: false });
-  };  
-
-
-
-
-
+  };
 
   render() {
     const { navigation } = this.props;
     bookingData = navigation.getParam("bookingData");
-    console.log("bookingData in PaymentOptions: "+JSON.stringify(bookingData))
+    console.log(
+      "PaymentOptions: bookingData in render method: " +
+        JSON.stringify(bookingData)
+    );
     var mevalue = navigation.getParam("me");
     var weekDayName = moment(bookingData.eventdate, "DD/MMM/YYYY HH:mm:ssZZ")
-    .format("ddd")
-    .toUpperCase();
+      .format("ddd")
+      .toUpperCase();
     var date = bookingData.eventdate.split("/");
-    // console.log("mevalue: " + mevalue);
-    // console.log("eventData " + JSON.stringify(bookingData));
+    // console.log("PaymentOptions: mevalue: " + mevalue);
+    // console.log("PaymentOptions: eventData " + JSON.stringify(bookingData));
 
-    if (this.state.isLoading) {
+    // if (this.state.isLoading) {
+    //   return (
+    //     <View style={{ flex: 1, justifyContent: "center" }}>
+    //       <ActivityIndicator size="large" />
+    //     </View>
+    //   );
+    // }
+
+    if (parseInt(bookingData.bookingamount) == 0) {
+      console.log(
+        "PaymentOptions: sendbookingDetailsToServerForGuestList in render method"
+      );
+      this.sendbookingDetailsToServerForGuestList(); // for Guestlist
       return (
         <View style={{ flex: 1, justifyContent: "center" }}>
-          <ActivityIndicator size="large" />
+          <Text style={{ color: "#000000", textAlign: "center", fontSize: 16 }}>
+            {" "}
+            Please wait...
+          </Text>
         </View>
       );
     }
-    
-    if(parseInt(bookingData.bookingamount)  == 0){
-      console.log('sendbookingDetailsToServerForGuestList')
-      this.sendbookingDetailsToServerForGuestList();// for Guestlist
-      return (
-        <View style={{flex: 1, justifyContent:'center'}}>
-        <Text style={{color:'#000000', textAlign:'center', fontSize:16}}> Please wait...</Text>
-      </View>
-      );
-    }
-    
+
     let { showModal, ack, ORDER_ID, TXN_AMOUNT, CUST_ID } = this.state;
     return (
-        
-      <View behavior="padding" style={styles.container}> 
-      <ScrollView>
-        <View style={styles.loginContainer}>
-     
-        <View
-            //outer GuestList 
-            style={[
-              styles.cardView,
-              {
-                backgroundColor: this.props.backgroundColor,
-                marginTop: this.props.marginTop,
-                width: this.props.width,
-                //height: this.props.height,
-                height: 370,
-                //margin: 5,
-                ...Platform.select({
-                  ios: {
-                    shadowColor: this.props.shadowColor,
-                    shadowOpacity: this.props.shadowOpacity,
-                    shadowRadius: this.props.shadowRadius,
-                    shadowOffset: {
-                      height: -1,
-                      width: 0
+      <View behavior="padding" style={styles.container}>
+        <ScrollView>
+          <View style={styles.loginContainer}>
+            <View
+              //outer GuestList
+              style={[
+                styles.cardView,
+                {
+                  backgroundColor: this.props.backgroundColor,
+                  marginTop: this.props.marginTop,
+                  width: this.props.width,
+                  //height: this.props.height,
+                  height: 370,
+                  //margin: 5,
+                  ...Platform.select({
+                    ios: {
+                      shadowColor: this.props.shadowColor,
+                      shadowOpacity: this.props.shadowOpacity,
+                      shadowRadius: this.props.shadowRadius,
+                      shadowOffset: {
+                        height: -1,
+                        width: 0
+                      }
+                    },
+                    android: {
+                      elevation: this.props.elevation
                     }
-                  },
-                  android: {
-                    elevation: this.props.elevation
+                  })
+                }
+              ]}
+            >
+              <View style={{ flexDirection: "row", margin: 10 }}>
+                <MaterialCommunityIcons
+                  style={styles.icons}
+                  name="owl"
+                  size={20}
+                />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    color: "#4caf50",
+                    flex: 1,
+                    justifyContent: "space-between"
+                  }}
+                >
+                  {bookingData.clubname}
+                </Text>
+                <Text style={styles.textDate}>
+                  {weekDayName} {date[0]}/{date[1]}
+                </Text>
+              </View>
+
+              <View
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    //height: this.props.height,
+                    height: 45,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
                   }
-                })
-              }
-            ]}
-          >
-            <View style={{ flexDirection: "row", margin: 10,  }}>
-            <MaterialCommunityIcons style={styles.icons} name="owl" size={20} />
-              <Text style={{ fontSize: 16, color: "#4caf50" , flex: 1 ,justifyContent: "space-between",}}>
-                {bookingData.clubname}
-              </Text>
-              <Text style={styles.textDate}>{weekDayName} {date[0]}/{date[1]}</Text>
-            </View>
-
-
-            <View
-            style={[
-                styles.cardView, 
-                {
-                  backgroundColor: this.props.backgroundColor,
-                  marginTop: this.props.marginTop,
-                  width: this.props.width,
-                  //height: this.props.height,
-                  height: 45,
-                  margin: 5,
-                  ...Platform.select({
-                    ios: {
-                      shadowColor: this.props.shadowColor,
-                      shadowOpacity: this.props.shadowOpacity,
-                      shadowRadius: this.props.shadowRadius,
-                      shadowOffset: {
-                        height: -1,
-                        width: 0
-                      }
-                    },
-                    android: {
-                      elevation: this.props.elevation
-                    }
-                  })
-                }
-              ]}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10,
-                  marginRight: 10
-                }}
+                ]}
               >
-                <Text style={styles.instructions}>Booking Amount</Text>
-                
-                <Text style={styles.instructions}>{bookingData.bookingamount} Rs</Text>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>Booking Amount</Text>
+
+                  <Text style={styles.instructions}>
+                    {bookingData.bookingamount} Rs
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    //height: this.props.height,
+                    height: 45,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>Payable at club</Text>
+
+                  <Text style={styles.instructions}>
+                    {bookingData.remainingamount} Rs
+                  </Text>
+                </View>
+              </View>
+
+              <View
+                style={[
+                  styles.cardView,
+                  {
+                    backgroundColor: this.props.backgroundColor,
+                    marginTop: this.props.marginTop,
+                    width: this.props.width,
+                    //height: this.props.height,
+                    height: 45,
+                    margin: 5,
+                    ...Platform.select({
+                      ios: {
+                        shadowColor: this.props.shadowColor,
+                        shadowOpacity: this.props.shadowOpacity,
+                        shadowRadius: this.props.shadowRadius,
+                        shadowOffset: {
+                          height: -1,
+                          width: 0
+                        }
+                      },
+                      android: {
+                        elevation: this.props.elevation
+                      }
+                    })
+                  }
+                ]}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: "space-between",
+                    flexDirection: "row",
+                    marginTop: 5,
+                    marginBottom: 5,
+                    marginLeft: 10,
+                    marginRight: 10
+                  }}
+                >
+                  <Text style={styles.instructions}>Total Amount</Text>
+
+                  <Text style={styles.instructions}>
+                    {bookingData.totalprice} Rs
+                  </Text>
+                </View>
               </View>
             </View>
-          
-
-            <View
-            style={[
-                styles.cardView, 
-                {
-                  backgroundColor: this.props.backgroundColor,
-                  marginTop: this.props.marginTop,
-                  width: this.props.width,
-                  //height: this.props.height,
-                  height: 45,
-                  margin: 5,
-                  ...Platform.select({
-                    ios: {
-                      shadowColor: this.props.shadowColor,
-                      shadowOpacity: this.props.shadowOpacity,
-                      shadowRadius: this.props.shadowRadius,
-                      shadowOffset: {
-                        height: -1,
-                        width: 0
-                      }
-                    },
-                    android: {
-                      elevation: this.props.elevation
-                    }
-                  })
-                }
-              ]}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10,
-                  marginRight: 10
-                }}
-              >
-                <Text style={styles.instructions}>Payable at club</Text>
-                
-                <Text style={styles.instructions}>{bookingData.remainingamount} Rs</Text>
-              </View>
-            </View>
-          
-
-            <View
-            style={[
-                styles.cardView, 
-                {
-                  backgroundColor: this.props.backgroundColor,
-                  marginTop: this.props.marginTop,
-                  width: this.props.width,
-                  //height: this.props.height,
-                  height: 45,
-                  margin: 5,
-                  ...Platform.select({
-                    ios: {
-                      shadowColor: this.props.shadowColor,
-                      shadowOpacity: this.props.shadowOpacity,
-                      shadowRadius: this.props.shadowRadius,
-                      shadowOffset: {
-                        height: -1,
-                        width: 0
-                      }
-                    },
-                    android: {
-                      elevation: this.props.elevation
-                    }
-                  })
-                }
-              ]}
-            >
-              <View
-                style={{ 
-                  flex: 1,
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  marginTop: 5,
-                  marginBottom: 5,
-                  marginLeft: 10, 
-                  marginRight: 10  
-                }}
-              >
-                <Text style={styles.instructions}>Total Amount</Text>
-                
-                <Text style={styles.instructions}>{bookingData.totalprice} Rs</Text>
-              </View>
-            </View>
-          
-
           </View>
-
-       
-        </View>
-
-       </ScrollView>
+        </ScrollView>
         <View>
-          
-        <TouchableOpacity 
+          <TouchableOpacity
             onPress={() => this.setState({ showModal: true })}
             style={{
               height: 50
             }}
           >
             <View
-              style={{ 
-                flex: 1, 
+              style={{
+                flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
                 backgroundColor: "#2196f3"
@@ -508,17 +529,15 @@ export default class PaymentOptions extends Component {
           </TouchableOpacity>
 
           <Modal
-          visible={showModal} 
-          onRequestClose={() => this.setState({ showModal: false })}
-        >
-          <WebView
-            source={{ uri: "http://192.168.43.64:3001/api/paytm/request" }}
-            injectedJavaScript={this.generateJSCode()}
-            onNavigationStateChange={data => this.handelResponse(data.title)}
-          />
-        </Modal>
-        
-
+            visible={showModal}
+            onRequestClose={() => this.setState({ showModal: false })}
+          >
+            <WebView
+              source={{ uri: "http://192.168.43.64:3001/api/paytm/request" }}
+              injectedJavaScript={this.generateJSCode()}
+              onNavigationStateChange={data => this.handelResponse(data.title)}
+            />
+          </Modal>
 
           <TouchableOpacity
             onPress={() => this.processInstamojoInfo(bookingData)}
@@ -541,11 +560,10 @@ export default class PaymentOptions extends Component {
                   fontWeight: "bold"
                 }}
               >
-                CREDIT/DEBIT CARDS 
+                CREDIT/DEBIT CARDS
               </Text>
             </View>
           </TouchableOpacity>
-        
 
           <TouchableOpacity
             onPress={() => this.processInstamojoInfo(bookingData)}
@@ -573,7 +591,6 @@ export default class PaymentOptions extends Component {
             </View>
           </TouchableOpacity>
 
-
           <TouchableOpacity
             onPress={() => this.processInstamojoInfo(bookingData)}
             style={{
@@ -599,13 +616,12 @@ export default class PaymentOptions extends Component {
               </Text>
             </View>
           </TouchableOpacity>
-        
-        
-        
         </View>
-        <Dialog.Container visible={this.state.dialogVisible}> 
+        <Dialog.Container visible={this.state.dialogVisible}>
           <Dialog.Title>Oops! some thing went wrong</Dialog.Title>
-          <Dialog.Description>If any amount deducted, it will be refund in 2-3 working days </Dialog.Description>
+          <Dialog.Description>
+            If any amount deducted, it will be refund in 2-3 working days{" "}
+          </Dialog.Description>
           <Dialog.Description>Do you want to retry? </Dialog.Description>
 
           <Dialog.Button
@@ -616,7 +632,7 @@ export default class PaymentOptions extends Component {
           <Dialog.Button
             style={{ fontFamily: "sans-serif" }}
             label="OK"
-            onPress={this.handleOk} 
+            onPress={this.handleOk}
           />
         </Dialog.Container>
       </View>
@@ -633,10 +649,10 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
   },
   loginContainer: {
-   // alignItems: "center",
-    flex: 1,
-   // flexWrap: "wrap",
-   // justifyContent: "center"
+    // alignItems: "center",
+    flex: 1
+    // flexWrap: "wrap",
+    // justifyContent: "center"
   },
   logo: {
     position: "absolute",
@@ -661,9 +677,9 @@ const styles = StyleSheet.create({
   instructions: {
     color: "#e0e0e0"
   },
-  textDate:{
+  textDate: {
     color: "#2196f3",
-    fontSize:14,
+    fontSize: 14
   }
 });
 

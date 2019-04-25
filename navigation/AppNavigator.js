@@ -63,7 +63,7 @@ const HomeStack = createStackNavigator({
           <View
             style={{ flex: 1, alignItems: "stretch", justifyContent: "center" ,}}
           >
-            <Text style = {{ color:'#eeeeee', fontSize: 16, fontWeight: '500', textAlign: "left"}} >{'Mumbai'}     </Text> 
+            <Text style = {{ color:'#eeeeee', fontSize: 16, fontWeight: '500', textAlign: "left"}} >{global.city.toUpperCase()}     </Text> 
           </View>
         </TouchableWithoutFeedback>
       ),

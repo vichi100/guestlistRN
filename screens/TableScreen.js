@@ -70,6 +70,7 @@ export default class TableScreen extends React.Component {
     super(props);
     this.state = {
       dialogVisible: false,
+      ticketAlreadyBookedDialog: false,
       calc_height: 0,
       //tableNumber: null,
       dataSource:[],
@@ -106,6 +107,17 @@ export default class TableScreen extends React.Component {
 
   _showDialog = () => {
     this.setState({ dialogVisible: true });
+  };
+
+  _showTicketAlreadyBookedDialog = () => {
+    this.setState({ ticketAlreadyBookedDialog: true });
+  };
+
+  handleOkTicketAlreadyBookedDialog = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    console.log('handleOkTicketAlreadyBookedDialog preessed')
+    this.setState({ ticketAlreadyBookedDialog: false });
   };
   
   handleOk = () => {
@@ -240,6 +252,11 @@ bookTicket= async() =>{
         if(clickedTableid != null && clickedTableid == tableid){
           var tableNumber = this.state.dataSource[keyName].tablenumber; 
           //console.log("tableNumber " + tableNumber)
+          if(this.state.dataSource[keyName].booked == 'booked'){
+            this._showTicketAlreadyBookedDialog();
+            clickedTableid = null;
+            return;
+          }
           this.setState({tableNumber:tableNumber});
           var tablePriceStr = this.state.dataSource[keyName].cost;
           this.setState({tablePrice:tablePrice});
@@ -450,6 +467,21 @@ renderError={(e) => {
             style={{ fontFamily: "sans-serif" }}
             label="OK"
             onPress={this.handleOk}
+          />
+        </Dialog.Container>
+
+
+        <Dialog.Container visible={this.state.ticketAlreadyBookedDialog}>
+          {/* <Dialog.Title>Enter Mobile Number</Dialog.Title> */}
+          <Dialog.Description>
+            Sorry! This table is already booked.
+          </Dialog.Description>
+
+          
+          <Dialog.Button
+            style={{ fontFamily: "sans-serif" }}
+            label="OK"
+            onPress={this.handleOkTicketAlreadyBookedDialog}
           />
         </Dialog.Container>
 

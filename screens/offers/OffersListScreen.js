@@ -25,7 +25,8 @@ export default class OffersListScreen extends Component {
   }
 
   componentDidMount() {
-    return axios.get("http://192.168.43.64:6000/offersDetails?city=mumbai")
+    var city = global.city;
+    return axios.get("http://192.168.43.64:6000/offersDetails?city="+city)
       //.then(response => response.json())
       .then(response => { 
         console.log("data : " + response.data);
@@ -36,14 +37,15 @@ export default class OffersListScreen extends Component {
       });  
   }
 
-  goToOffer = (item) => { 
-    // const {navigate} = this.props.navigation;
-    // navigate('GuestListScreen'); 
-    // console.log("date ; " + eventDate);
-    // console.log("clubid ; " + clubid);
-
+  goToOffer = (item) => {
     // Logic: if offer is for clubs then display all events of club before enddate else if for event then display only event
-    this.props.navigation.navigate('TicketDisplayScreen', {eventDate:item.eventdate, clubid: item.clubid});  
+    if(item.clubid != null){
+      this.props.navigation.navigate('EventsOfOneClub', {clubid: item.clubid});
+    }
+    
+    // else if(item.eventid != null){
+    //   this.props.navigation.navigate('EventsOfOneClub', {eventDate:item.eventdate, clubid: item.clubid});
+    // }
 }
 
 // INSERT INTO offers (  offertitle ,  offerdetails , offerfor,
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 5,
     fontSize: 14,
-    color: '#777',
+    color: '#eeeeee',
     flex: 1, 
     flexWrap: 'wrap'
   },

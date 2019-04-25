@@ -103,7 +103,7 @@ export default class TicketDisplayFromBooking extends React.Component {
       this.props.navigation.goBack(null);
       return;
     }else{
-      console.log("back");
+      console.log("TicketDisplayFromBooking: back");
       const resetAction = StackActions.reset({
         index: 0, // <-- currect active route from actions array
         actions: [
@@ -155,10 +155,10 @@ export default class TicketDisplayFromBooking extends React.Component {
 
   _callShowDirections = (latlong) => {
     //"latlong":"19.106205,72.825633"
-    console.log("latlong "+latlong);
+    console.log("TicketDisplayFromBooking: latlong "+latlong);
     var latlongArr = latlong.split(',');
-    console.log("latlong "+parseFloat(latlongArr[0]));
-    console.log("latlong "+latlongArr[1]);
+    console.log("TicketDisplayFromBooking: latlong "+parseFloat(latlongArr[0]));
+    console.log("TicketDisplayFromBooking: latlong "+latlongArr[1]);
     const startPoint = {
       longitude: -8.945406,
       latitude: 38.575078
@@ -179,7 +179,7 @@ export default class TicketDisplayFromBooking extends React.Component {
   render() {
     const { navigation } = this.props;  
     var bookingData = navigation.getParam("bookingData");
-    console.log("bookingData in TicketDisplayFromBooking: "+ JSON.stringify(bookingData));
+    console.log("TicketDisplayFromBooking: bookingData in TicketDisplayFromBooking: "+ JSON.stringify(bookingData));
     navigatingFrom = navigation.getParam("navigatingFrom");
     return (
       <View style={styles.container}> 

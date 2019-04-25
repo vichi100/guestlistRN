@@ -26,6 +26,9 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
+import { SERVER_URL } from '../constants';
+
+
 
 export default class DJsListScreen extends Component {
   constructor(props) {
@@ -42,7 +45,7 @@ export default class DJsListScreen extends Component {
 
   componentDidMount() {
     var city = global.city;
-    return axios.get("http://192.168.43.64:6000/djDetails?city="+city)
+    return axios.get(SERVER_URL+"djDetails?city="+city)
       //.then(response => response.json())
       .then(response => {
         //console.log("data : " + response);

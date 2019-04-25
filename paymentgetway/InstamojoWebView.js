@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, WebView, ToastAndroid, Alert } from 'react-native';
 import axios from 'axios';
+import { SERVER_URL } from '../constants';
 
 var bookingData;
 export default class InstamojoWebview extends React.Component {
@@ -43,7 +44,7 @@ export default class InstamojoWebview extends React.Component {
 
   sendbookingDetailsToServer = (bookingData) => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    // return fetch("http://192.168.43.64:6000/bookTicket", {
+    // return fetch(SERVER_URL+"bookTicket", {
     //   method: "POST",
     //   headers: {
     //     Accept: "application/json",
@@ -51,7 +52,7 @@ export default class InstamojoWebview extends React.Component {
     //   },
     //   body: JSON.stringify(bookingData)
     // })
-    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData ,{
+    return axios.post(SERVER_URL+"bookTicket", bookingData ,{
       headers: {
         'Content-Type': 'application/json',
     },

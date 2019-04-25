@@ -13,6 +13,7 @@ import {
 import OfferRowItem from './OfferRowItem';
 import CardDark from "../CardDark";
 import axios from 'axios';
+import { SERVER_URL } from '../../constants';
 
 export default class OffersListScreen extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class OffersListScreen extends Component {
 
   componentDidMount() {
     var city = global.city;
-    return axios.get("http://192.168.43.64:6000/offersDetails?city="+city)
+    return axios.get(SERVER_URL+"offersDetails?city="+city)
       //.then(response => response.json())
       .then(response => { 
         console.log("data : " + response.data);

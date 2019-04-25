@@ -23,6 +23,7 @@ import { Ionicons } from "@expo/vector-icons";
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
 import axios from "axios";
+import { SERVER_URL } from '../constants';
 
 var mydatasource = []
 var isDataChanged = false
@@ -50,7 +51,7 @@ export default class EventsOfOneClub extends Component {
   }
  
   componentDidMount() { 
-    return axios.get("http://192.168.43.64:6000/eventsDetails?clubid=29Jan2019")// pass club id rather than date
+    return axios.get(SERVER_URL+"eventsDetails?clubid=29Jan2019")// pass club id rather than date
       //.then(response => response.json())
       .then(response => {
         console.log("data : " + response).data;

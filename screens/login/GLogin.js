@@ -13,6 +13,9 @@ import { AsyncStorage } from "react-native";
 import Dialog from "react-native-dialog";
 import { StackActions, NavigationActions } from 'react-navigation';
 import axios from "axios";
+import { SERVER_URL } from '../../constants';
+
+
 
 //https://github.com/mmazzarolo/react-native-dialog
 var myMob;
@@ -140,7 +143,7 @@ export default class GLogin extends React.Component {
 
 
     // SEND Customer DETAILS TO SERVER -  START
-    // return fetch("http://192.168.43.64:6000/insertCustomerDetails",{  
+    // return fetch(SERVER_URL+"insertCustomerDetails",{  
     //   method: "POST",
     //   headers: {
     //     'Accept': 'application/json',
@@ -148,7 +151,7 @@ export default class GLogin extends React.Component {
     //   },
     //   body:  JSON.stringify(postData)
     // })
-    return axios.post("http://192.168.43.64:6000/insertCustomerDetails", postData,  {
+    return axios.post(SERVER_URL+"insertCustomerDetails", postData,  {
 
       headers: {
         'Content-Type': 'application/json',

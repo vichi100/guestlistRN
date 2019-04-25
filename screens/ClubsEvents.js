@@ -28,6 +28,7 @@ import { EvilIcons } from "@expo/vector-icons";
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
 import axios from 'axios';
+import { SERVER_URL } from '../constants';
 
 var mydatasource = [];
 var isDataChanged = false;
@@ -55,7 +56,7 @@ export default class ClubsEvents extends Component {
 
   componentDidMount() {
     var city = global.city;
-    return axios.get("http://192.168.43.64:6000/eventsDetails?city="+city)
+    return axios.get(SERVER_URL+"eventsDetails?city="+city)
       //.then(response => response.json())
       .then(response => {
         console.log("ClubsEvents: response data from server: " + response.data);

@@ -25,6 +25,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
+import { SERVER_URL } from '../constants';
 
 
 const mywidth = Dimensions.get("window").width;
@@ -71,7 +72,7 @@ export default class EventsOfOneClub extends Component {
   }
  
   componentDidMount() { 
-    return axios.get("http://192.168.43.64:6000/eventsDetails?clubid="+clubid)// pass club id rather than date
+    return axios.get(SERVER_URL+"eventsDetails?clubid="+clubid)// pass club id rather than date
       //.then(response => response.json())
       .then(response => {
         console.log("data : " + response.data);

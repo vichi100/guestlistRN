@@ -24,6 +24,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import axios from 'axios'
 import { EvilIcons } from "@expo/vector-icons";
+import { SERVER_URL } from '../constants';
 
 const mywidth = Dimensions.get("window").width;
 const myheight = Dimensions.get('window').height;
@@ -45,7 +46,7 @@ export default class DJEvents extends Component {
   }
  
   componentDidMount() { 
-    return axios.get("http://192.168.43.64:6000/eventsDetails?djid=29Jan2019")
+    return axios.get(SERVER_URL+"eventsDetails?djid=29Jan2019")
       //.then(response => response.json())
       .then(response => {
         // console.log("data : " + response);

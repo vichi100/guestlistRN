@@ -13,7 +13,8 @@ import TicketRowItem from "./TicketRowItem";
 import { AsyncStorage } from "react-native";
 import FBLogin from '../login/FBLogin';
 import GLogin from '../login/GLogin';
-import axios from 'axios'
+import axios from 'axios';
+import { SERVER_URL } from '../../constants';
 
 
 var userid = null;
@@ -62,7 +63,7 @@ export default class TicketsListScreen extends Component {
     //   return;
     // }
 
-    return axios.get("http://192.168.43.64:6000/bookingDetails?userid=" + userid)
+    return axios.get(SERVER_URL+"bookingDetails?userid=" + userid)
       //.then(response => response.json())
       .then(response => {
         response= response.data

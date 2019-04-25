@@ -20,7 +20,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
-
+import { SERVER_URL } from '../constants';
 
 
 export default class DJEvents extends Component {  
@@ -37,7 +37,7 @@ export default class DJEvents extends Component {
   }
  
   componentDidMount() { 
-    return axios.get("http://192.168.43.64:6000/eventsDetails?djid=29Jan2019")
+    return axios.get(SERVER_URL+"eventsDetails?djid=29Jan2019")
       //.then(response => response.json())
       .then(response => {
         // console.log("data : " + response);

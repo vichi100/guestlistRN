@@ -23,6 +23,7 @@ import { AsyncStorage } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackActions, NavigationActions } from "react-navigation";
+import { SERVER_URL } from '../constants';
 
 var bookingData;
 export default class PaymentOptions extends Component {
@@ -157,7 +158,7 @@ export default class PaymentOptions extends Component {
     }
     return (
       // axios
-      //   .post("http://192.168.43.64:6000/bookTicket", bookingData, {
+      //   .post(SERVER_URL+"bookTicket", bookingData, {
       //     headers: {
       //       "Content-Type": "application/json",
       //       "Access-Control-Allow-Origin": "*",
@@ -165,7 +166,7 @@ export default class PaymentOptions extends Component {
       //   })
 
         // SEND BOOKING DETAILS TO SERVER -  START
-    fetch("http://192.168.43.64:6000/bookTicket", {
+    fetch(SERVER_URL+"bookTicket", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -194,7 +195,7 @@ export default class PaymentOptions extends Component {
   sendbookingDetailsToServerxx = title => {
     return (
       axios
-        .post("http://192.168.43.64:6000/bookTicket", bookingData, {
+        .post(SERVER_URL+"bookTicket", bookingData, {
           headers: {
             "Content-Type": "application/json"
           }

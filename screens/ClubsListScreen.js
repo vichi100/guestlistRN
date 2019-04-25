@@ -31,7 +31,7 @@ import getDirections from "../screens/gmap/gmapsdirection";
 
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
-
+import { SERVER_URL } from '../constants';
 import axios from 'axios'
 
 export default class ClubsListScreen extends Component {
@@ -49,7 +49,7 @@ export default class ClubsListScreen extends Component {
 
   async componentDidMount() {
     var city = global.city;
-    return await axios.get("http://192.168.43.64:6000/clubsDetails?city="+city)
+    return await axios.get(SERVER_URL+"clubsDetails?city="+city)
       //.then(response => response.json())
       .then(response => { 
         console.log("clubs list data : " + JSON.stringify(response.data)); 

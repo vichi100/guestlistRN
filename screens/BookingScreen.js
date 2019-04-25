@@ -37,6 +37,7 @@ import { create, PREDEF_RES } from "react-native-pixel-perfect";
 const calcSize = create(PREDEF_RES.iphone7.px);
 import Dialog from "react-native-dialog";
 import axios from 'axios';
+import { SERVER_URL } from '../constants';
 
 const window = Dimensions.get("window");
 
@@ -113,7 +114,7 @@ export default class BookingScreen extends React.Component {
 
   componentDidMount() {
     return axios.get(
-      "http://192.168.43.64:6000/ticketDetails?clubid=" +
+      SERVER_URL+"ticketDetails?clubid=" +
         eventData.clubid +
         "&eventDate=" +
         eventData.eventdate

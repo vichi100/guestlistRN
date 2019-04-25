@@ -24,7 +24,8 @@ import { create, PREDEF_RES } from "react-native-pixel-perfect";
 import TableDetailsnPrice from "./TableDetailsnPrice";
 import Dialog from "react-native-dialog";
 import { AsyncStorage } from "react-native";
-import axios from 'axios'
+import axios from 'axios';
+import { SERVER_URL } from '../constants';
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -82,9 +83,9 @@ export default class TableScreenNoLayout extends React.Component {
   }
 
   componentDidMount() {
-    //return fetch("http://192.168.43.64:6000/tableDetails?clubid=1000001&eventDate=19/Mar/2019")
+    //return fetch(SERVER_URL+"tableDetails?clubid=1000001&eventDate=19/Mar/2019")
     return axios.get(
-      "http://192.168.43.64:6000/tableDetails?clubid=" +
+      SERVER_URL+"tableDetails?clubid=" +
         eventData.clubid +
         "&eventDate=" +
         eventData.eventdate
@@ -197,7 +198,7 @@ export default class TableScreenNoLayout extends React.Component {
 
   sendbookingDetailsToServer = (bookingData) => {
     // SEND BOOKING DETAILS TO SERVER -  START
-    // return fetch("http://192.168.43.64:6000/bookTicket", {
+    // return fetch(SERVER_URL+"bookTicket", {
     //   method: "POST",
     //   headers: {
     //     Accept: "application/json",
@@ -205,7 +206,7 @@ export default class TableScreenNoLayout extends React.Component {
     //   },
     //   body: JSON.stringify(bookingData)
     // })
-    return axios.post("http://192.168.43.64:6000/bookTicket", bookingData, {
+    return axios.post(SERVER_URL+"bookTicket", bookingData, {
       headers: {
         'Content-Type': 'application/json',
     },

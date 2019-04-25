@@ -7,6 +7,7 @@ import Dialog from "react-native-dialog";
 import { Facebook } from 'expo';
 import { StackActions, NavigationActions } from 'react-navigation';
 import axios from "axios";
+import { SERVER_URL } from '../../constants';
 
 var changeText;
 
@@ -68,6 +69,7 @@ export default class FBLogin extends React.Component {
       await AsyncStorage.setItem("email", this.state.email);
       await AsyncStorage.setItem("name", this.state.name);
       await AsyncStorage.setItem("photoUrl", this.state.photoUrl);
+      console.log('FBLogin: photoUrl: '+this.state.photoUrl)
       await AsyncStorage.setItem("customerId", this.state.id);
       console.log("store mobile"+ mobile);
     } catch (error) {
@@ -131,7 +133,7 @@ export default class FBLogin extends React.Component {
 
     // SEND Customer DETAILS TO SERVER -  START
     console.log(" inserting customer" ); 
-    // return fetch("http://192.168.43.64:6000/insertCustomerDetails",{  
+    // return fetch(SERVER_URL+"insertCustomerDetails",{  
     //   method: "POST",
     //   headers: {
     //     'Accept': 'application/json',
@@ -139,7 +141,7 @@ export default class FBLogin extends React.Component {
     //   },
     //   body:  JSON.stringify(postData)
     // })
-    return axios.post("http://192.168.43.64:6000/insertCustomerDetails", postData, {  
+    return axios.post(SERVER_URL+"insertCustomerDetails", postData, {  
       headers: {
         'Content-Type': 'application/json',
     },
@@ -182,10 +184,11 @@ export default class FBLogin extends React.Component {
           `https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,picture`
         );
         const {  name, email , id, picture} = await response.json();
+        //console.log("FBLogin: response.json() from fb: "+JSON.stringify(picture.data.url));
         this.setState({
           signedIn: true,
           name: name,
-          photoUrl: `https://graph.facebook.com/${id}/?fields=picture&type=large&access_token=${token}`,
+          photoUrl: picture.data.url,//`https://graph.facebook.com/${id}/?fields=picture&type=large&access_token=${token}`,
           id: id,
           email:email,
         });

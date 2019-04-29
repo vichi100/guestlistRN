@@ -30,7 +30,8 @@ const mywidth = Dimensions.get("window").width;
 const myheight = Dimensions.get('window').height;
 const mycenter = (Dimensions.get('window').height)/2;
 
-
+var djid;
+var djData;
  
 export default class DJEvents extends Component {   
 
@@ -41,12 +42,13 @@ export default class DJEvents extends Component {
     super(props);
     this.state = {
       isLoading: true, 
-      dataSource: []
+      dataSource: null,
     };
   }
  
   componentDidMount() { 
-    return axios.get(SERVER_URL+"eventsDetails?djid=29Jan2019")
+    console.log("eventsDetailsForDJ: "+djid); 
+    return axios.get(SERVER_URL+"eventsDetailsForDJ?djid="+djid) 
       //.then(response => response.json())
       .then(response => {
         // console.log("data : " + response);
@@ -58,7 +60,11 @@ export default class DJEvents extends Component {
         //   console.log("filter date : " + moment().format('DD/MMM/YYYY'));
         //   return item.eventdate === moment().format('DD/MMM/YYYY')
         // })
-        this.setState({ dataSource: response.data, isLoading: false });
+
+        Object.keys(response.data).map((keyName, keyIndex) => {
+          this.setState({ dataSource: response });
+        });
+        this.setState({ isLoading: false });
       })
       .catch(error => {
         console.error(error); 
@@ -94,10 +100,12 @@ if(item.postedby == 'club'){
 
 
 render() {
+  
+  djData = this.props.djData;
+  console.log('djData: '+JSON.stringify(djData));
+  djid =   djData.djid
+  console.log('djid: '+djid);
 
-    
-    
-    
   if (this.state.isLoading) {
     return ( 
       <View style={{ flex: 1, justifyContent: 'center' }}>  
@@ -106,18 +114,25 @@ render() {
     );
   } 
 
+
+
+  if (this.state.dataSource == null) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <Text style={{ color: "#000000", textAlign: "center" }}>
+          {" "}
+          No future events as of now.
+        </Text>
+      </View>
+    );
+  }else{
+
   return (     
     <View style={styles.container}>  
          
       <FlatList
         data={this.state.dataSource}
         renderItem={({ item }) => 
-        
-
-
-          
-
-
           <View
       style={[styles.cardImage]}
       onLayout={e => {
@@ -287,6 +302,8 @@ render() {
       />
     </View>
   );
+
+      }
 
 }
 }

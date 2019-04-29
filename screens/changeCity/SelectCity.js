@@ -48,7 +48,7 @@ export default class App extends React.Component {
       flex: 1
     },
 
-    headerTintColor: "#606070"
+    headerTintColor: "#ffffff"
     //Text Color of Navigation Bar
   };
 
@@ -67,13 +67,12 @@ export default class App extends React.Component {
 
   changeCity = async (item) =>{
     var newCity = item.id;
-    global.city = newCity;
-    this.setState({city:global.city})
-    await AsyncStorage.setItem("city", newCity);
+    this.setState({city:newCity})
+    
   }
 
 
-  onChange = () => {
+  onChange = async () => {
     console.log("back");
     const resetAction = StackActions.reset({
       index: 0, // <-- currect active route from actions array
@@ -81,6 +80,9 @@ export default class App extends React.Component {
         NavigationActions.navigate({ routeName: 'MainTabNavigator' }),
       ],
     });
+
+    global.city = this.state.city;
+    await AsyncStorage.setItem("city", global.city);
     return this.props.navigation.dispatch(resetAction);
   };
 

@@ -18,6 +18,39 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 
 export default class Profile extends Component {
+
+  static defaultProps = {
+    backgroundColor: "#37474f",
+    marginTop: 1,
+    //width: 150,
+    //height: 150,
+    shadowColor: "rgb(50,50,50)",
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 3
+  };
+
+  static navigationOptions = {
+    //To set the header image and title for the current Screen
+    title: "The Player",
+    headerBackTitle: null,
+    headerStyle: {
+      backgroundColor: "#263238"
+      //Background Color of Navigation Bar
+    },
+
+    headerTitleStyle: {
+      justifyContent: "center",
+      color: "#ffffff",
+      textAlign: "left",
+      flex: 1
+    },
+
+    headerTintColor: "#ffffff"
+    //Text Color of Navigation Bar
+  };
+
+
   constructor(props) {
     super(props);
   
@@ -90,7 +123,7 @@ export default class Profile extends Component {
               </View>
             </View>
           </Card>
-      <DJEvents navigation={this.props.navigation}/>
+      <DJEvents navigation={this.props.navigation} djData={item}/>
 
       
       </ScrollView>

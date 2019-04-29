@@ -63,7 +63,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    await AsyncStorage.clear();
+    //await AsyncStorage.clear();
     await this.init();
     setTimeout(() => {}, 200);
   }

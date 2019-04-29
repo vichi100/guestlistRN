@@ -47,7 +47,7 @@ class Search extends React.Component {
       flex: 1
     },
 
-    headerTintColor: "#606070"
+    headerTintColor: "#ffffff"
     //Text Color of Navigation Bar
   };
 
@@ -59,6 +59,7 @@ class Search extends React.Component {
   }
   componentDidMount() {
     var city = global.city;
+    console.log("Search: city = "+city)
     return axios.get(SERVER_URL+"getSearchParameter?city="+city)
       //.then(response => response.json())
       .then(responseJson => {

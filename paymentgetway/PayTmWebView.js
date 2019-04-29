@@ -3,6 +3,7 @@ import { View, Text, Modal, WebView, TouchableOpacity } from "react-native";
 import Dialog from "react-native-dialog";
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import { PAYTM_SERVER_URL } from '../constants';
 
 var bookingData;
 
@@ -136,7 +137,7 @@ export default class PayTmWebView extends React.Component {
           onRequestClose={() => this.setState({ showModal: false })}
         >
           <WebView
-            source={{ uri: "http://192.168.43.64:3001/api/paytm/request" }}
+            source={{ uri: PAYTM_SERVER_URL+"/api/paytm/request" }}
             injectedJavaScript={this.generateJSCode()}
             onNavigationStateChange={data => this.handelResponse(data.title)}
           />

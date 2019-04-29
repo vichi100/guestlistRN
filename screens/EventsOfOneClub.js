@@ -44,8 +44,9 @@ export default class EventsOfOneClub extends Component {
   static navigationOptions = {
     //To set the header image and title for the current Screen
     title: 'Club',
+    //headerTintColor: '#ffffff',
     headerBackTitle: null,
-    headerLeft: null,
+    //headerLeft: null,
     headerStyle: { 
       backgroundColor: '#263238',
       //Background Color of Navigation Bar
@@ -58,7 +59,7 @@ export default class EventsOfOneClub extends Component {
         flex:1
   },
 
-    headerTintColor: '#606070',
+    headerTintColor: '#ffffff',
     //Text Color of Navigation Bar
   };
 
@@ -72,7 +73,8 @@ export default class EventsOfOneClub extends Component {
   }
  
   componentDidMount() { 
-    return axios.get(SERVER_URL+"eventsDetails?clubid="+clubid)// pass club id rather than date
+    console.log("EventsOfOneClub: clubid: " + clubid);
+    return axios.get(SERVER_URL+"eventsDetailsOfOneClub?clubid="+clubid)// pass club id rather than date
       //.then(response => response.json())
       .then(response => {
         console.log("data : " + response.data);
@@ -141,6 +143,7 @@ _showMoreApp = () => {
            
         <FlatList
           data={this.state.dataSource}
+          extraData={this.state}
           renderItem={({ item }) => 
           
 

@@ -63,7 +63,7 @@ export default class TicketDisplayFromNoLayoutTableBooking extends React.Compone
         flex:1
   },
 
-    headerTintColor: '#606070',
+    headerTintColor: "#ffffff",
     //Text Color of Navigation Bar
   };
 

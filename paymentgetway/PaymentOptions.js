@@ -24,6 +24,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { StackActions, NavigationActions } from "react-navigation";
 import { SERVER_URL } from '../constants';
+import { PAYTM_SERVER_URL } from '../constants';
+
 
 var bookingData;
 export default class PaymentOptions extends Component {
@@ -54,7 +56,7 @@ export default class PaymentOptions extends Component {
       flex: 1
     },
 
-    headerTintColor: "#606070"
+    headerTintColor: "#ffffff"
     //Text Color of Navigation Bar
   };
 
@@ -184,6 +186,12 @@ export default class PaymentOptions extends Component {
           });
 
           console.log("PaymentOptions: PaymentOptions data send to server");
+          if((bookingData.guestlistgirlcount != null && bookingData.guestlistgirlcount > 0) 
+          || (bookingData.guestlistcouplecount != null && bookingData.guestlistcouplecount > 0) ){
+
+            this._storeGuestListBookingDetails(bookingData.clubname, bookingData.eventdate);
+            console.log("PaymentOptions: _storeGuestListBookingDetails");
+          }
         })
         .catch(error => {
           console.error(error);
@@ -192,7 +200,7 @@ export default class PaymentOptions extends Component {
     // SEND BOOKING DETAILS TO SERVER FINSH -END
   };
 
-  sendbookingDetailsToServerxx = title => {
+  sendbookingDetailsToServer = title => {
     return (
       axios
         .post(SERVER_URL+"bookTicket", bookingData, {
@@ -217,7 +225,13 @@ export default class PaymentOptions extends Component {
           } else {
             this.setState({ dialogVisible: true });
           }
+          // if ticket is booked and it is for guestlist only then store club name and date
+          if((bookingData.guestlistgirlcount != null && bookingData.guestlistgirlcount > 0) 
+          || (bookingData.guestlistcouplecount != null && bookingData.guestlistcouplecount > 0) ){
 
+            this._storeGuestListBookingDetails(bookingData.clubname, bookingData.eventdate);
+            console.log("PaymentOptions: _storeGuestListBookingDetails");
+          }
           console.log("PaymentOptions: PaymentOptions data send to server");
         })
         .catch(error => {
@@ -226,6 +240,17 @@ export default class PaymentOptions extends Component {
     );
     // SEND BOOKING DETAILS TO SERVER FINSH -END
   };
+
+  _storeGuestListBookingDetails = async (clubname, eventdate) =>{
+    try {
+      await AsyncStorage.setItem("bookedClubName", clubname);
+      await AsyncStorage.setItem("bookedEventDate", eventdate);
+      console.log("store mobile" + mobile);
+      setTimeout(() => {}, 200);
+    } catch (error) {
+      console.log("error in store mobile" + mobile);
+    }
+  }
 
   handelResponse = title => {
     console.log("PaymentOptions: PaymentOptions handelResponse : " + title);
@@ -237,7 +262,6 @@ export default class PaymentOptions extends Component {
 
       bookingData.paymentstatusmsg = "success";
       bookingData.bookingconfirm = "confirm";
-
       this.sendbookingDetailsToServer(title);
     } else if (title == "false") {
       this.setState({ showModal: false, ack: "Oops! Something went wrong" });
@@ -534,7 +558,7 @@ export default class PaymentOptions extends Component {
             onRequestClose={() => this.setState({ showModal: false })}
           >
             <WebView
-              source={{ uri: "http://192.168.43.64:3001/api/paytm/request" }}
+              source={{ uri: PAYTM_SERVER_URL+"/api/paytm/request" }}
               injectedJavaScript={this.generateJSCode()}
               onNavigationStateChange={data => this.handelResponse(data.title)}
             />

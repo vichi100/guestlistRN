@@ -52,7 +52,7 @@ export default class DJsListScreen extends Component {
         this.setState({ dataSource: response.data, isLoading: false });
       })
       .catch(error => {
-        console.error(error);
+        console.error(error); 
       });
   }
 

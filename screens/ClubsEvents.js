@@ -173,8 +173,8 @@ export default class ClubsEvents extends Component {
                     <Text
                       style={{
                         color: "#2196f3",
-                        fontSize: 17
-                        //fontWeight: "bold"
+                        fontSize: 17,
+                        fontWeight: "bold"
                       }}
                     >
                       {item.clubname}

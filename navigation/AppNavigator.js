@@ -291,7 +291,7 @@ const Bottom = createBottomTabNavigator({
   HomeStack,
   OffersStack,
   PassesStack,
-  chatStack,
+  ///chatStack,
   ProfileStack,
 },
 {

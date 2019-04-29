@@ -56,7 +56,7 @@ export default class PaymentOptions extends Component {
       flex: 1
     },
 
-    headerTintColor: "#606070"
+    headerTintColor: "#ffffff"
     //Text Color of Navigation Bar
   };
 

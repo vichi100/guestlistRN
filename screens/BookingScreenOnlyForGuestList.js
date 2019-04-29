@@ -77,7 +77,7 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
       flex: 1
     },
 
-    headerTintColor: "#606070"
+    headerTintColor: "#ffffff"
     //Text Color of Navigation Bar
   };
 
@@ -105,9 +105,12 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
       lastPassStagCount:0,
       guestlistgirlcount:0,
       guestlistcouplecount: 0,
+      passcouplecount: 0,
+      passstagcount:0,
       dialogVisible : false,
       ticketIdForGirl: null,
       ticketIdForCouple: null,
+      guestListAlreadyBooked: false,
     
     };
   }
@@ -237,6 +240,8 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
       return;
     } 
 
+    
+
     //after payment send booking details to server for ticket
     var bookingTimeStamp = moment().valueOf();
 
@@ -293,6 +298,22 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
       bookingtimestamp: bookingTimeStamp // current date and time
     };
 
+    // check if guestlist for eventdate is already booked
+    console.log("BookingScreenOnlyForGuestList:  passcouplecount: "+postData.passcouplecount)
+    console.log("BookingScreenOnlyForGuestList:  passstagcount: "+postData.passstagcount)
+    if((  postData.passcouplecount != null && postData.passcouplecount <= 0) 
+          || (postData.passstagcount != null && postData.passstagcount <= 0) ){
+
+            console.log("BookingScreenOnlyForGuestList: calling _showDialogForGuestListAlreadyBooked")
+            
+            var bookedClubName =  await AsyncStorage.getItem("bookedClubName");
+            var bookedEventDate =   await AsyncStorage.getItem("bookedEventDate");  
+          if(bookedEventDate == postData.eventdate ){
+            this._showDialogForGuestListAlreadyBooked()
+            console.log("BookingScreenOnlyForGuestList: method is _showDialogForGuestListAlreadyBooked")
+            return;
+          }
+    }
 
     if(eventData.postedby == 'dj' || eventData.postedby == 'pr' || eventData.postedby == 'club'){
       postData.bookingconfirm = 'confirm'
@@ -314,6 +335,16 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
 
   _showDialog = () => {
     this.setState({ dialogVisible: true });
+  };
+
+  _showDialogForGuestListAlreadyBooked = () => {
+    this.setState({ guestListAlreadyBooked: true });
+  }
+
+  handleOkForGuestListAlreadyBooked = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    this.setState({ guestListAlreadyBooked: false });
   };
   
   handleOk = () => {
@@ -905,6 +936,20 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
             style={{ fontFamily: "sans-serif" }}
             label="OK"
             onPress={this.handleOk}
+          />
+        </Dialog.Container>
+
+        <Dialog.Container visible={this.state.guestListAlreadyBooked}>
+          {/* <Dialog.Title>Enter Mobile Number</Dialog.Title> */}
+          <Dialog.Description>
+            You have already booked GuestList/Free Pass for date {eventData.eventdate} in  {eventData.clubname} club
+          </Dialog.Description>
+
+          
+          <Dialog.Button
+            style={{ fontFamily: "sans-serif" }}
+            label="OK"
+            onPress={this.handleOkForGuestListAlreadyBooked}
           />
         </Dialog.Container>
 

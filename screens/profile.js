@@ -288,7 +288,7 @@ export default class Profile extends Component {
                   }}
                 >
                   <Text style={styles.instructions}>
-                    Life is too short to go to bad parties. {"\n"}You should be
+                  LIFE IS TOO SHORT TO GO TO BAD PARTIES. {"\n"}{"\n"}You should be
                     able to discover, book & join the best events in town with
                     your finger tips.
                   </Text>
@@ -691,7 +691,7 @@ export default class Profile extends Component {
                   }}
                 >
                   <Text style={styles.instructions}>
-                    Life is too short to go to bad parties. {"\n"}You should be
+                  LIFE IS TOO SHORT TO GO TO BAD PARTIES. {"\n"}{"\n"}You should be
                     able to discover, book & join the best events in town with
                     your finger tips.
                   </Text>

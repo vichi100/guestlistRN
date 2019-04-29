@@ -26,6 +26,7 @@ import Dialog from "react-native-dialog";
 import { AsyncStorage } from "react-native";
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import { IMAGE_MAPPER_URL } from '../constants';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -53,6 +54,7 @@ export default class TableScreen extends React.Component {
       textAlign:"left", 
         flex:1
   },
+  headerTintColor: "#ffffff"
   }
 
 
@@ -81,6 +83,7 @@ export default class TableScreen extends React.Component {
       // tableDetails:null,
       // tablelayoutURL: null,
       tableData:null,
+      isLoading : true,
     }; 
   } 
 
@@ -91,19 +94,21 @@ export default class TableScreen extends React.Component {
       .then(response => {
         response = response.data;
        console.log("Table data from response  : " + JSON.stringify(response));   
-       Object.keys(response).map((keyName, keyIndex) =>{ 
-        // use keyName to get current key's name
-        let tableid = response[keyName].tableid;
-        console.log("tableid "+tableid);
-        // console.log("data : " + response[keyName].type);  
-        // and a[keyName] to get its value 
-      })
+      //  Object.keys(response).map((keyName, keyIndex) =>{ 
+      //   // use keyName to get current key's name
+      //   let tableid = response[keyName].tableid;
+      //   console.log("tableid "+tableid);
+      //   // console.log("data : " + response[keyName].type);  
+      //   // and a[keyName] to get its value 
+      // })
       
         this.setState({ dataSource: response, isLoading: false });
       })
       .catch(error => { 
         console.error(error); 
       }); 
+
+      
   }
 
   _showDialog = () => {
@@ -239,11 +244,12 @@ bookTicket= async() =>{
   } 
 
   _onShouldStartLoadWithRequest = (e) =>{
+    
     //"url": "http://199.180.133.121/imagemap/layouthtml/1000004-13Mar2019.html#BJ-1000004-C1",
-    console.log("vichi "+e.url);
+    //console.log("vichi "+e.url);
     var urlArr = e.url.split('#'); 
     clickedTableid = urlArr[1];   
-    console.log("this.state.dataSource : "+this.state.dataSource);
+    //console.log("this.state.dataSource : "+this.state.dataSource);
     if(this.state.dataSource && this.state.dataSource.length > 0){
       //console.log("this.state.dataSource" + this.state.dataSource);
       Object.keys(this.state.dataSource).map((keyName, keyIndex) =>{ 
@@ -290,7 +296,7 @@ bookTicket= async() =>{
           this.setState({tableData:tableData});
 
         }
-        console.log("tableid "+tableid);
+        //console.log("tableid "+tableid);
         // console.log("data : " + response[keyName].type);  
         // and a[keyName] to get its value
       })
@@ -317,6 +323,16 @@ bookTicket= async() =>{
     var eventDateForImageURL = eventData.eventdate.replace(new RegExp('/', 'g'), '');
     console.log('eventDateForImageURL '+eventDateForImageURL) 
     console.log("data from events screen :"+ JSON.stringify(eventData));
+
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, justifyContent: "center" }}> 
+          <ActivityIndicator size="large" />
+        </View>
+      );
+    }
+
+
     return (
       <View style={styles.container}>
       <ScrollView>
@@ -402,7 +418,7 @@ bookTicket= async() =>{
               //source={{ uri: "http://199.180.133.121/imagemap/layouthtml/1000001-13Mar2019.html" }}
 
               //source={{ uri: "http://199.180.133.121:8000/" }}
-              source={{ uri: "http://192.168.43.64:8000/"+eventData.clubid+"-"+eventDateForImageURL+".html" }}
+              source={{ uri: IMAGE_MAPPER_URL+eventData.clubid+"-"+eventDateForImageURL+".html" }}
 
               //http://localhost:8000/999999-20Mar2019.html
               //source={{ uri: "http://192.168.43.64:.html" }}

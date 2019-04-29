@@ -58,7 +58,7 @@ export default class TicketDisplayFromBooking extends React.Component {
         flex:1
   },
 
-    headerTintColor: '#606070',
+    headerTintColor: "#ffffff",
     //Text Color of Navigation Bar
   };
 

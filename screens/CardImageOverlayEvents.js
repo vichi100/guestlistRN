@@ -109,7 +109,7 @@ export default class CardImageOverlayEvents extends Component {
                     
                     color: "#2196f3",
                     fontSize: 17,
-                    //fontWeight: "bold"
+                    fontWeight: "bold"
                   }}
                 >
                   {this.props.eventData.clubname}

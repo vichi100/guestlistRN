@@ -25,7 +25,7 @@ export default class LoginFromTicketList extends Component {
             flex:1
       },
     
-        headerTintColor: '#606070',
+        headerTintColor: "#ffffff",
         //Text Color of Navigation Bar
       };
 

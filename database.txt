@@ -76,6 +76,8 @@ videourl VARCHAR(100), description VARCHAR(500), music VARCHAR(100), djname VARC
 prid VARCHAR(100), latlong VARCHAR(50), postedby VARCHAR(20));
 
 
+
+
 INSERT INTO events ( eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , music , 
 djname , djid , prid , latlong , postedby )
 VALUES
@@ -322,3 +324,46 @@ ALTER TABLE ticketsforevents AUTO_INCREMENT = 1000;
 ALTER TABLE ticketdetailsbyclubs ADD postedbyname VARCHAR(50);
 ALTER TABLE ticketdetailsbyclubs ADD postedbyid VARCHAR(50);
 ALTER TABLE ticketdetailsbyclubs ADD postedby VARCHAR(50);
+
+
+------------------------
+
+INSERT INTO eventdetails ( clubid, clubname,djname, music, date, imageURL)
+VALUES
+(	'1000001' ,'HOP',	'Retro Nights',	'Retro Music',	'04/Dec/2018','/images/club/hopandheriwest/event/tuesday.jpg'),
+(	'1000001' ,'HOP',	'Ladies Nights',	'Free Drinks For All Ladies',	'05/Dec/2018','/images/club/hopandheriwest/event/wednesday.jpg'),
+(	'1000001' ,'HOP',	'Unplugged Night',	'Live Band',	'06/Dec/2018','/images/club/hopandheriwest/event/thursday.jpg'),
+(	'1000001' ,'HOP',	'Fundamental Friday',	'Bollywood/ Hip Hop/ Rock Music',	'07/Dec/2018','/images/club/hopandheriwest/event/friday.jpg'),
+(	'1000001' ,'HOP',	'Soul Saturday',	'Bollywood/ Hip Hop/ Rock Music',	'08/Dec/2018','/images/club/hopandheriwest/event/saturday.jpg');
+
+
+
+INSERT INTO events ( eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('Old School', '02/May/2019', '1000000' ,'Hoot', 'Juhu', 'mumbai', '/images/club/hootjuhu/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.106205,72.825633' , 'club', NULL, NULL),
+('Filmy Friday', '03/May/2019', '1000000' , 'Hoot', 'Juhu', 'mumbai', '/images/club/hootjuhu/event/friday.jpg', NULL, NULL, 
+'Bollywood Music', NULL, NULL, NULL, '19.106205,72.825633' , 'club' , NULL, NULL),
+('Sinful Saturday', '04/May/2019', '1000000' , 'Hoot', 'Juhu', 'mumbai', '/images/club/hootjuhu/event/saturday.jpg', NULL, NULL, 
+'Bollywood/Hip Hop/Rock Music', NULL, NULL, NULL, '19.106205,72.825633' , 'club' , NULL, NULL),
+
+
+('Sufi Night', '01/May/2019', '999999' , 'Tippling Street', 'Juhu', 'mumbai', '/images/club/tipplingstreetjuhu/event/wednesday.jpg', NULL, NULL, 
+'Live Band', NULL, NULL, NULL, '19.106898,72.826976' , 'club', NULL, NULL),
+('Bar Night', '03/May/2019', '999999' , 'Tippling Street', 'Juhu', 'mumbai', '/images/club/tipplingstreetjuhu/event/friday.jpg', NULL, NULL, 
+'Bollywood/ Hip Hop/ Rock Music', NULL, NULL, NULL, '19.106898,72.826976' , 'club', NULL, NULL),
+('Bar Night', '04/May/2019', '999999' , 'Tippling Street', 'Juhu', 'mumbai', '/images/club/tipplingstreetjuhu/event/saturday.jpg', NULL, NULL, 
+'Bollywood/ Hip Hop/ Rock Music', NULL, NULL, NULL, '19.106898,72.826976' , 'club', NULL, NULL),
+('Karaoke Night', '05/May/2019', '999999' , 'Tippling Street', 'Juhu', 'mumbai', '/images/club/tipplingstreetjuhu/event/sunday.jpg', NULL, NULL, 
+'Karaoke Songs', NULL, NULL, NULL, '19.106898,72.826976' , 'club', NULL, NULL),
+('Retro Nights', '30/Apr/2019', '1000001', 'HOP', 'Andheri West', 'mumbai', '/images/club/hopandheriwest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL),
+('Ladies Nights', '01/May/2019', '1000001', 'HOP', 'Andheri West', 'mumbai', '/images/club/hopandheriwest/event/wednesday.jpg', NULL, NULL, 
+'BollywoodRock Music', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL),
+('Unplugged Night', '02/May/2019', '1000001', 'HOP', 'Andheri West', 'mumbai', '/images/club/hopandheriwest/event/thursday.jpg', NULL, NULL, 
+'Live Band', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL),
+('Fundamental Friday', '03/May/2019', '1000001', 'HOP', 'Andheri West', 'mumbai', '/images/club/hopandheriwest/event/friday.jpg', NULL, NULL, 
+'Bollywood/ Hip Hop/ Rock Music', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL),
+('Soul Saturday', '04/May/2019', '1000001', 'HOP', 'Andheri West', 'mumbai', '/images/club/hopandheriwest/event/saturday.jpg', NULL, NULL, 
+'Bollywood/ Hip Hop/ Rock Music', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL);

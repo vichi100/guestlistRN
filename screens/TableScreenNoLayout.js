@@ -42,6 +42,7 @@ export default class TableScreenNoLayout extends React.Component {
     //To set the header image and title for the current Screen
     title: "Table Booking",
     headerBackTitle: null,
+    headerTintColor: "#ffffff",
     headerStyle: {
       backgroundColor: "#263238"
       //Background Color of Navigation Bar

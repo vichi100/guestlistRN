@@ -1,3 +1,35 @@
+expo build:android 
+
+********** TO START REACT-IMAGE-MAPPER ON SERVER ***********
+forever start gulpfile.js
+
+nohup npm start &
+
+********** TO START REACT-IMAGE-MAPPER ON LOCAL ***********
+npm start
+
+******** TO START INSTAMOJO SERVER ON SERVER *********
+forever start app.js
+
+******** TO START INSTAMOJO SERVER ON LOCAL *********
+nodemon start
+
+
+******** TO START PAYTM SERVER ON SERVER *********
+forever start server.js
+
+******** TO START PAYTM SERVER ON LOCAL *********
+nodemon server.js
+
+********* TO CHECK PROCESS ON PORT ********
+lsof -i:8000
+
+Error: listen EADDRINUSE: address already in use :::8000
+
+
+*******************************************
+
+
 npm install pm2 -g
 pm2 start server.js
 pm2 show server

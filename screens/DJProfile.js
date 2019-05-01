@@ -56,6 +56,12 @@ export default class Profile extends Component {
   
     this.state = {};
   }
+
+  pressedLike = () =>{
+    
+  }
+
+  
   render() {
     const { navigation } = this.props;
     const item = navigation.getParam("item");

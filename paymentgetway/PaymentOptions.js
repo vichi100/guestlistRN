@@ -25,7 +25,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { StackActions, NavigationActions } from "react-navigation";
 import { SERVER_URL } from '../constants';
 import { PAYTM_SERVER_URL } from '../constants';
-
+import {INSTAMOJO_SERVER_URL} from '../constants';
 
 var bookingData;
 export default class PaymentOptions extends Component {
@@ -115,7 +115,9 @@ export default class PaymentOptions extends Component {
       //this.props.navigation.navigate('InstamojoWebview')
       //console.log("PaymentOptions: bookingData2: "+JSON.stringify(bookingData))
       axios
-        .post(`http://192.168.43.64:8089/api/makerequest`, {
+       // .post(`http://192.168.43.64:8089/api/makerequest`, {
+        .post(INSTAMOJO_SERVER_URL, {
+        
           purpose: bookingData.purpose,
           amount: bookingData.bookingamount,
           buyer_name: bookingData.username,

@@ -87,6 +87,25 @@ export default class OffersListScreen extends Component {
       );
     }
 
+    var   count = Object.keys(this.state.dataSource).length;
+    //console.log("dataSource lenght = "+count)
+
+    if(count == 0){
+      return (
+      <View style={styles.container}>
+      <Calendar onSelectDate={this.onSelectDate} />
+      <Text style={{textAlign: 'center', color: "#424242", fontSize: 16, fontWeight: '600'}}>
+          We are curating for you!!!
+      </Text>
+        
+      </View>
+
+      );
+
+
+    } else{
+
+
     return (
       <View style={styles.container}>
         <StatusBar
@@ -123,6 +142,7 @@ export default class OffersListScreen extends Component {
         />
       </View>
     );
+  }
   }
 }
 

@@ -164,9 +164,10 @@ class Search extends React.Component {
     // const {navigate} = this.props.navigation;
     // navigate('GuestListScreen');
     // console.log("date ; " + eventDate);
+    console.log("Searhch: item: "+JSON.stringify(item))
     console.log("clubid ; " + item.clubid);
     this.props.navigation.navigate("EventsOfOneClub", {
-      clubDetailData: item,
+      clubid: item.clubid,
 
     });
   };
@@ -175,9 +176,9 @@ class Search extends React.Component {
     // const {navigate} = this.props.navigation;
     // navigate('GuestListScreen');
     // console.log("date ; " + eventDate);
-    console.log("clubid ; " + item.clubid);
-    this.props.navigation.navigate("EventsOfOneClub", {
-      clubDetailData: item,
+    console.log("location ; " + item.location);
+    this.props.navigation.navigate("EventsByLocation", {
+      location: item.location,
 
     });
   };

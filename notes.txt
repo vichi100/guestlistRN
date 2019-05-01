@@ -1,5 +1,20 @@
 expo build:android 
 
+start video server :
+
+nohup node /root/home/videostream/servervideo.js &
+
+Start image server:
+
+nohup node /root/home/guestlistnodeserver.js &
+
+*********TO START NODE SERVER WHICH CONNECT TO DB *********
+nohup node server1.js
+forever start server1.js
+
+*********TO START NODE SERVER WHICH CONNECT TO DB ON LOCAL*********
+node --max-old-space-size=4096 server1.js
+
 ********** TO START REACT-IMAGE-MAPPER ON SERVER ***********
 forever start gulpfile.js
 
@@ -7,12 +22,14 @@ nohup npm start &
 
 ********** TO START REACT-IMAGE-MAPPER ON LOCAL ***********
 npm start
+vichis-Air-2b74:react-image-mapper vichi$ npm start
 
 ******** TO START INSTAMOJO SERVER ON SERVER *********
 forever start app.js
 
 ******** TO START INSTAMOJO SERVER ON LOCAL *********
 nodemon start
+vichis-Air-2b74:instamojoserver vichi$ nodemon start
 
 
 ******** TO START PAYTM SERVER ON SERVER *********
@@ -23,8 +40,18 @@ nodemon server.js
 
 ********* TO CHECK PROCESS ON PORT ********
 lsof -i:8000
+lsof -i:8000
+lsof -i:8000
 
 Error: listen EADDRINUSE: address already in use :::8000
+
+
+####### TO LIST ALL PROCESS WHICH STARTED BY FOREVER #########
+forever list 
+forever stop PID
+
+ps -aef | grep npm
+
 
 
 *******************************************

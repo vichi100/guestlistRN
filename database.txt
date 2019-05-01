@@ -367,3 +367,25 @@ VALUES
 'Bollywood/ Hip Hop/ Rock Music', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL),
 ('Soul Saturday', '04/May/2019', '1000001', 'HOP', 'Andheri West', 'mumbai', '/images/club/hopandheriwest/event/saturday.jpg', NULL, NULL, 
 'Bollywood/ Hip Hop/ Rock Music', NULL, NULL, NULL, '19.134070,72.830360' , 'club', NULL, NULL);
+
+
+INSERT INTO events ( eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('Bar Night', '02/May/2019', '1000003' ,'Barrel Mansion', 'Andheri East', 'mumbai', '/images/club/barrelmansionandherieast/event/thursday.jpg', NULL, NULL, 
+'Bollywood Music', NULL, NULL, NULL, '19.094951, 72.854050' , 'club', NULL, NULL);
+
+
+
+INSERT INTO djtable (  name, email, mobile, city ,followers, eventscount, picurl )
+VALUES
+('DJ Cyrus', 'cyrus@gmail.com', '9867614466', 'mumbai', '100', '20', '/images/dj/DJ_Cyrus.jpg'),
+('DJ Nanak', 'Nank@gmail.com', '9867614466', 'mumbai', '40', '60', '/images/dj/DJ_Nanak.jpg'),
+('DJ Amour', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJ_Amour.jpg'),
+('DJ Cloud', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJ_Cloud.jpg'),
+('DJ Jay Weather', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJ_Jay_Weather.jpg'),
+('DJ Subuhi Joshi', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJ_Subuhi_Joshi.jpg'),
+('DJ Zenith', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJ_Zenith.jpg'),
+('DJ Amann Nagpal', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJAmann_Nagpal.jpg');
+
+

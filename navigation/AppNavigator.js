@@ -34,7 +34,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Profile from "../screens/profile";
 import DJProfile from "../screens/DJProfile";
 import Search from  "../screens/SearchScreen";
-import EventsOfOneClub from '../screens/EventsOfOneClub'
+import EventsOfOneClub from '../screens/EventsOfOneClub';
+import EventsByLocation from '../screens/EventsByLocation';
 import CardImageOverlayEvents from '../screens/CardImageOverlayEvents';
 import Login from "../screens/login/Login";
 import LoginFromTicketList from '../screens/login/LoginFromTicketList';
@@ -334,6 +335,7 @@ const AppStack = createStackNavigator({
   ClubsEvents: ClubsEvents,
   DJProfile:DJProfile,
   EventsOfOneClub: EventsOfOneClub,
+  EventsByLocation: EventsByLocation,
   CardImageOverlayEvents: CardImageOverlayEvents, 
   TicketDisplayScreen: TicketDisplayScreen,  
   TicketDisplayFromBooking : TicketDisplayFromBooking,

@@ -41,8 +41,8 @@ export default class Login extends Component {
         <View behavior="padding" style={styles.container}>
 
                 <View style={styles.loginContainer}>
-                    <Image resizeMode="contain" style={styles.logo} 
-                    source={require('../../assets/images/logo-dark-bg.png')} /> 
+                    <Image resizeMode="cover" style={styles.logo} 
+                    source={require('../../assets/images/guestlistw.png')} /> 
                   
                     </View>
                <View>

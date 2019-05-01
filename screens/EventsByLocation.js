@@ -37,9 +37,9 @@ var isDataChanged = false
 
 
 
-let clubid;
+let location;
 
-export default class EventsOfOneClub extends Component {  
+export default class EventsByLocation extends Component {  
 
   static navigationOptions = {
     //To set the header image and title for the current Screen
@@ -73,8 +73,8 @@ export default class EventsOfOneClub extends Component {
   }
  
   componentDidMount() { 
-    console.log("EventsOfOneClub: clubid: " + clubid);
-    return axios.get(SERVER_URL+"eventsDetailsOfOneClub?clubid="+clubid)// pass club id rather than date
+    console.log("EventsOfOneClub: location: " + location);
+    return axios.get(SERVER_URL+"eventsDetailsByLocation?location="+location)// pass club id rather than date
       //.then(response => response.json())
       .then(response => {
         console.log("data : " + response.data);
@@ -132,7 +132,7 @@ _showMoreApp = () => {
 
   render() {
     const { navigation } = this.props;  
-    clubid = navigation.getParam("clubid");
+    location = navigation.getParam("location");
     
     if (this.state.isLoading) {
       return ( 
@@ -141,25 +141,6 @@ _showMoreApp = () => {
         </View>
       );
     } 
-
-
-
-    var   count = Object.keys(this.state.dataSource).length;
-    //console.log("dataSource lenght = "+count)
-
-    if(count == 0){
-      return (
-      <View style={styles.container}>
-      <Text style={{textAlign: 'center', color: "#424242", fontSize: 16, fontWeight: '600'}}>
-          Today, try some other grate clubs !!!
-      </Text>
-        
-      </View>
-
-      );
-
-
-    } else{
  
     return (     
       <View style={styles.container}>  
@@ -343,7 +324,6 @@ _showMoreApp = () => {
         />
       </View>
     );
-        }
   
   }
 }

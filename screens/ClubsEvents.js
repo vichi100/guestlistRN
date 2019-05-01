@@ -95,6 +95,10 @@ export default class ClubsEvents extends Component {
     
   };
 
+  pressedLike = () =>{
+    
+  }
+
   goToTableScreen = item => {
     // const {navigate} = this.props.navigation;
     // navigate('GuestListScreen');
@@ -125,6 +129,24 @@ export default class ClubsEvents extends Component {
         </View>
       );
     }
+
+    var   count = Object.keys(this.state.dataSource).length;
+    //console.log("dataSource lenght = "+count)
+
+    if(count == 0){
+      return (
+      <View style={styles.container}>
+      <Calendar onSelectDate={this.onSelectDate} />
+      <Text style={{textAlign: 'center', color: "#424242", fontSize: 16, fontWeight: '600'}}>
+          Have a house party tonight ;)
+      </Text>
+        
+      </View>
+
+      );
+
+
+    } else{
 
     return (
       <View style={styles.container}>
@@ -298,6 +320,8 @@ export default class ClubsEvents extends Component {
         />
       </View>
     );
+
+                  }
   }
 }
 const styles = StyleSheet.create({

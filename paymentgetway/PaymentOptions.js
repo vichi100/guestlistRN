@@ -651,7 +651,7 @@ export default class PaymentOptions extends Component {
           </Dialog.Description>
           <Dialog.Description>Do you want to retry? </Dialog.Description>
 
-          <Dialog.Button
+          <Dialog.Button 
             style={{ fontFamily: "sans-serif" }}
             label="Cancel"
             onPress={this.handleCancel}

@@ -63,7 +63,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    //await AsyncStorage.clear();
+    await AsyncStorage.clear();
     await this.init();
     setTimeout(() => {}, 200);
   }
@@ -258,6 +258,7 @@ class App extends React.Component {
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
+        "sans-serif": require("./assets/fonts/sansserif.ttf"),
         "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf")
       })
     ]);

@@ -273,15 +273,15 @@ bookTicket= async() =>{
           this.setState({tableDetails:tableDetails});
           var bookingAmount = 0;
           var tablePrice = parseInt(tablePriceStr);  
-          if(tablePrice <= 5000){ 
-            bookingAmount = 1000;
-          }else if(tablePrice <= 200000){
-            bookingAmount = 2000;
-          }else {
-            bookingAmount = 5000;
-          }
+          // if(tablePrice <= 5000){ 
+          //   bookingAmount = 1000;
+          // }else if(tablePrice <= 10000){
+          //   bookingAmount = 2000;
+          // }else {
+          //   bookingAmount = 5000;
+          // }
           //FOR TESTING
-          //bookingAmount = 100;
+          bookingAmount = 100;
           // TESTING END
           var remainingAmount = tablePrice -bookingAmount;
           var tableData = {
@@ -302,7 +302,7 @@ bookTicket= async() =>{
       })
 
     }
-   return true;
+   
     
   }
 
@@ -425,7 +425,7 @@ bookTicket= async() =>{
               //source={ require('../react-image-mapper/index.html' )} 
               javaScriptEnabled={true}
               domStorageEnabled={true} 
-              //scalesPageToFit={true}
+              scalesPageToFit={true}
               scrollEnabled={false}
               automaticallyAdjustContentInsets={true}
               injectedJavaScript={this.state.cookie} 

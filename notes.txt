@@ -1,4 +1,8 @@
 expo build:android 
+? Path to keystore: /Users/vichi/guestlist.jks
+? Keystore Alias: key0
+? Keystore Password: vichi123
+? Key Password: vichi123
 
 start video server :
 
@@ -54,7 +58,16 @@ ps -aef | grep npm
 
 
 
-*******************************************
+*************  Command to genrate Google SignIn ******************************
+
+keytool -list -printcert -jarfile /Users/vichi/Documents/GitHub/GuestListAndroidAPKForGoogleSignIn/GuestList.apk | grep SHA1 | awk '{ print $2 }'
+
+keytool -list -printcert -jarfile /Users/vichi/Documents/GitHub/GuestListAndroidAPKForGoogleSignIn/GuestList.apk | grep SHA1 | awk '{ print $2 }'
+
+
+keytool -list -printcert -jarfile growler.apk | grep SHA1 | awk '{ print $2 }'
+
+**************************************
 
 
 npm install pm2 -g

@@ -389,3 +389,4 @@ VALUES
 ('DJ Amann Nagpal', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJAmann_Nagpal.jpg');
 
 
+keytool -list -printcert -jarfile /Users/vichi/Documents/GitHub/GuestListAndroidAPKForGoogleSignIn/GuestList.apk | grep SHA1 | awk '{ print $2 }'

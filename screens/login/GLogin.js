@@ -47,13 +47,13 @@ export default class GLogin extends React.Component {
     }
     try { 
       const result = await Expo.Google.logInAsync({
-        androidClientId:
-          "260664005963-btpvaslb1iff4bvutc0fr0b01qb948qg.apps.googleusercontent.com",
-        //iosClientId: YOUR_CLIENT_ID_HERE,  <-- if you use iOS
+        behavior:'web',
+        androidClientId: "260664005963-j7tif8gnb4l1amt1sat73ti6gtuqt8rd.apps.googleusercontent.com",
+        iosClientId: "260664005963-vvqfanud36e24afoca4s4ov3dctdqj4c.apps.googleusercontent.com",  //<-- if you use iOS
         scopes: ["profile", "email"]
       });
 
-      if (result.type === "success") {
+      if (result.type === "success") { 
         this.setState({ 
           signedIn: true,
           name: result.user.name,

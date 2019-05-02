@@ -19,7 +19,7 @@ export default class CardButton extends Component {
 
 const styles = StyleSheet.create({
   CardButtonInRow: {
-    height: 10,
+    height: 15,
     marginLeft: 5,
     marginTop: 1,
     marginBottom: 1,
@@ -43,5 +43,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontWeight: '400', 
     fontSize: 14,
+    //marginTop:25,
   }
 });

@@ -276,7 +276,7 @@ bookTicket= async() =>{
           if(tablePrice <= 5000){ 
             bookingAmount = 1000;
           }else if(tablePrice <= 200000){
-            bookingAmount = 2000;
+            bookingAmount = 1500;
           }else {
             bookingAmount = 5000;
           }

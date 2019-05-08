@@ -1,8 +1,21 @@
+expo build:ios
+
+The password is only used to authenticate with Apple and never stored.
+? Apple ID: vichi100@gmail.com
+? Password (for vichi100@gmail.com): Vichi1234
+
+
+expo build:ios -c clears the credentials used by Expo
+
+---------------------================---------------------
+
 expo build:android 
 ? Path to keystore: /Users/vichi/guestlist.jks
 ? Keystore Alias: key0
 ? Keystore Password: vichi123
 ? Key Password: vichi123
+
+=============-------------------================
 
 start video server :
 
@@ -68,6 +81,9 @@ keytool -list -printcert -jarfile /Users/vichi/Documents/GitHub/GuestListAndroid
 keytool -list -printcert -jarfile growler.apk | grep SHA1 | awk '{ print $2 }'
 
 **************************************
+
+[root@guestlist ~]# mysqldump -u root -p club > /root/home/mydbscheme_dump.sql
+[root@guestlist home]# mysql -u root -p club_prod_backup < /root/home/mydbscheme_dump.sql
 
 
 npm install pm2 -g

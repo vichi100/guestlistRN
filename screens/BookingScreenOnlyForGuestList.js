@@ -37,7 +37,7 @@ import { create, PREDEF_RES } from "react-native-pixel-perfect";
 const calcSize = create(PREDEF_RES.iphone7.px);
 import Dialog from "react-native-dialog";
 import { SERVER_URL } from '../constants';
-
+import store from 'react-native-simple-store';
 import axios from 'axios'
 
 const window = Dimensions.get("window");
@@ -127,13 +127,14 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
         console.log("BookingScreenOnlyForGuestList: ticketDetailsData : " + JSON.stringify(response.data));
         // check if tickets are availbale in guestlist or not
         response = response.data;
-        let availbleticketsForCouple = -100;
-        let availbleticketsForGirl = -100; 
+        let availbleticketsForCouple = 0;
+        let availbleticketsForGirl = 0; 
         let ticketIdForGirl = null;
         let ticketIdForCouple = null;
         Object.keys(response).map((keyName, keyIndex) =>{ 
           //CHECK IF COUPLE TICKET IS AVAILABLE
           if(response[keyName].category == 'couple' && parseInt(response[keyName].availbletickets) > 0){ 
+            console.log("BookingScreenOnlyForGuestList: availbleticketsForCoupleXX:  "+response[keyName].availbletickets);
             availbleticketsForCouple = availbleticketsForCouple + parseInt(response[keyName].availbletickets);
             if(ticketIdForCouple == null){
               ticketIdForCouple = response[keyName].ticketid;
@@ -165,10 +166,10 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
         }
         // check from which ticketid count need to reduce for girl and couple
 
-        this.setState({ dataSource: response, isLoading: false }); 
+        this.setState({ dataSource: response, isLoading: false });  
       })
       .catch(error => {
-        console.error(error);
+        console.error(error);  
       });
   }
  
@@ -299,6 +300,7 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
     };
 
     // check if guestlist for eventdate is already booked
+    console.log('BookingScreenOnlyForGuestList: postData: '+JSON.stringify(postData))
     console.log("BookingScreenOnlyForGuestList:  passcouplecount: "+postData.passcouplecount)
     console.log("BookingScreenOnlyForGuestList:  passstagcount: "+postData.passstagcount)
     if((  postData.passcouplecount != null && postData.passcouplecount <= 0) 
@@ -307,8 +309,12 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
             console.log("BookingScreenOnlyForGuestList: calling _showDialogForGuestListAlreadyBooked")
             
             var bookedClubName =  await AsyncStorage.getItem("bookedClubName");
-            var bookedEventDate =   await AsyncStorage.getItem("bookedEventDate");  
-          if(bookedEventDate == postData.eventdate ){
+            var month = new Date(). getMonth() + 1; 
+            var monthKey = month+'thMonth'; 
+            var bookedEventDateArray =   await store.get(monthKey);
+            console.log("BookingScreenOnlyForGuestList: post data: "+JSON.stringify(postData))
+            if(bookedEventDateArray != null && bookedEventDateArray.indexOf(postData.eventdate) > -1 ){ 
+          //if(bookedEventDate == postData.eventdate ){
             this._showDialogForGuestListAlreadyBooked()
             console.log("BookingScreenOnlyForGuestList: method is _showDialogForGuestListAlreadyBooked")
             return;
@@ -942,7 +948,7 @@ export default class BookingScreenOnlyForGuestList extends React.Component {
         <Dialog.Container visible={this.state.guestListAlreadyBooked}>
           {/* <Dialog.Title>Enter Mobile Number</Dialog.Title> */}
           <Dialog.Description>
-            You have already booked GuestList/Free Pass for date {eventData.eventdate} in  {eventData.clubname} club
+            You have already booked GuestList/Free Pass for date {eventData.eventdate} !
           </Dialog.Description>
 
           

@@ -389,4 +389,90 @@ VALUES
 ('DJ Amann Nagpal', 'VKay@gmail.com', '9867614466', 'mumbai', '300', '70', '/images/dj/DJAmann_Nagpal.jpg');
 
 
+
+
+
+INSERT INTO ticketdetailsbyclubs ( clubid, clubname,type,  category, cost, details, Day, date, totaltickets, availbletickets, eventid,
+postedbyname, postedbyid, postedby)
+VALUES
+(	'1000005' ,'The Stables',	'pass', 	'couple',	'1000', null,	'Thursday', '16/May/2019', '10', '10', null , null , null, 'pr'),
+(	'1000005' ,'The Stables',	'pass', 	'stag',	'1000', null,	'Thursday', '16/May/2019', '10', '10', null , null , null, 'pr'),
+(	'1000005' ,'The Stables',	'guest list', 	'couple',	'0', null,	'Thursday', '16/May/2019', '10', '10', null, null , null, 'pr'),
+(	'1000005' ,'The Stables',	'guest list', 	'girl',	'0', null,	'Thursday', '16/May/2019', '10', '10', null , null, null, 'pr'),
+(	'1000005' ,'The Stables',	'pass', 	'couple',	'1000', null,	'Friday', '17/May/2019', '10', '10', null , null , null, 'pr'),
+(	'1000005' ,'The Stables',	'pass', 	'stag',	'1000', null,	'Friday', '17/May/2019', '10', '10', null , null , null, 'pr'),
+(	'1000005' ,'The Stables',	'guest list', 	'couple',	'0', null,	'Friday', '17/May/2019', '10', '10', null, null , null, 'pr'),
+(	'1000005' ,'The Stables',	'guest list', 	'girl',	'0', null,	'Friday', '17/May/2019', '10', '10', null , null, null, 'pr'),
+(	'1000005' ,'The Stables',	'pass', 	'couple',	'1000', null,	'Saturday', '18/May/2019', '10', '10', null , null , null, 'pr'),
+(	'1000005' ,'The Stables',	'pass', 	'stag',	'1000', null,	'Saturday', '18/May/2019', '10', '10', null , null , null, 'pr'),
+(	'1000005' ,'The Stables',	'guest list', 	'couple',	'0', null,	'Saturday', '18/May/2019', '10', '10', null, null , null, 'pr'),
+(	'1000005' ,'The Stables',	'guest list', 	'girl',	'0', null,	'Saturday', '18/May/2019', '10', '10', null , null, null, 'pr');
+
+
+
+
+
+INSERT INTO events ( eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , music , 
+djname , djid , prid , latlong , postedby )
+VALUES
+('Man I Love Fridays', '17/May/2019',  '1000005' ,'The Stables', 'Andheri East' , 'mumbai', '/images/club/thestablesandherieast/event/thursday.jpg',
+null, null, 'Live Band by Krystal Waters', null, null, null, '19.134907,72.832405', 'club' );
+
+
+
+
+
+
+
+INSERT INTO tablesdata ( clubid, clubname,tableid, tablenumber, details, tabletype, size, cost, coords, layoutURL, eventdate, booked)
+VALUES
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-L1', 'L1', 'Service on table', 'NORMAL', '7', '25000', '46,299,89,344', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-L2', 'L2', 'Service on table', 'NORMAL', '7', '25000', '102,264,142,309', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-L3', 'L3', 'Service on table', 'NORMAL', '7', '25000', '55,156,95,200', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-L4', 'L4', 'Service on table', 'NORMAL', '7', '25000', '104,194,143,238', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-R1', 'R1', 'Service on table', 'NORMAL', '7', '25000', '384,290,423,337', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-R2', 'R2', 'Service on table', 'NORMAL', '7', '25000', '382,190,422,234', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-R3', 'R3', 'Service on table', 'NORMAL', '7', '25000', '441,134,482,178', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-R4', 'R4', 'Service on table', 'NORMAL', '7', '25000', '466,213,506,260', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-R5', 'R5', 'Service on table', 'NORMAL', '7', '25000', '466,305,504,352', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-DF1', 'DF1', 'Service on table', 'NORMAL', '5', '20000', '155,340,189,376', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-DF2', 'DF2', 'Service on table', 'NORMAL', '5', '20000', '337,340,369,378', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-DF3', 'DF3', 'Service on table', 'NORMAL', '5', '20000', '338,274,369,310', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-DF4', 'DF4', 'Service on table', 'PREMIUM', '5', '20000', '337,205,370,243', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-D1', 'D1', 'Service on table', 'NORMAL', '10', '75000', '51,84,86,122', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-D2', 'D2', 'Service on table', 'NORMAL', '10', '75000', '95,83,128,121', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-D3', 'D3', 'Service on table', 'NORMAL', '14', '80000', '524,127,564,210', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-D4', 'D4', 'Service on table', 'NORMAL', '14', '80000', '530,252,563,343', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-BM1', 'BM1', 'Service on table', 'NORMAL', '15', '70000', '143,89,175,134', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-BM2', 'BM2', 'Service on table', 'NORMAL', '15', '70000', '195,89,250,119', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-BM3', 'BM3', 'Service on table', 'NORMAL', '15', '70000', '259,86,314,117', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-BM4', 'BM4', 'Service on table', 'NORMAL', '15', '70000', '337,107,371,173', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-BM5', 'BM5', 'Service on table', 'NORMAL', '15', '70000', '233,161,296,191', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-AM1', 'AM1', 'Service on table', 'NORMAL', '12', '75000', '143,20,173,67', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-AM2', 'AM2', 'Service on table', 'NORMAL', '12', '75000', '191,8,247,30', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-AM3', 'AM3', 'Service on table', 'NORMAL', '12', '75000', '265,7,319,28', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-AM4', 'AM4', 'Service on table', 'NORMAL', '12', '75000', '341,17,368,68', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-AM5', 'AM5', 'Service on table', 'NORMAL', '12', '75000', '221,52,287,75', '/imagemap/1000003.html', '16/May/2019', 'available'),
+( '1000003' , 'Barrel Mansion' , 'BM-1000003-C2', 'C2', 'Service on table', 'NORMAL', '12', '50000', '454,85,506,120', '/imagemap/1000003.html', '16/May/2019', 'available');
+
+
+
+
 keytool -list -printcert -jarfile /Users/vichi/Documents/GitHub/GuestListAndroidAPKForGoogleSignIn/GuestList.apk | grep SHA1 | awk '{ print $2 }'
+
+
+
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('10400', 'Commercial Night', '18/May/2019', '1000025' ,'Drinkery 51', 'BKC', 'mumbai', '/images/club/Drinkerybkc/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.067786, 72.867209' , 'pr', NULL, NULL);
+
+
+INSERT INTO ticketdetailsbyclubs ( clubid, clubname,type,  category, cost, details, Day, date, totaltickets, availbletickets, eventid,
+postedbyname, postedbyid, postedby)
+VALUES
+(	'1000025' ,'Drinkery 51',	'guest list', 	'couple',	'0', null,	'Saturday', '18/May/2019', '10', '10', null, null , null, 'pr'),
+(	'1000025' ,'Drinkery 51',	'guest list', 	'girl',	'0', null,	'Saturday', '18/May/2019', '10', '10', null , null, null, 'pr');

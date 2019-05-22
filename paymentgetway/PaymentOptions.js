@@ -26,6 +26,7 @@ import { StackActions, NavigationActions } from "react-navigation";
 import { SERVER_URL } from '../constants';
 import { PAYTM_SERVER_URL } from '../constants';
 import {INSTAMOJO_SERVER_URL} from '../constants';
+import store from 'react-native-simple-store';
 
 var bookingData;
 export default class PaymentOptions extends Component {
@@ -246,11 +247,19 @@ export default class PaymentOptions extends Component {
   _storeGuestListBookingDetails = async (clubname, eventdate) =>{
     try {
       await AsyncStorage.setItem("bookedClubName", clubname);
-      await AsyncStorage.setItem("bookedEventDate", eventdate);
-      console.log("store mobile" + mobile);
+      //await AsyncStorage.setItem("bookedEventDateArray", eventdate);
+      var month = new Date(). getMonth() + 1; 
+      var monthKey = month+'thMonth'; 
+      var secondLastMonth = new Date(). getMonth()-1; 
+      var secondLastMonthKey = secondLastMonth+'thMonth'; 
+      console.log("PaymentOptions: current month: "+monthKey);
+      console.log("PaymentOptions: last month: "+secondLastMonthKey);
+      store.push(monthKey, eventdate)
+      store.delete(secondLastMonthKey)
+      //console.log("store mobile" + mobile);
       setTimeout(() => {}, 200);
     } catch (error) {
-      console.log("error in store mobile" + mobile);
+      console.log("error in store eventdate" + eventdate); 
     }
   }
 

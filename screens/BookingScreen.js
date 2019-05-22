@@ -38,6 +38,7 @@ const calcSize = create(PREDEF_RES.iphone7.px);
 import Dialog from "react-native-dialog";
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import store from 'react-native-simple-store';
 
 const window = Dimensions.get("window");
 
@@ -103,6 +104,8 @@ export default class BookingScreen extends React.Component {
       lastPassStagCount:0,
       guestlistgirlcount:0,
       guestlistcouplecount: 0,
+      passcouplecount: 0,
+      passstagcount:0,
       dialogVisible : false,
       mybookingamount: 100,// Prod-500 , test-50
       ticketIdForGirl: null,
@@ -132,15 +135,15 @@ export default class BookingScreen extends React.Component {
         let ticketIdForCouple = null;
         var passCoupleCost = 0;
         var passStagCost = 0;
-        Object.keys(response).map((keyName, keyIndex) =>{ 
+        Object.keys(response).map((keyName, keyIndex) =>{  
           //CHECK IF COUPLE TICKET IS AVAILABLE
           if(response[keyName].category == 'couple' && parseInt(response[keyName].availbletickets) > 0 && response[keyName].type == 'guest list'){ 
             availbleticketsForCouple = availbleticketsForCouple + parseInt(response[keyName].availbletickets);
             if(ticketIdForCouple == null){
               ticketIdForCouple = response[keyName].ticketid;
               this.setState({ticketIdForCouple: ticketIdForCouple})
-            }
-          }
+            } 
+          } 
 
           //CHECK IF GIRL TICKET IS AVAILABLE
           if(response[keyName].category == 'girl' && parseInt(response[keyName].availbletickets) > 0 && response[keyName].type == 'guest list'){
@@ -299,16 +302,21 @@ export default class BookingScreen extends React.Component {
     };
 
       // check if guestlist for eventdate is already booked
-      console.log("BookingScreenOnlyForGuestList:  passcouplecount: "+postData.passcouplecount)
-      console.log("BookingScreenOnlyForGuestList:  passstagcount: "+postData.passstagcount)
-      if((  postData.passcouplecount != null && postData.passcouplecount <= 0) 
-            || (postData.passstagcount != null && postData.passstagcount <= 0) ){
+      console.log('BookingScreen: postData: '+JSON.stringify(postData))
+      console.log("BookingScreen:  passcouplecount: "+postData.passcouplecount)
+      console.log("BookingScreen:  passstagcount: "+postData.passstagcount)
+      if( ! (   postData.passcouplecount > 0 || postData.passstagcount > 0) 
+            ){
   
-              console.log("BookingScreenOnlyForGuestList: calling _showDialogForGuestListAlreadyBooked")
+              console.log("BookingScreen: calling _showDialogForGuestListAlreadyBooked")
               
               var bookedClubName =  await AsyncStorage.getItem("bookedClubName");
-              var bookedEventDate =   await AsyncStorage.getItem("bookedEventDate");  
-            if(bookedEventDate == postData.eventdate ){
+              var month = new Date(). getMonth() + 1; 
+              var monthKey = month+'thMonth'; 
+              var bookedEventDateArray =   await store.get(monthKey);
+            console.log("BookingScreen: post data: "+JSON.stringify(postData)) 
+            if(bookedEventDateArray != null && bookedEventDateArray.indexOf(postData.eventdate) > -1 ){
+            //if(bookedEventDate == postData.eventdate ){
               this._showDialogForGuestListAlreadyBooked()
               console.log("BookingScreenOnlyForGuestList: method is _showDialogForGuestListAlreadyBooked")
               return;
@@ -1096,7 +1104,7 @@ export default class BookingScreen extends React.Component {
         <Dialog.Container visible={this.state.guestListAlreadyBooked}>
           {/* <Dialog.Title>Enter Mobile Number</Dialog.Title> */}
           <Dialog.Description>
-            You have already booked GuestList/Free Pass for date {eventData.eventdate} in  {eventData.clubname} club
+            You have already booked GuestList/Free Pass for date {eventData.eventdate} !
           </Dialog.Description>
 
           

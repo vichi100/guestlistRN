@@ -1,0 +1,48 @@
+  async componentDidMount () {
+    // start : this._getLocationAsync();
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    console.log('ClubsEvents: lat long: '+JSON.stringify(location))
+    console.log('ClubsEvents: latitude '+location.coords.latitude)
+    console.log('ClubsEvents: longitude '+location.coords.longitude)
+    userLatlong  = location.coords.latitude+","+location.coords.longitude
+    this.setState({ latlong: userLatlong});
+    ///end
+    
+    var city = global.city;
+
+    https://www.facebook.com/1885996948344552/photos/1897116597232587/
+
+
+    https://www.facebook.com/551115951710462/photos/551118141710243/
+
+ https://graph.facebook.com/201860393944670/events?access_token=343969116414961|Xjzt83_gy6vfBpkuc0VCLlnADH8
+
+ https://graph.facebook.com/1885996948344552?access_token=343969116414961|Xjzt83_gy6vfBpkuc0VCLlnADH8
+
+https://graph.facebook.com/147330072002695?access_token=343969116414961|Xjzt83_gy6vfBpkuc0VCLlnADH8
+
+ https://graph.facebook.com/v2.11/search?q=marathon%20dublin&type=event&fields=name,id,category,description,place&access_token=343969116414961|Xjzt83_gy6vfBpkuc0VCLlnADH8
+
+ 
+https://www.facebook.com/201860393944670/photos/304970156967026/
+
+Tell us how you'll use Page Public Content Access
+Review the policies for Page Public Content Access and tell us how you intend to use it
+Accept permission or feature usage guidelines
+Provide detailed use case scenarios
+Add step-by-step instructions on how to access your app
+Upload screencast showing the end-to-end user experience
+Not Approved
+Thank you for your submission. After review, your app does not require Page Public Content Access for its intended function demonstrated in the screencast. The only valid use case for Page Public Content Access is to read and analyze insights from other pages where you are not the admin.
+Your app's intended functionality can be supported by the Manage_Pages or Read_Insights permissions. For more details on how best to incorporate these permissions, please visit this link (https://developers.facebook.com/docs/facebook-login/permissions).
+
+Remove
+
+Edit

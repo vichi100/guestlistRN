@@ -128,8 +128,9 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     flex: 1,
-    // height: undefined,
-    // width: undefined
+    //resizeMode: 'repeat',
+    // height: 100,
+    // width: 100
   },
   rowText: {
     flex: 4,

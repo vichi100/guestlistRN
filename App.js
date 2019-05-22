@@ -22,6 +22,7 @@ import OfflineNotice from "./screens/OfflineNotice";
 // import { withNavigation } from 'react-navigation';
 // import { NavigationActions } from 'react-navigation';
 import { StackActions, NavigationActions } from 'react-navigation';
+import { Constants, Location } from 'expo';
 
 
 YellowBox.ignoreWarnings(["Warning", "Setting a timer"]);
@@ -64,6 +65,23 @@ class App extends React.Component {
 
   async componentDidMount() {
     //await AsyncStorage.clear();//COMMENT THIS BEFORE BUILD
+    // start : this._getLocationAsync();
+    global.userLatlong = -1;
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied', 
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    console.log('ClubsEvents: lat long: '+JSON.stringify(location))
+    console.log('ClubsEvents: latitude '+location.coords.latitude)
+    console.log('ClubsEvents: longitude '+location.coords.longitude)
+    var userLatlong  = location.coords.latitude+","+location.coords.longitude
+    global.userLatlong = userLatlong;
+    this.setState({ latlong: userLatlong});
+    ///end
     await this.init();
     setTimeout(() => {}, 200);
   }

@@ -32,6 +32,7 @@ import getDirections from "../screens/gmap/gmapsdirection";
 import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
 import { SERVER_URL } from '../constants';
+import { Constants, Location, Permissions } from 'expo';
 import axios from 'axios'
 
 export default class ClubsListScreen extends Component {
@@ -40,7 +41,8 @@ export default class ClubsListScreen extends Component {
     this.state = {
       isLoading: true,
       dataSource: [],
-      liked: false
+      liked: false,
+      latlong: null
     };
   }
   pressedLike =() => {  
@@ -48,9 +50,35 @@ export default class ClubsListScreen extends Component {
   }
 
   async componentDidMount() {
+    // // start
+    // let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    // if (status !== 'granted') {
+    //   this.setState({
+    //     errorMessage: 'Permission to access location was denied',
+    //   });
+    // }
+
+    // let location = await Location.getCurrentPositionAsync({}); 
+    // console.log('ClubsListScreen: lat long: '+JSON.stringify(location))
+    // console.log('ClubsListScreen: latitude '+location.coords.latitude)
+    // console.log('ClubsListScreen: longitude '+location.coords.longitude)
+    // userLatlong  = location.coords.latitude+","+location.coords.longitude
+    // this.setState({ latlong: userLatlong});
+
+    // // end   
     var city = global.city;
-    return await axios.get(SERVER_URL+"clubsDetails?city="+city)
-      //.then(response => response.json())
+    //var clubsDetailsURL = null;
+    console.log('global.userLatlong: '+global.userLatlong) 
+    // if(global.userLatlong == null){
+    //   clubsDetailsURL = SERVER_URL+"clubsDetails?city="+city;
+    // }else{
+    //   clubsDetailsURL = SERVER_URL+"clubsDetails?city="+city+"&latlong="+global.userLatlong
+    // }
+    //var xc = -1;  
+    var clubsDetailsURL = SERVER_URL+"clubsDetails?city="+city;//+"&latlong="+global.userLatlong
+    return await axios.get(clubsDetailsURL)
+    //return await axios.get(SERVER_URL+"clubsDetails?city="+city)
+      //.then(response => response.json()) 
       .then(response => { 
         console.log("clubs list data : " + JSON.stringify(response.data)); 
         this.setState({ dataSource: response.data, isLoading: false });

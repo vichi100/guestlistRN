@@ -24,6 +24,48 @@ class QRCodeDisplay extends Component {
     console.log("qrCodeData.postedby: " + qrCodeData.postedby);
 
     //TABLE WITHOUT LAYOUT NEED TO SHOW PENDING
+  if ((qrCodeData.bookingconfirm != null && qrCodeData.bookingconfirm == "confirm")){
+    return (
+      <View style={styles.container}>
+        <View style={{ flexDirection: "row" }}>
+          <QRCode
+            value={qrCodeData.qrcode}
+            size={150}
+            //bgColor='purple'
+            fgColor="white"
+          />
+
+          <View
+            style={{
+              justifyContent: "flex-end",
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              marginLeft: 5,
+              hight: 150
+            }}
+          >
+            <Text
+              style={{
+                color: "#ef6c00",
+                fontSize: 14,
+                marginLeft: 5,
+                marginRight: 5
+              }}
+            >
+              {weekDayName}
+            </Text>
+            <Text style={{ color: "#ffeb3b", marginLeft: 5, marginRight: 5 }}>
+              {date[0]}
+            </Text>
+            <Text style={{ color: "#ea80fc", marginLeft: 5, marginRight: 5 }}>
+              {date[1]}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+
+  }
+
     if ((qrCodeData.postedby != null && qrCodeData.postedby == "guestlist")|| 
     ( parseInt(qrCodeData.tablepx ) > 0 && qrCodeData.tablenumber == null)) {
       return (

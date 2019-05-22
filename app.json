@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "GuestList",
-    "version": "2.0",
+    "version": "2.1",
     "slug": "guestlist",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -41,7 +41,7 @@
     },
     "android": {
       "package": "com.application.club.guestlist",
-      "versionCode": 36,
+      "versionCode": 38,
       "config": {
 
         "googleSignIn": {

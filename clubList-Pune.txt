@@ -1,0 +1,620 @@
+Baraza Bars & Bites
+
+INSERT INTO clubs (clubname,city, location, imageurl, videourl, latlong, rating, followers, registered)
+     VALUES
+( 'Baraza Bars n Bites','pune','Yerawada', '/images/club/barazabarsyerawada/barazabarsyerawada.jpg', '/video/assets/barazabarsyerawada.mp4', 
+    '18.556870, 73.893500' ,'5.0', '50', 'no'),
+( 'Miami','pune','Senapati Bapat Road', '/images/club/miamisenapatibapat/miamisenapatibapat.jpg', '/video/assets/miamisenapatibapat.mp4', 
+    '18.532615, 73.829842' ,'5.0', '50', 'no'),
+( 'Local','pune','Mundhwa', '/images/club/localmundhwa/localmundhwa.jpg', '/video/assets/localmundhwa.mp4', 
+    '18.536775, 73.910296' ,'5.0', '50', 'no'),
+( 'The Daily All Day','pune','Koregaon Park', '/images/club/thedailyalldaykoregaonpark/thedailyalldaykoregaonpark.jpg', '/video/assets/thedailyalldaykoregaonpark.mp4', 
+    '18.534232, 73.899619' ,'5.0', '50', 'no'),
+( 'Penthouze','pune','Mundhwa', '/images/club/penthouzemundhwa/penthouzemundhwa.jpg', '/video/assets/penthouzemundhwa.mp4', 
+    '18.538830, 73.907148' ,'5.0', '50', 'no'),
+( 'Coco','pune','Mundhwa', '/images/club/cocomundhwa/cocomundhwa.jpg', '/video/assets/cocomundhwa.mp4', 
+    '18.538862, 73.906769' ,'5.0', '50', 'no'),
+( 'Euriska','pune','Mundhwa', '/images/club/euriskamundhwa/euriskamundhwa.jpg', '/video/assets/euriskamundhwa.mp4', 
+    '18.537614, 73.908647' ,'5.0', '50', 'no'),
+( 'Lord Of The Drinks','pune','Kalyani Nagar', '/images/club/lordofthedrinkskalyaninagar/lordofthedrinkskalyaninagar.jpg', '/video/assets/lordofthedrinkskalyaninagar.mp4', 
+    '18.545783, 73.905748' ,'5.0', '50', 'no'),
+( 'Mineority By Saby','pune','Kalyani Nagar', '/images/club/mineoritysabykalyaninagar/mineoritysabykalyaninagar.jpg', '/video/assets/mineoritysabykalyaninagar.mp4', 
+    '18.546407, 73.904208' ,'5.0', '50', 'no'),
+( 'Unwind','pune','Koregaon Park', '/images/club/unwindkoregaonpark/unwindkoregaonpark.jpg', '/video/assets/unwindkoregaonpark.mp4', 
+    '18.539189, 73.912802' ,'5.0', '50', 'no'),
+( 'The Urban Foundry','pune','Kalyani Nagar', '/images/club/theurbanfoundrykalyaninagar/theurbanfoundrykalyaninagar.jpg', '/video/assets/theurbanfoundrykalyaninagar.mp4', 
+    '18.545155, 73.911115' ,'5.0', '50', 'no'),
+( 'Thikana','pune','Baner', '/images/club/thikanabaner/thikanabaner.jpg', '/video/assets/thikanabaner.mp4', 
+    '18.554939, 73.798466' ,'5.0', '50', 'no'),
+( 'Social','pune','Viman Nagar', '/images/club/socialvimannagar/socialvimannagar.jpg', '/video/assets/socialvimannagar.mp4', 
+    '18.562696, 73.916987' ,'5.0', '50', 'no'),
+( 'BMG Unplugged','pune','Hadapsar', '/images/club/bmgunpluggedhadapsar/bmgunpluggedhadapsar.jpg', '/video/assets/bmgunpluggedhadapsar.mp4', 
+    '18.519090, 73.934770' ,'5.0', '50', 'no'),
+( 'Thikana','pune','FC Road', '/images/club/thikanafcroad/thikanafcroad.jpg', '/video/assets/thikanafcroad.mp4', 
+    '18.524947, 73.842119' ,'5.0', '50', 'no'),
+( 'Thikana','pune','Hinjawadi', '/images/club/thikanahinjawadi/thikanahinjawadi.jpg', '/video/assets/thikanahinjawadi.mp4', 
+    '18.591271, 73.753156' ,'5.0', '50', 'no'),
+( 'Hard Rock Cafe','pune','Mundhwa', '/images/club/hardrockcafemundhwa/thikanahinjawadi.jpg', '/video/assets/hardrockcafemundhwa.mp4', 
+    '18.539285, 73.912775' ,'5.0', '50', 'no'),
+( 'Mezza 9','pune','Hinjawadi', '/images/club/mezzahinjawadi/thikanahinjawadi.jpg', '/video/assets/mezzahinjawadi.mp4', 
+    '18.594523, 73.734791' ,'5.0', '50', 'no'),
+( 'Plunge','pune','Koregaon Park', '/images/club/plungekoregaonpark/plungekoregaonpark.jpg', '/video/assets/plungekoregaonpark.mp4', 
+    '18.536853, 73.910224' ,'5.0', '50', 'no'),
+( 'True Tramm Trunk','pune','Aundh', '/images/club/truetrammtrunkaundh/truetrammtrunkaundh.jpg', '/video/assets/truetrammtrunkaundh.mp4', 
+    '18.554057, 73.806914' ,'5.0', '50', 'no'),
+( 'Backstage','pune','Viman Nagar', '/images/club/backstagevimannagar/backstagevimannagar.jpg', '/video/assets/backstagevimannagar.mp4', 
+    '18.562972, 73.917785' ,'5.0', '50', 'no'),
+( 'Oak','pune','Mundhwa', '/images/club/oakmundhwa/oakmundhwa.jpg', '/video/assets/oakmundhwa.mp4', 
+    '18.532606, 73.910292' ,'5.0', '50', 'no'),        
+( '1 Lounge','pune','Mundhwa', '/images/club/oneloungemundhwa/oneloungemundhwa.jpg', '/video/assets/oneloungemundhwa.mp4', 
+    '18.536645, 73.910766' ,'5.0', '50', 'no'),  
+( 'Gabriella','pune','NIBM Road', '/images/club/gabriellanibm/gabriellanibm.jpg', '/video/assets/gabriellanibm.mp4', 
+    '18.466365, 73.908554' ,'5.0', '50', 'no'),  
+( 'HUB','pune','Hinjawadi Road', '/images/club/hubhinjawadi/hubhinjawadi.jpg', '/video/assets/hubhinjawadi.mp4', 
+    '18.592929, 73.744938' ,'5.0', '50', 'no'), 
+( 'Mix36','pune','Mundhwa', '/images/club/mix36mundhwa/mix36mundhwa.jpg', '/video/assets/mix36mundhwa.mp4', 
+    '18.540088, 73.906066' ,'5.0', '50', 'no');
+
+
+INSERT INTO clubs (clubname,city, location, imageurl, videourl, latlong, rating, followers, registered)
+     VALUES
+( 'Teddy Boy','pune','Baner', '/images/club/teddyboybaner/teddyboybaner.jpg', '/video/assets/teddyboybaner.mp4', 
+    '18.554834, 73.798374' ,'5.0', '50', 'no'),
+
+INSERT INTO clubs (clubname,city, location, imageurl, videourl, latlong, rating, followers, registered)
+     VALUES
+( 'Publiq','pune','Wakad', '/images/club/publiqpunewakad/publiqpunewakad.jpg', '/video/assets/publiqpunewakad.mp4', 
+    '18.591227, 73.753195' ,'5.0', '50', 'no'),
+( 'Agent Jack','pune','Koregaon Park', '/images/club/agentjackkoregaonpark/agentjackkoregaonpark.jpg', '/video/assets/agentjackkoregaonpark.mp4', 
+    '18.540022, 73.905724' ,'5.0', '50', 'no'),
+( 'Farzi Cafe','pune','Kalyani Nagar', '/images/club/farzicafekalyaninagar/farzicafekalyaninagar.jpg', '/video/assets/farzicafekalyaninagar.mp4', 
+    '18.543970, 73.905140' ,'5.0', '50', 'no');
+
+
+
+
+
+***********************************************************************
+
+
+
+( 'Baraza Bars & Bites','pune','Yerawada', '/images/club/barazabarsyerawada/barazabarsyerawada.jpg', '/video/assets/barazabarsyerawada.mp4', 
+    '18.556870, 73.893500' ,'5.0', '50', 'no'),
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100BarazaYerawada', 'Retro Night', '21/May/2019', '1000040' ,'Baraza Bars n Bites', 'Yerawada', 'pune', '/images/club/barazabarsyerawada/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.556870, 73.893500' , 'guestlist', NULL, NULL),
+('101BarazaYerawada', 'Beats Night', '25/May/2019', '1000040' ,'Baraza Bars n Bites', 'Yerawada', 'pune', '/images/club/barazabarsyerawada/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.556870, 73.893500' , 'guestlist', NULL, NULL);
+
+
+
+| 1000041 | Miami               | Senapati Bapat Road | pune | /images/club/miamisenapatibapat/miamisenapatibapat.jpg                   
+| /video/assets/miamisenapatibapat.mp4          | 18.532615, 73.829842 | 5.0    | 50        | no         |
+
+Miami
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100MiamiSenapati', 'Bollywood Night', '25/May/2019', '1000041' ,'Miami', 'Senapati Bapat Road', 'pune', '/images/club/miamisenapatibapat/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532615, 73.829842' , 'guestlist', NULL, NULL),
+('101MiamiSenapati', 'Gig Night', '22/May/2019', '1000041' ,'Miami', 'Senapati Bapat Road', 'pune', '/images/club/miamisenapatibapat/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532615, 73.829842' , 'guestlist', NULL, NULL);
+
+| 1000042 | Local               | Mundhwa             | pune | /images/club/localmundhwa/localmundhwa.jpg                             
+  | /video/assets/localmundhwa.mp4                | 18.536775, 73.910296 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100LocalMundhwa', 'Beat the Blues', '20/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL),
+('101LocalMundhwa', 'Ladies Night', '21/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL),
+('102LocalMundhwa', 'Bollywood Night', '22/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL),
+('103LocalMundhwa', 'Happy Night', '23/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL),
+('104LocalMundhwa', 'Diva Night', '24/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL),
+('105LocalMundhwa', 'Club Night', '25/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL),
+('106LocalMundhwa', 'Lazy Crazy Sunday', '26/May/2019', '1000042' ,'Local', 'Mundhwa', 'pune', '/images/club/localmundhwa/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536775, 73.910296' , 'guestlist', NULL, NULL);
+	
+
+| 1000043 | The Daily All Day   | Koregaon Park       | pune | /images/club/thedailyalldaykoregaonpark/thedailyalldaykoregaonpark.jpg  
+ | /video/assets/thedailyalldaykoregaonpark.mp4  | 18.534232, 73.899619 | 5.0    | 50        | no         |
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100DailyAllDayKP', 'Zokhuma- The Code Tour', '24/May/2019', '1000043' ,'The Daily All Day', 'Koregaon Park', 'pune', '/images/club/thedailyalldaykoregaonpark/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.534232, 73.899619' , 'guestlist', NULL, NULL),
+('101DailyAllDayKP', 'Throwback', '25/May/2019', '1000043' ,'The Daily All Day', 'Koregaon Park', 'pune', '/images/club/thedailyalldaykoregaonpark/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.534232, 73.899619' , 'guestlist', NULL, NULL),
+('102DailyAllDayKP', 'Easy crawl', '26/May/2019', '1000043' ,'The Daily All Day', 'Koregaon Park', 'pune', '/images/club/thedailyalldaykoregaonpark/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.534232, 73.899619' , 'guestlist', NULL, NULL);
+
+| 1000044 | Penthouze           | Mundhwa             | pune | /images/club/penthouzemundhwa/penthouzemundhwa.jpg                      
+ | /video/assets/penthouzemundhwa.mp4            | 18.538830, 73.907148 | 5.0    | 50        | no        
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100PenthouzeMundhwa', 'Girls Night Out', '22/May/2019', '1000044' ,'Penthouze', 'Mundhwa', 'pune', '/images/club/penthouzemundhwa/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538830, 73.907148' , 'guestlist', NULL, NULL),
+('101PenthouzeMundhwa', 'Bollyhop feat Amour', '24/May/2019', '1000044' ,'Penthouze', 'Mundhwa', 'pune', '/images/club/penthouzemundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538830, 73.907148' , 'guestlist', NULL, NULL),
+
+('102PenthouzeMundhwa', 'Club Night', '25/May/2019', '1000044' ,'Penthouze', 'Mundhwa', 'pune', '/images/club/penthouzemundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538830, 73.907148' , 'guestlist', NULL, NULL),	
+
+('103PenthouzeMundhwa', 'Sunday Sundowner ', '26/May/2019', '1000044' ,'Penthouze', 'Mundhwa', 'pune', '/images/club/penthouzemundhwa/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538830, 73.907148' , 'guestlist', NULL, NULL);
+
+
+
+
+| 1000045 | Coco                | Mundhwa             | pune | /images/club/cocomundhwa/cocomundhwa.jpg 
+                                | /video/assets/cocomundhwa.mp4                 | 18.538862, 73.906769 | 5.0    | 50        | no         |
+	
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100CocoMundhwa', 'Women Crush', '22/May/2019', '1000045' ,'Coco', 'Mundhwa', 'pune', '/images/club/cocomundhwa/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL),	
+('101CocoMundhwa', 'Funk Friday', '24/May/2019', '1000045' ,'Coco', 'Mundhwa', 'pune', '/images/club/cocomundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL),	
+('102CocoMundhwa', 'Coco Saturday', '25/May/2019', '1000045' ,'Coco', 'Mundhwa', 'pune', '/images/club/cocomundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL),	
+('103CocoMundhwa', 'After Dark', '26/May/2019', '1000045' ,'Coco', 'Mundhwa', 'pune', '/images/club/cocomundhwa/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL);
+
+
+
+
+| 1000046 | Euriska             | Mundhwa             | pune | /images/club/euriskamundhwa/euriskamundhwa.jpg 
+                          | /video/assets/euriskamundhwa.mp4              | 18.537614, 73.908647 | 5.0    | 50        | no         
+
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100euriskamundhwa', 'Friday Night', '24/May/2019', '1000046' ,'Euriska', 'Mundhwa', 'pune', '/images/club/euriskamundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL),	
+('101euriskamundhwa', 'Electrology Saturdays', '25/May/2019', '1000046' ,'Euriska', 'Mundhwa', 'pune', '/images/club/euriskamundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL),	
+('102euriskamundhwa', 'Santorini Afterglow', '26/May/2019', '1000046' ,'Euriska', 'Mundhwa', 'pune', '/images/club/euriskamundhwa/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.538862, 73.906769' , 'guestlist', NULL, NULL);	
+
+
+
+
+| 1000047 | Lord Of The Drinks  | Kalyani Nagar       | pune | /images/club/lordofthedrinkskalyaninagar/lordofthedrinkskalyaninagar.jpg |
+ /video/assets/lordofthedrinkskalyaninagar.mp4 | 18.545783, 73.905748 | 5.0    | 50        | no        
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100lordofthedrinkskalyani', 'Pout Night', '22/May/2019', '1000047' ,'Lord Of The Drinks', 'Kalyani Nagar', 'pune', '/images/club/lordofthedrinkskalyaninagar/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.545783, 73.905748' , 'guestlist', NULL, NULL),	
+('101lordofthedrinkskalyani', 'Retro Revival', '24/May/2019', '1000047' ,'Lord Of The Drinks', 'Kalyani Nagar', 'pune', '/images/club/lordofthedrinkskalyaninagar/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.545783, 73.905748' , 'guestlist', NULL, NULL),	
+('102lordofthedrinkskalyani', 'Sunday Unplugged', '26/May/2019', '1000047' ,'Lord Of The Drinks', 'Kalyani Nagar', 'pune', '/images/club/lordofthedrinkskalyaninagar/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.545783, 73.905748' , 'guestlist', NULL, NULL),	
+('103lordofthedrinkskalyani', 'Page 3 Bollywood Night', '25/May/2019', '1000047' ,'Lord Of The Drinks', 'Kalyani Nagar', 'pune', '/images/club/lordofthedrinkskalyaninagar/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.545783, 73.905748' , 'guestlist', NULL, NULL);	
+
+	
+
+
+| 1000048 | Mineority By Saby   | Kalyani Nagar       | pune | /images/club/mineoritysabykalyaninagar/mineoritysabykalyaninagar.jpg     
+| /video/assets/mineoritysabykalyaninagar.mp4   | 18.546407, 73.904208 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100mineoritysabykalyani', 'Pout Night', '24/May/2019', '1000048' ,'Mineority By Saby', 'Kalyani Nagar', 'pune', '/images/club/mineoritysabykalyaninagar/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.546407, 73.904208' , 'guestlist', NULL, NULL);	
+
+
+
+| 1000049 | Unwind              | Koregaon Park       | pune | /images/club/unwindkoregaonpark/unwindkoregaonpark.jpg                   
+| /video/assets/unwindkoregaonpark.mp4          | 18.539189, 73.912802 | 5.0    | 50        | no       
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100unwindkoregaonpark', 'Ladies Night', '22/May/2019', '1000049' ,'Unwind', 'Koregaon Park', 'pune', '/images/club/unwindkoregaonpark/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539189, 73.912802' , 'guestlist', NULL, NULL),	
+('101unwindkoregaonpark', 'Wicked Thursday', '23/May/2019', '1000049' ,'Unwind', 'Koregaon Park', 'pune', '/images/club/unwindkoregaonpark/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539189, 73.912802' , 'guestlist', NULL, NULL),	
+('102unwindkoregaonpark', 'Friday Fiesta', '24/May/2019', '1000049' ,'Unwind', 'Koregaon Park', 'pune', '/images/club/unwindkoregaonpark/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539189, 73.912802' , 'guestlist', NULL, NULL),	
+('103unwindkoregaonpark', 'Unwind Saturday', '25/May/2019', '1000049' ,'Unwind', 'Koregaon Park', 'pune', '/images/club/unwindkoregaonpark/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539189, 73.912802' , 'guestlist', NULL, NULL);	
+
+
+	
+| 1000050 | The Urban Foundry   | Kalyani Nagar       | pune | /images/club/theurbanfoundrykalyaninagar/theurbanfoundrykalyaninagar.jpg | 
+/video/assets/theurbanfoundrykalyaninagar.mp4 | 18.545155, 73.911115 | 5.0    | 50        | no        
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100theurbanfoundrykalyani', 'Live Wire Friday', '24/May/2019', '1000050' ,'The Urban Foundry', 'Kalyani Nagar', 'pune', '/images/club/theurbanfoundrykalyaninagar/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.545155, 73.911115' , 'guestlist', NULL, NULL),	
+('101theurbanfoundrykalyani', 'Saturday Scenes', '25/May/2019', '1000050' ,'The Urban Foundry', 'Kalyani Nagar', 'pune', '/images/club/theurbanfoundrykalyaninagar/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.545155, 73.911115' , 'guestlist', NULL, NULL);	
+
+
+
+| 1000051 | Thikana             | Baner               | pune | /images/club/thikanabaner/thikanabaner.jpg                               
+| /video/assets/thikanabaner.mp4                | 18.554939, 73.798466 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100thikanabaner', 'Models Night', '22/May/2019', '1000051' ,'Thikana', 'Baner', 'pune', '/images/club/thikanabaner/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554939, 73.798466' , 'guestlist', NULL, NULL),	
+('101thikanabaner', 'Boys Night', '23/May/2019', '1000051' ,'Thikana', 'Baner', 'pune', '/images/club/thikanabaner/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554939, 73.798466' , 'guestlist', NULL, NULL),	
+('102thikanabaner', 'Acoustic Raat', '24/May/2019', '1000051' ,'Thikana', 'Baner', 'pune', '/images/club/thikanabaner/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554939, 73.798466' , 'guestlist', NULL, NULL),	
+('103thikanabaner', 'Desi Night', '25/May/2019', '1000051' ,'Thikana', 'Baner', 'pune', '/images/club/thikanabaner/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554939, 73.798466' , 'guestlist', NULL, NULL);	
+
+	
+ 
+
+| 1000052 | Social              | Viman Nagar         | pune | /images/club/socialvimannagar/socialvimannagar.jpg                       
+| /video/assets/socialvimannagar.mp4            | 18.562696, 73.916987 | 5.0    | 50        | no       	
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100socialvimannagar', 'Third Ei', '25/May/2019', '1000052' ,'Social', 'Viman Nagar', 'pune', '/images/club/socialvimannagar/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554939, 73.798466' , 'guestlist', NULL, NULL),	
+('101socialvimannagar', 'ATKT Spotlight', '24/May/2019', '1000052' ,'Social', 'Viman Nagar', 'pune', '/images/club/socialvimannagar/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554939, 73.798466' , 'guestlist', NULL, NULL);	
+
+
+
+| 1000053 | BMG Unplugged       | Hadapsar            | pune | /images/club/bmgunpluggedhadapsar/bmgunpluggedhadapsar.jpg               
+| /video/assets/bmgunpluggedhadapsar.mp4        | 18.519090, 73.934770 | 5.0    | 50        | no        
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100bmgunpluggedhadapsar', 'Harmony', '22/May/2019', '1000053' ,'BMG Unplugged', 'Hadapsar', 'pune', '/images/club/bmgunpluggedhadapsar/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.519090, 73.934770' , 'guestlist', NULL, NULL),	
+('101bmgunpluggedhadapsar', 'Soul Harmony', '24/May/2019', '1000053' ,'BMG Unplugged', 'Hadapsar', 'pune', '/images/club/bmgunpluggedhadapsar/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.519090, 73.934770' , 'guestlist', NULL, NULL),
+('102bmgunpluggedhadapsar', 'Melody', '24/May/2019', '1000053' ,'BMG Unplugged', 'Hadapsar', 'pune', '/images/club/bmgunpluggedhadapsar/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.519090, 73.934770' , 'guestlist', NULL, NULL);		
+
+
+
+
+| 1000054 | Thikana             | FC Road             | pune | /images/club/thikanafcroad/thikanafcroad.jpg                             
+| /video/assets/thikanafcroad.mp4               | 18.524947, 73.842119 | 5.0    | 50        | no   
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100thikanafcroad', 'Models Night', '22/May/2019', '1000054' ,'Thikana', 'FC Road', 'pune', '/images/club/thikanafcroad/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.524947, 73.842119' , 'guestlist', NULL, NULL),	
+('101thikanafcroad', 'Boys Night', '23/May/2019', '1000054' ,'Thikana', 'FC Road', 'pune', '/images/club/thikanafcroad/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.524947, 73.842119' , 'guestlist', NULL, NULL),
+('102thikanafcroad', 'Acoustic Raat', '24/May/2019', '1000054' ,'Thikana', 'FC Road', 'pune', '/images/club/thikanafcroad/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.524947, 73.842119' , 'guestlist', NULL, NULL),	
+('103thikanafcroad', 'Desi Night', '25/May/2019', '1000054' ,'Thikana', 'FC Road', 'pune', '/images/club/thikanafcroad/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.524947, 73.842119' , 'guestlist', NULL, NULL);
+
+
+
+
+| 1000055 | Thikana             | Hinjawadi           | pune | /images/club/thikanahinjawadi/thikanahinjawadi.jpg                       
+| /video/assets/thikanahinjawadi.mp4            | 18.591271, 73.753156 | 5.0    | 50        | no         
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100thikanahinjawadi', 'Models Night', '21/May/2019', '1000055' ,'Thikana', 'Hinjawadi', 'pune', '/images/club/thikanahinjawadi/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.591271, 73.753156' , 'guestlist', NULL, NULL),
+('101thikanahinjawadi', 'Models Night', '22/May/2019', '1000055' ,'Thikana', 'Hinjawadi', 'pune', '/images/club/thikanahinjawadi/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.591271, 73.753156' , 'guestlist', NULL, NULL),
+('102thikanahinjawadi', 'Boys Night', '23/May/2019', '1000055' ,'Thikana', 'Hinjawadi', 'pune', '/images/club/thikanahinjawadi/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.591271, 73.753156' , 'guestlist', NULL, NULL),
+
+('103thikanahinjawadi', 'Acoustic Raat', '24/May/2019', '1000055' ,'Thikana', 'Hinjawadi', 'pune', '/images/club/thikanahinjawadi/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.591271, 73.753156' , 'guestlist', NULL, NULL),
+	
+('104thikanahinjawadi', 'Desi Night', '26/May/2019', '1000055' ,'Thikana', 'Hinjawadi', 'pune', '/images/club/thikanahinjawadi/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.591271, 73.753156' , 'guestlist', NULL, NULL);
+
+
+
+
+| 1000056 | Hard Rock Cafe      | Mundhwa             | pune | /images/club/hardrockcafemundhwa/thikanahinjawadi.jpg                    
+| /video/assets/hardrockcafemundhwa.mp4         | 18.539285, 73.912775 | 5.0    | 50        | no       
+
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100hardrockcafemundhwa', 'After Work Party', '21/May/2019', '1000056' ,'Hard Rock Cafe', 'Mundhwa', 'pune', '/images/club/hardrockcafemundhwa/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539285, 73.912775' , 'guestlist', NULL, NULL),	
+('101hardrockcafemundhwa', 'Back To 90', '24/May/2019', '1000056' ,'Hard Rock Cafe', 'Mundhwa', 'pune', '/images/club/hardrockcafemundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539285, 73.912775' , 'guestlist', NULL, NULL),	
+('102hardrockcafemundhwa', 'Pop Busters', '25/May/2019', '1000056' ,'Hard Rock Cafe', 'Mundhwa', 'pune', '/images/club/hardrockcafemundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.539285, 73.912775' , 'guestlist', NULL, NULL);
+
+	
+| 1000057 | Mezza 9             | Hinjawadi           | pune | /images/club/mezzahinjawadi/thikanahinjawadi.jpg                         
+| /video/assets/mezzahinjawadi.mp4              | 18.594523, 73.734791 | 5.0    | 50        | no         |
+	
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100mezzahinjawadi', 'Acoustic Night', '22/May/2019', '1000057' ,'Mezza 9', 'Hinjawadi', 'pune', '/images/club/mezzahinjawadi/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.594523, 73.734791' , 'guestlist', NULL, NULL);	
+
+
+
+| 1000058 | Plunge              | Koregaon Park       | pune | /images/club/plungekoregaonpark/plungekoregaonpark.jpg                  
+ | /video/assets/plungekoregaonpark.mp4          | 18.536853, 73.910224 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100plungekoregaonpark', 'Neon Pillow Fight', '22/May/2019', '1000058' ,'Plunge', 'Koregaon Park', 'pune', '/images/club/plungekoregaonpark/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536853, 73.910224' , 'guestlist', NULL, NULL),
+('101plungekoregaonpark', 'House music', '24/May/2019', '1000058' ,'Plunge', 'Koregaon Park', 'pune', '/images/club/plungekoregaonpark/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536853, 73.910224' , 'guestlist', NULL, NULL),
+('102plungekoregaonpark', 'Live String', '25/May/2019', '1000058' ,'Plunge', 'Koregaon Park', 'pune', '/images/club/plungekoregaonpark/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536853, 73.910224' , 'guestlist', NULL, NULL),
+('103plungekoregaonpark', 'Saturday Night', '26/May/2019', '1000058' ,'Plunge', 'Koregaon Park', 'pune', '/images/club/plungekoregaonpark/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.536853, 73.910224' , 'guestlist', NULL, NULL);
+
+
+
+
+| 1000059 | True Tramm Trunk    | Aundh               | pune | /images/club/truetrammtrunkaundh/truetrammtrunkaundh.jpg                 
+| /video/assets/truetrammtrunkaundh.mp4         | 18.554057, 73.806914 | 5.0    | 50      
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100truetrammtrunkaundh', 'Latin Night', '22/May/2019', '1000059' ,'True Tramm Trunk', 'Aundh', 'pune', '/images/club/truetrammtrunkaundh/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554057, 73.806914' , 'guestlist', NULL, NULL),
+('101truetrammtrunkaundh', 'Ladies Night', '23/May/2019', '1000059' ,'True Tramm Trunk', 'Aundh', 'pune', '/images/club/truetrammtrunkaundh/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554057, 73.806914' , 'guestlist', NULL, NULL),
+('102truetrammtrunkaundh', 'Bollywood Night', '24/May/2019', '1000059' ,'True Tramm Trunk', 'Aundh', 'pune', '/images/club/truetrammtrunkaundh/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554057, 73.806914' , 'guestlist', NULL, NULL),
+('103truetrammtrunkaundh', 'DJ Night', '24/May/2019', '1000059' ,'True Tramm Trunk', 'Aundh', 'pune', '/images/club/truetrammtrunkaundh/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.554057, 73.806914' , 'guestlist', NULL, NULL);
+
+
+
+
+
+
+
+
+
+| 1000060 | Backstage           | Viman Nagar         | pune | /images/club/backstagevimannagar/backstagevimannagar.jpg                 
+| /video/assets/backstagevimannagar.mp4         | 18.562972, 73.917785 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100backstagevimannagar', 'Ladies Night', '22/May/2019', '1000060' ,'Backstage', 'Viman Nagar', 'pune', '/images/club/backstagevimannagar/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.562972, 73.917785' , 'guestlist', NULL, NULL),
+('101backstagevimannagar', 'Dance Party', '24/May/2019', '1000060' ,'Backstage', 'Viman Nagar', 'pune', '/images/club/backstagevimannagar/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.562972, 73.917785' , 'guestlist', NULL, NULL),
+('102backstagevimannagar', 'Funky Friday', '24/May/2019', '1000060' ,'Backstage', 'Viman Nagar', 'pune', '/images/club/backstagevimannagar/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.562972, 73.917785' , 'guestlist', NULL, NULL),
+('103backstagevimannagar', 'Punjabi Affair', '25/May/2019', '1000060' ,'Backstage', 'Viman Nagar', 'pune', '/images/club/backstagevimannagar/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.562972, 73.917785' , 'guestlist', NULL, NULL);
+
+
+
+| 1000061 | Oak                 | Mundhwa             | pune | /images/club/oakmundhwa/oakmundhwa.jpg                                   
+| /video/assets/oakmundhwa.mp4                  | 18.532606, 73.910292 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100oakmundhwa', 'Bar Tuesday', '21/May/2019', '1000061' ,'Oak', 'Mundhwa', 'pune', '/images/club/oakmundhwa/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532606, 73.910292' , 'guestlist', NULL, NULL),
+('101oakmundhwa', 'Ladies First', '22/May/2019', '1000061' ,'Oak', 'Mundhwa', 'pune', '/images/club/oakmundhwa/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532606, 73.910292' , 'guestlist', NULL, NULL),
+('102oakmundhwa', 'Social Night', '23/May/2019', '1000061' ,'Oak', 'Mundhwa', 'pune', '/images/club/oakmundhwa/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532606, 73.910292' , 'guestlist', NULL, NULL),
+('103oakmundhwa', 'Red Alert', '24/May/2019', '1000061' ,'Oak', 'Mundhwa', 'pune', '/images/club/oakmundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532606, 73.910292' , 'guestlist', NULL, NULL),
+('104oakmundhwa', 'Ultimate Saturday', '25/May/2019', '1000061' ,'Oak', 'Mundhwa', 'pune', '/images/club/oakmundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.532606, 73.910292' , 'guestlist', NULL, NULL);
+
+
+
+| 1000062 | 1 Lounge            | Mundhwa             | pune | /images/club/oneloungemundhwa/oneloungemundhwa.jpg                       
+| /video/assets/oneloungemundhwa.mp4            | 18.536645, 73.910766 | 5.0    | 50        | no        
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100oneloungemundhwa', 'Hip Hop', '21/May/2019', '1000062' ,'1 Lounge', 'Mundhwa', 'pune', '/images/club/oneloungemundhwa/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('101oneloungemundhwa', 'Ladies Night', '22/May/2019', '1000062' ,'1 Lounge', 'Mundhwa', 'pune', '/images/club/oneloungemundhwa/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('102oneloungemundhwa', 'Shuffle Feat', '24/May/2019', '1000062' ,'1 Lounge', 'Mundhwa', 'pune', '/images/club/oneloungemundhwa/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('103oneloungemundhwa', 'Crazy Saturday', '25/May/2019', '1000062' ,'1 Lounge', 'Mundhwa', 'pune', '/images/club/oneloungemundhwa/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('104oneloungemundhwa', 'Sundowner', '26/May/2019', '1000062' ,'1 Lounge', 'Mundhwa', 'pune', '/images/club/oneloungemundhwa/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL);
+
+
+| 1000063 | Gabriella           | NIBM Road           | pune | /images/club/gabriellanibm/gabriellanibm.jpg                             
+| /video/assets/gabriellanibm.mp4               | 18.466365, 73.908554 | 5.0    | 50        | no         
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100gabriellanibm', 'Moody Monday', '20/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('101gabriellanibm', 'Trickey Tuesday', '21/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('102gabriellanibm', 'Ladies Night', '21/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('103gabriellanibm', 'Thirsty Thursday', '21/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('104gabriellanibm', 'Hip Hop', '24/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('105gabriellanibm', 'Balloon Drop Party', '25/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL),
+('106gabriellanibm', 'Hip Hop', '26/May/2019', '1000063' ,'Gabriella', 'NIBM Road', 'pune', '/images/club/gabriellanibm/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '118.536645, 73.910766' , 'guestlist', NULL, NULL);
+
+
+
+| 1000064 | HUB                 | Hinjawadi Road      | pune | /images/club/hubhinjawadi/hubhinjawadi.jpg                               
+| /video/assets/hubhinjawadi.mp4                | 18.592929, 73.744938 | 5.0    | 50        | no       
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100hubhinjawadi', 'Moody Monday', '20/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL),
+('101hubhinjawadi', 'Talli Tuesday', '21/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL),
+('102hubhinjawadi', 'Hip Hop', '22/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL),
+('103hubhinjawadi', 'Hip Hop', '23/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL),
+('104hubhinjawadi', 'Fusion Friday', '24/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL),
+('105hubhinjawadi', 'Club Night', '25/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL),
+('106hubhinjawadi', 'Sensational Sunday', '26/May/2019', '1000064' ,'HUB', 'Hinjawadi Road', 'pune', '/images/club/hubhinjawadi/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.592929, 73.744938' , 'guestlist', NULL, NULL);
+
+
+
+| 1000065 | Mix36               | Mundhwa             | pune | /images/club/mix36mundhwa/mix36mundhwa.jpg                               
+| /video/assets/mix36mundhwa.mp4                | 18.540088, 73.906066 | 5.0    | 50        | no         |
+
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100hubhinjawadi', 'Moody Monday', '20/May/2019', '1000065' ,'Mix36', 'Mundhwa', 'pune', '/images/club/mix36mundhwa/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.540088, 73.906066' , 'guestlist', NULL, NULL);
+
+
+
+
+
+
+
+
+************** EVENT IMAGE FILE TRANSFER COMMANDS ****************
+
+
+scp -pr /Users/vichi/clubImagesPune/event/barazabarsyerawada/* root@199.180.133.121:/root/home/tipsy/images/club/barazabarsyerawada/event/ 
+
+scp -pr /Users/vichi/clubImagesPune/event/miamisenapatibapat/* root@199.180.133.121:/root/home/tipsy/images/club/miamisenapatibapat/event/ 
+
+scp /Users/vichi/clubImagesPune/event/localmundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/localmundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/thedailyalldaykoregaonpark/* root@199.180.133.121:/root/home/tipsy/images/club/thedailyalldaykoregaonpark/event/  ----no
+
+scp /Users/vichi/clubImagesPune/event/penthouzemundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/penthouzemundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/cocomundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/cocomundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/euriskamundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/euriskamundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/lordofthedrinkskalyaninagar/* root@199.180.133.121:/root/home/tipsy/images/club/lordofthedrinkskalyaninagar/event/ 
+
+scp /Users/vichi/clubImagesPune/event/mineoritysabykalyaninagar/* root@199.180.133.121:/root/home/tipsy/images/club/mineoritysabykalyaninagar/event/ 
+
+scp /Users/vichi/clubImagesPune/event/unwindkoregaonpark/* root@199.180.133.121:/root/home/tipsy/images/club/unwindkoregaonpark/event/  
+
+scp /Users/vichi/clubImagesPune/event/theurbanfoundrykalyaninagar/* root@199.180.133.121:/root/home/tipsy/images/club/theurbanfoundrykalyaninagar/event/ 
+
+scp /Users/vichi/clubImagesPune/event/thikanabaner/* root@199.180.133.121:/root/home/tipsy/images/club/thikanabaner/event/ 
+
+scp /Users/vichi/clubImagesPune/event/socialvimannagar/* root@199.180.133.121:/root/home/tipsy/images/club/socialvimannagar/event/ 
+
+scp /Users/vichi/clubImagesPune/event/bmgunpluggedhadapsar/* root@199.180.133.121:/root/home/tipsy/images/club/bmgunpluggedhadapsar/event/ 
+
+scp /Users/vichi/clubImagesPune/event/thikanafcroad/* root@199.180.133.121:/root/home/tipsy/images/club/thikanafcroad/event/ 
+
+scp /Users/vichi/clubImagesPune/event/thikanahinjawadi/* root@199.180.133.121:/root/home/tipsy/images/club/thikanahinjawadi/event/ 
+
+scp /Users/vichi/clubImagesPune/event/hardrockcafemundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/hardrockcafemundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/mezzahinjawadi/* root@199.180.133.121:/root/home/tipsy/images/club/mezzahinjawadi/event/  ---- no
+
+scp /Users/vichi/clubImagesPune/event/plungekoregaonpark/* root@199.180.133.121:/root/home/tipsy/images/club/plungekoregaonpark/event/ 
+
+scp /Users/vichi/clubImagesPune/event/truetrammtrunkaundh/* root@199.180.133.121:/root/home/tipsy/images/club/truetrammtrunkaundh/event/ 
+
+scp /Users/vichi/clubImagesPune/event/backstagevimannagar/* root@199.180.133.121:/root/home/tipsy/images/club/backstagevimannagar/event/ 
+
+scp /Users/vichi/clubImagesPune/event/oakmundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/oakmundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/oneloungemundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/oneloungemundhwa/event/ 
+
+scp /Users/vichi/clubImagesPune/event/gabriellanibm/* root@199.180.133.121:/root/home/tipsy/images/club/gabriellanibm/event/ 
+
+scp /Users/vichi/clubImagesPune/event/hubhinjawadi/* root@199.180.133.121:/root/home/tipsy/images/club/hubhinjawadi/event/ 
+
+scp /Users/vichi/clubImagesPune/event/mix36mundhwa/* root@199.180.133.121:/root/home/tipsy/images/club/mix36mundhwa/event/  ---no
+
+scp /Users/vichi/clubImagesPune/event/teddyboybaner/* root@199.180.133.121:/root/home/tipsy/images/club/teddyboybaner/event/ --no\
+
+scp /Users/vichi/clubImagesPune/event/publiqpunewakad/* root@199.180.133.121:/root/home/tipsy/images/club/publiqpunewakad/event/ 
+
+scp /Users/vichi/clubImagesPune/event/agentjackkoregaonpark/* root@199.180.133.121:/root/home/tipsy/images/club/agentjackkoregaonpark/event/ 
+
+scp /Users/vichi/clubImagesPune/event/farzicafekalyaninagar/* root@199.180.133.121:/root/home/tipsy/images/club/farzicafekalyaninagar/event/ 
+
+
+
+
+
+
+
+
+/images/club/hardrockcafemundhwa/hardrockcafemundhwa.jpg
+
+
+update clubs set imageurl = '/images/club/hardrockcafemundhwa/mezzahinjawadi.jpg' where clubid = '1000057';
+
+
+
+***********************
+

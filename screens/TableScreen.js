@@ -95,7 +95,7 @@ export default class TableScreen extends React.Component {
         response = response.data;
        console.log("Table data from response  : " + JSON.stringify(response));   
       //  Object.keys(response).map((keyName, keyIndex) =>{ 
-      //   // use keyName to get current key's name
+      //   // use keyName to get current key's name 
       //   let tableid = response[keyName].tableid;
       //   console.log("tableid "+tableid);
       //   // console.log("data : " + response[keyName].type);  

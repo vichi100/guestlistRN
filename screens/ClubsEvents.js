@@ -29,6 +29,7 @@ import GuestListScreen from "./GuestListScreen";
 import BookingScreen from "./BookingScreen";
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import { Constants, Location, Permissions } from 'expo';
 
 var mydatasource = [];
 var isDataChanged = false;
@@ -50,13 +51,27 @@ export default class ClubsEvents extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      dataSource: []
+      dataSource: [],
+      latlong: null,
     };
   }
 
-  componentDidMount() {
-    var city = global.city;
-    return axios.get(SERVER_URL+"eventsDetails?city="+city)
+  async componentDidMount() {
+    
+
+
+    var city = global.city;  
+
+    // var eventsDetailsURL = null;
+    // if(global.userLatlong == null){
+    //   eventsDetailsURL = SERVER_URL+"eventsDetails?city="+city;
+    // }else{
+    //   eventsDetailsURL = SERVER_URL+"eventsDetails?city="+city+"&latlong="+global.userLatlong
+    // }
+
+    var eventsDetailsURL = eventsDetailsURL = SERVER_URL+"eventsDetails?city="+city+"&latlong="+global.userLatlong
+    // return axios.get(SERVER_URL+"eventsDetails?city="+city+"&latlong="+userLatlong)
+    return axios.get(eventsDetailsURL)
       //.then(response => response.json())
       .then(response => {
         console.log("ClubsEvents: response data from server: " + response.data);

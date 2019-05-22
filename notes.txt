@@ -25,6 +25,12 @@ Start image server:
 
 nohup node /root/home/guestlistnodeserver.js &
 
+ps -aef | grep node
+
+Start apache server
+
+    service httpd restart
+
 *********TO START NODE SERVER WHICH CONNECT TO DB *********
 nohup node server1.js
 forever start server1.js

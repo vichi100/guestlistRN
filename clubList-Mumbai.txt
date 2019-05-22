@@ -1,0 +1,1034 @@
+
+
+
+
+INSERT INTO clubs (clubname,city, location, imageurl, videourl, latlong, rating, followers, registered)
+     VALUES
+
+( 'Mitron','mumbai','Andheri East', '/images/club/mitronandherieast/mitronandherieast.jpg', '/video/assets/mitronandherieast.mp4', 
+    '19.102903, 72.888728' ,'5.0', '50', 'no'),
+( 'Cult','mumbai','Andheri East', '/images/club/cultandherieast/cultandherieast.jpg', '/video/assets/cultandherieast.mp4', 
+    '19.102903, 72.888728' ,'5.0', '50', 'no');
+---------- inserted --------
+
+( 'Drinkery 51','mumbai','Bandra Kurla Complex', '/images/club/Drinkerybkc/Drinkerybkc.jpg', '/video/assets/Drinkerybkc.mp4', 
+    '19.067786, 72.867209' ,'5.0', '50', 'no'),
+( 'Hard Rock Cafe','mumbai','Andheri West', '/images/club/hardrockcafeandheriwest/hardrockcafeandheriwest.jpg', '/video/assets/hardrockcafeandheriwest.mp4', 
+    '19.136666, 72.835348' ,'5.0', '50', 'no'),
+( 'Satellite','mumbai','Andheri West', '/images/club/satelliteandheriwest/satelliteandheriwest.jpg', '/video/assets/satelliteandheriwest.mp4', 
+    '19.132358, 72.834653' ,'5.0', '50', 'no'),
+( 'Lord Of The Drink','mumbai','Andheri West', '/images/club/lordofthedrinkandheriwest/lordofthedrinkandheriwest.jpg', '/video/assets/satelliteandheriwest.mp4', 
+    '19.132358, 72.834653' ,'5.0', '50', 'no'),
+( 'Lord Of The Drinks','mumbai','Andheri West', '/images/club/lordofthedrinksandheriwest/lordofthedrinkandheriwest.jpg', '/video/assets/satelliteandheriwest.mp4', 
+    '19.140493, 72.833249' ,'5.0', '50', 'no'),
+( 'Lord Of The Drinks','mumbai','Lower Parel', '/images/club/lordofthedrinkslowerparel/lordofthedrinkslowerparel.jpg', '/video/assets/lordofthedrinkslowerparel.mp4', 
+    '19.076343, 72.877660' ,'5.0', '50', 'no'),
+( 'True Tramm Trunk','mumbai','Juhu', '/images/club/truetrammtrunkjuhu/truetrammtrunkjuhu.jpg', '/video/assets/truetrammtrunkjuhu.mp4', 
+    '19.103604, 72.831387' ,'5.0', '50', 'no'),
+( 'True Tramm Trunk','mumbai','BKC', '/images/club/truetrammtrunkbkc/truetrammtrunkbkc.jpg', '/video/assets/truetrammtrunkbkc.mp4', 
+    '19.073025, 72.871156' ,'5.0', '50', 'no'),
+( 'True Tramm Trunk','mumbai','Powai', '/images/club/truetrammtrunkpowai/truetrammtrunkpowai.jpg', '/video/assets/truetrammtrunkpowai.mp4', 
+    '19.073025, 72.871156' ,'5.0', '50', 'no'),
+( 'Hitchki','mumbai','BKC', '/images/club/hitchkibkc/hitchkibkc.jpg', '/video/assets/hitchkibkc.mp4', 
+    '19.069882, 72.869827' ,'5.0', '50', 'no'),
+( 'Dive','mumbai','BKC', '/images/club/divebkc/divebkc.jpg', '/video/assets/divebkc.mp4', 
+    '19.072500, 72.870364' ,'5.0', '50', 'no'),
+( 'Hoppipola','mumbai','Khar west', '/images/club/hoppipolakharwest/hoppipolakharwest.jpg', '/video/assets/hoppipolakharwest.mp4', 
+    '19.068487, 72.837797' ,'5.0', '50', 'no'),
+( 'Hoppipola','mumbai','Powai', '/images/club/hoppipolapowai/hoppipolapowai.jpg', '/video/assets/hoppipolapowai.mp4', 
+    '19.119307, 72.911291' ,'5.0', '50', 'no');
+
+-------- inserted ----------     
+( 'OPA','mumbai','Sakinaka', '/images/club/opasakinaka/opasakinaka.jpg', '/video/assets/opasakinaka.mp4', 
+    '19.102856, 72.888733' ,'5.0', '50', 'no'),
+( 'RAASTA','mumbai','Khar West', '/images/club/raastakharwest/raastakharwest.jpg', '/video/assets/raastakharwest.mp4', 
+    '19.068523, 72.838003' ,'5.0', '50', 'no'),
+( 'Khar Social','mumbai','Khar West', '/images/club/socialkharwest/socialkharwest.jpg', '/video/assets/socialkharwest.mp4', 
+    '19.068574, 72.838200' ,'5.0', '50', 'no'),    
+( 'The Finch','mumbai','Powai', '/images/club/thefinchpowai/thefinchpowai.jpg', '/video/assets/thefinchpowai.mp4', 
+    '19.115298, 72.888952' ,'5.0', '50', 'no'),
+( 'Bombay Adda','mumbai','Santacruz West', '/images/club/bombayaddasantacruz/bombayaddasantacruz.jpg', '/video/assets/bombayaddasantacruz.mp4', 
+    '19.076249, 72.833846' ,'5.0', '50', 'no'),    
+( 'Escobar','mumbai','Bandra West', '/images/club/escobarbandrawest/escobarbandrawest.jpg', '/video/assets/escobarbandrawest.mp4', 
+    '19.076249, 72.833846' ,'5.0', '50', 'no'), 
+( 'The Little Easy','mumbai','Bandra West', '/images/club/thelittleeasybandrawest/thelittleeasybandrawest.jpg', '/video/assets/thelittleeasybandrawest.mp4', 
+    '19.060566, 72.836179' ,'5.0', '50', 'no'), 
+( 'JLWA','mumbai','Bandra West', '/images/club/jlwabandrawest/jlwabandrawest.jpg', '/video/assets/jlwabandrawest.mp4', 
+    '19.060354, 72.836302' ,'5.0', '50', 'no'), 
+( 'Arth','mumbai','Khar West', '/images/club/arthkharwest/arthkharwest.jpg', '/video/assets/arthkharwest.mp4', 
+    '19.068518, 72.831611' ,'5.0', '50', 'no'), 
+( 'Harrys','mumbai','Powai', '/images/club/harryspowai/harryspowai.jpg', '/video/assets/harryspowai.mp4', 
+    '19.117528, 72.909702' ,'5.0', '50', 'no'), 
+( 'RAdda','mumbai','Juhu', '/images/club/raddajuhu/raddajuhu.jpg', '/video/assets/raddajuhu.mp4', 
+    '19.109454, 72.825539' ,'5.0', '50', 'no'), 
+( 'Yeda Republic','mumbai','Juhu', '/images/club/yedarepublicjuhu/yedarepublicjuhu.jpg', '/video/assets/yedarepublicjuhu.mp4', 
+    '19.109454, 72.825539' ,'5.0', '50', 'no'),
+( 'Glocal Junction','mumbai','Andheri West', '/images/club/glocaljunctionandheriwest/glocaljunctionandheriwest.jpg', '/video/assets/glocaljunctionandheriwest.mp4', 
+    '19.138258, 72.832978' ,'5.0', '50', 'no'),
+( 'Bombay Cocktail Bar','mumbai','Andheri West', '/images/club/bombaycocktailbarandheriwest/bombaycocktailbarandheriwest.jpg', '/video/assets/bombaycocktailbarandheriwest.mp4', 
+    '19.139021, 72.833199' ,'5.0', '50', 'no'),
+( 'Matahaari','mumbai','Worli', '/images/club/matahaariworli/matahaariworli.jpg', '/video/assets/matahaariworli.mp4', 
+    '18.991251, 72.814375' ,'5.0', '50', 'no'),
+( 'Bombar','mumbai','Goregaon West', '/images/club/bombargoregaonwest/bombargoregaonwest.jpg', '/video/assets/bombargoregaonwest.mp4', 
+    '19.173872, 72.838817' ,'5.0', '50', 'no'),
+( 'The Lumber Bar','mumbai','CBD Belapur', '/images/club/thelumberbarcbdbelapur/thelumberbarcbdbelapur.jpg', '/video/assets/thelumberbarcbdbelapur.mp4', 
+    '19.010663, 73.037008' ,'5.0', '50', 'no'),
+( 'Coco Mansion','mumbai','Thane West', '/images/club/cocoMansionthanewest/cocoMansionthanewest.jpg', '/video/assets/cocoMansionthanewest.mp4', 
+    '19.274529, 72.961235' ,'5.0', '50', 'no');
+
+*********************************************
+
+OPA 
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100opag', 'Bottles & Models Night', '21/May/2019', '1000007' ,'OPA', 'Sakinaka', 'mumbai', '/images/club/opasakinaka/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102856, 72.888733' , 'guestlist', NULL, NULL),
+('101opag', 'Sufi Night', '23/May/2019', '1000007' ,'OPA', 'Sakinaka', 'mumbai', '/images/club/opasakinaka/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102856, 72.888733' , 'guestlist', NULL, NULL),
+('102opag', 'Fideles at Opa Bar', '26/May/2019', '1000007' ,'OPA', 'Sakinaka', 'mumbai', '/images/club/opasakinaka/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102856, 72.888733' , 'guestlist', NULL, NULL),
+('103opag', 'Opa! Sat Night', '24/May/2019', '1000007' ,'OPA', 'Sakinaka', 'mumbai', '/images/club/opasakinaka/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102856, 72.888733' , 'guestlist', NULL, NULL),
+('104opag', 'Opa! Fri Feat', '25/May/2019', '1000007' ,'OPA', 'Sakinaka', 'mumbai', '/images/club/opasakinaka/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102856, 72.888733' , 'guestlist', NULL, NULL);
+
+BCB
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100bcbg', 'BAR OK Please', '21/May/2019', '1000020' ,'Bombay Cocktail Bar', 'Andheri West', 'mumbai', '/images/club/bombaycocktailbarandheriwest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.139021, 72.833199' , 'guestlist', NULL, 'Booze Shower with drinks starting at just Rs 99'),
+('101bcbg', 'Wakanda Wednesday', '22/May/2019', '1000020' ,'Bombay Cocktail Bar', 'Andheri West', 'mumbai', '/images/club/bombaycocktailbarandheriwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.139021, 72.833199' , 'guestlist', NULL, NULL),
+('102bcbg', 'Dubai Desi Night', '24/May/2019', '1000020' ,'Bombay Cocktail Bar', 'Andheri West', 'mumbai', '/images/club/bombaycocktailbarandheriwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.139021, 72.833199' , 'guestlist', NULL, NULL),
+('103bcbg', 'Space Of Sound', '25/May/2019', '1000020' ,'Bombay Cocktail Bar', 'Andheri West', 'mumbai', '/images/club/bombaycocktailbarandheriwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.139021, 72.833199' , 'guestlist', NULL, NULL),	
+('104bcbg', 'Bollywood May-Hem', '31/May/2019', '1000020' ,'Bombay Cocktail Bar', 'Andheri West', 'mumbai', '/images/club/bombaycocktailbarandheriwest/event/31may2019.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.139021, 72.833199' , 'guestlist', NULL, NULL);	
+	
+YEDA REPUBLIC 
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100yedarepg', 'Keep On Movin', '20/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('101yedarepg', 'Taking Over Tuesdays', '21/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('102yedarepg', 'La Femme Models Night', '22/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),	
+('103yedarepg', 'Twerk It Thursday', '23/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),	
+('104yedarepg', 'Candy Party', '24/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('105yedarepg', 'URBN Saturday', '25/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),			
+('106yedarepg', 'Retro Night', '26/May/2019', '1000018' ,'Yeda Republic', 'Juhu', 'mumbai', '/images/club/yedarepublicjuhu/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL);	
+
+
+R-ADDA
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('104raddag', 'Retro Night', '26/May/2019', '1000017' ,'RAdda', 'Juhu', 'mumbai', '/images/club/raddajuhu/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('100raddag', 'Censored Saturday', '25/May/2019', '1000017' ,'RAdda', 'Juhu', 'mumbai', '/images/club/raddajuhu/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('101raddag', 'Mischief Friday', '24/May/2019', '1000017' ,'RAdda', 'Juhu', 'mumbai', '/images/club/raddajuhu/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('102raddag', 'Models night', '23/May/2019', '1000017' ,'RAdda', 'Juhu', 'mumbai', '/images/club/raddajuhu/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL),
+('103raddag', 'Unplugged Night', '22/May/2019', '1000017' ,'RAdda', 'Juhu', 'mumbai', '/images/club/raddajuhu/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.109454, 72.825539' , 'guestlist', NULL, NULL);
+
+
+TRUE TRAMN TRUNK Juhu
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100tttg', 'Live Music', '21/May/2019', '1000031' ,'True Tramm Trunk', 'Juhu', 'mumbai', '/images/club/truetrammtrunkjuhu/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.103604, 72.831387' , 'guestlist', NULL, NULL),
+('101tttg', 'Live Music', '24/May/2019', '1000031' ,'True Tramm Trunk', 'Juhu', 'mumbai', '/images/club/truetrammtrunkjuhu/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.103604, 72.831387' , 'guestlist', NULL, NULL);
+
+TRUE TRAMN TRUNK Powai
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100tttpg', 'Live Music', '20/May/2019', '1000033' ,'True Tramm Trunk', 'Powai', 'mumbai', '/images/club/truetrammtrunkpowai/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.073025, 72.871156' , 'guestlist', NULL, NULL),
+('101tttpg', 'Live Music', '21/May/2019', '1000033' ,'True Tramm Trunk', 'Powai', 'mumbai', '/images/club/truetrammtrunkpowai/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.073025, 72.871156' , 'guestlist', NULL, NULL),
+('102tttpg', 'Live Music', '23/May/2019', '1000033' ,'True Tramm Trunk', 'Powai', 'mumbai', '/images/club/truetrammtrunkpowai/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.073025, 72.871156' , 'guestlist', NULL, NULL),
+('103tttpg', 'Live Music', '24/May/2019', '1000033' ,'True Tramm Trunk', 'Powai', 'mumbai', '/images/club/truetrammtrunkpowai/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.073025, 72.871156' , 'guestlist', NULL, NULL);
+
+
+BOMBAY ADDA
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100bag', 'Leave Your Boyfriend Home', '19/May/2019', '1000011' ,'Bombay Adda', 'Santacruz West', 'mumbai', '/images/club/bombayaddasantacruz/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL),
+('101bag', 'Stebin Ben LIVE', '22/May/2019', '1000011' ,'Bombay Adda', 'Santacruz West', 'mumbai', '/images/club/bombayaddasantacruz/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL),
+('102bag', 'Saturday Affair', '25/May/2019', '1000011' ,'Bombay Adda', 'Santacruz West', 'mumbai', '/images/club/bombayaddasantacruz/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL),
+('103bag', 'I Love Friday', '24/May/2019', '1000011' ,'Bombay Adda', 'Santacruz West', 'mumbai', '/images/club/bombayaddasantacruz/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL),
+('104bag', 'Retro Bollywood', '23/May/2019', '1000011' ,'Bombay Adda', 'Santacruz West', 'mumbai', '/images/club/bombayaddasantacruz/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL);
+
+
+DRINKERY 51
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('101d51g', 'Bollywood Night', '25/May/2019', '1000025' ,'Drinkery 51', 'BKC', 'mumbai', '/images/club/Drinkerybkc/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.067786, 72.867209' , 'guestlist', NULL, NULL),
+('102d51g', 'Commercial Night', '24/May/2019', '1000025' ,'Drinkery 51', 'BKC', 'mumbai', '/images/club/Drinkerybkc/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.067786, 72.867209' , 'guestlist', NULL, NULL),
+('103d51g', 'Unplugged Night', '23/May/2019', '1000025' ,'Drinkery 51', 'BKC', 'mumbai', '/images/club/Drinkerybkc/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.067786, 72.867209' , 'guestlist', NULL, NULL),
+('104d51g', 'Ladies Night', '22/May/2019', '1000025' ,'Drinkery 51', 'BKC', 'mumbai', '/images/club/Drinkerybkc/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.067786, 72.867209' , 'guestlist', NULL, NULL);
+	
+
+
+MATAHARI
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('101matahg', 'Saturday Soiree', '25/May/2019', '1000021' ,'Matahaari', 'Worli', 'mumbai', '/images/club/matahaariworli/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.991251, 72.814375' , 'guestlist', NULL, NULL),
+('102matahg', 'Bombay Bar Night', '24/May/2019', '1000021' ,'Matahaari', 'Worli', 'mumbai', '/images/club/matahaariworli/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.991251, 72.814375' , 'guestlist', NULL, NULL),
+('103matahg', 'Commercial Night', '23/May/2019', '1000021' ,'Matahaari', 'Worli', 'mumbai', '/images/club/matahaariworli/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.991251, 72.814375' , 'guestlist', NULL, NULL),
+('104matahg', 'Bollywood Night', '22/May/2019', '1000021' ,'Matahaari', 'Worli', 'mumbai', '/images/club/matahaariworli/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '18.991251, 72.814375' , 'guestlist', NULL, NULL);
+
+
+RASTA
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('101rastag', 'Boombastic Monday', '20/May/2019', '1000008' ,'Raasta', 'Khar West', 'mumbai', '/images/club/raastakharwest/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068523, 72.838003' , 'guestlist', NULL, NULL),
+('102rastag', 'Boomerang Bachata Nights', '21/May/2019', '1000008' ,'Raasta', 'Khar West', 'mumbai', '/images/club/raastakharwest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068523, 72.838003' , 'guestlist', NULL, NULL),
+('103rastag', 'Boombox Wednesdays', '23/May/2019', '1000008' ,'Raasta', 'Khar West', 'mumbai', '/images/club/raastakharwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068523, 72.838003' , 'guestlist', NULL, NULL),
+('104rastag', 'Friday Night', '24/May/2019', '1000008' ,'Raasta', 'Khar West', 'mumbai', '/images/club/raastakharwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068523, 72.838003' , 'guestlist', NULL, NULL),
+('105rastag', 'Raasta Playhouse', '25/May/2019', '1000008' ,'Raasta', 'Khar West', 'mumbai', '/images/club/raastakharwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068523, 72.838003' , 'guestlist', NULL, NULL);
+
+
+
+Khar Social
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('101socialkharg', 'Karaoke Sunday', '26/May/2019', '1000009' ,'Khar Social', 'Khar West', 'mumbai', '/images/club/socialkharwest/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068574, 72.838200' , 'guestlist', NULL, NULL),
+('102socialkharg', 'The Grind', '25/May/2019', '1000009' ,'Khar Social', 'Khar West', 'mumbai', '/images/club/socialkharwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068574, 72.838200' , 'guestlist', NULL, NULL),
+('103socialkharg', 'Dance OK Please', '23/May/2019', '1000009' ,'Khar Social', 'Khar West', 'mumbai', '/images/club/socialkharwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068574, 72.838200' , 'guestlist', NULL, NULL),
+('104socialkharg', 'Dance OK Please', '23/May/2019', '1000009' ,'Khar Social', 'Khar West', 'mumbai', '/images/club/socialkharwest/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068574, 72.838200' , 'guestlist', NULL, NULL),
+('105socialkharg', 'Social Wednesdays', '22/May/2019', '1000009' ,'Khar Social', 'Khar West', 'mumbai', '/images/club/socialkharwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.068574, 72.838200' , 'guestlist', NULL, NULL);
+
+	
+	
+Escobar
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100escobarbandrawestg', 'Desi Night', '25/May/2019', '1000012' ,'Escobar', 'Bandra West', 'mumbai', '/images/club/escobarbandrawest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL),
+('101escobarbandrawestg', 'Bollywood Breakdown', '24/May/2019', '1000012' ,'Escobar', 'Bandra West', 'mumbai', '/images/club/escobarbandrawest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL),
+('102escobarbandrawestg', 'Spicy Latin', '21/May/2019', '1000012' ,'Escobar', 'Bandra West', 'mumbai', '/images/club/escobarbandrawest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076249, 72.833846' , 'guestlist', NULL, NULL);
+
+
+The Little Easy
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100littleeasyg', 'Karaoke Night', '21/May/2019', '1000013' ,'The Little Easy', 'Bandra West', 'mumbai', '/images/club/thelittleeasybandrawest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060566, 72.836179' , 'guestlist', NULL, NULL),
+('101littleeasyg', 'Bollywood Night', '22/May/2019', '1000013' ,'The Little Easy', 'Bandra West', 'mumbai', '/images/club/thelittleeasybandrawest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060566, 72.836179' , 'guestlist', NULL, NULL),
+('102littleeasyg', 'Unplugged Thursdays', '23/May/2019', '1000013' ,'The Little Easy', 'Bandra West', 'mumbai', '/images/club/thelittleeasybandrawest/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060566, 72.836179' , 'guestlist', NULL, NULL),	
+('103littleeasyg', 'Wicked Fridays', '24/May/2019', '1000013' ,'The Little Easy', 'Bandra West', 'mumbai', '/images/club/thelittleeasybandrawest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060566, 72.836179' , 'guestlist', NULL, NULL),	
+('104littleeasyg', 'Saturday Re-Loop', '25/May/2019', '1000013' ,'The Little Easy', 'Bandra West', 'mumbai', '/images/club/thelittleeasybandrawest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060566, 72.836179' , 'guestlist', NULL, NULL);		
+
+
+
+JLWA
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100jlwabandrag', 'Retro Night', '26/May/2019', '1000013' ,'JLWA', 'Bandra West', 'mumbai', '/images/club/jlwabandrawest/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060354, 72.836302' , 'guestlist', NULL, NULL),
+('101jlwabandrag', 'Hall Of Fame', '25/May/2019', '1000013' ,'JLWA', 'Bandra West', 'mumbai', '/images/club/jlwabandrawest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060354, 72.836302' , 'guestlist', NULL, NULL),
+('102jlwabandrag', 'Ocean Drive', '24/May/2019', '1000013' ,'JLWA', 'Bandra West', 'mumbai', '/images/club/jlwabandrawest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060354, 72.836302' , 'guestlist', NULL, NULL),
+('103jlwabandrag', 'Latin Night', '23/May/2019', '1000013' ,'JLWA', 'Bandra West', 'mumbai', '/images/club/jlwabandrawest/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060354, 72.836302' , 'guestlist', NULL, NULL),
+('104jlwabandrag', 'Unplugged Night', '22/May/2019', '1000013' ,'JLWA', 'Bandra West', 'mumbai', '/images/club/jlwabandrawest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060354, 72.836302' , 'guestlist', NULL, NULL),
+('105jlwabandrag', 'Wonder Women Night', '21/May/2019', '1000013' ,'JLWA', 'Bandra West', 'mumbai', '/images/club/jlwabandrawest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.060354, 72.836302' , 'guestlist', NULL, NULL);
+
+
+
+Glocal Junction Andheri West
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100glocaljunctionandherg', 'कlub कulture', '24/May/2019', '1000019' ,'Glocal Junction', 'Andheri West', 'mumbai', '/images/club/glocaljunctionandheriwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.138258, 72.832978' , 'guestlist', NULL, NULL),
+('101glocaljunctionandherg', 'कlub कulture', '25/May/2019', '1000019' ,'Glocal Junction', 'Andheri West', 'mumbai', '/images/club/glocaljunctionandheriwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.138258, 72.832978' , 'guestlist', NULL, NULL);
+
+	
+Glocal Junction Worli
+
+INSERT INTO clubs (clubname,city, location, imageurl, videourl, latlong, rating, followers, registered)
+VALUES
+( 'Glocal Junction','mumbai','Worli', '/images/club/glocaljunctionworli/glocaljunctionworli.jpg', '/video/assets/glocaljunctionworli.mp4', 
+    '18.989693, 72.815031' ,'5.0', '50', 'no'),	
+
+
+Bombar
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100bombarg', 'Live Night', '22/May/2019', '1000022' ,'Bombar', 'Goregaon West', 'mumbai', '/images/club/bombargoregaonwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.173872, 72.838817' , 'guestlist', NULL, NULL),
+('101bombarg', 'Gabru Night', '24/May/2019', '1000022' ,'Bombar', 'Goregaon West', 'mumbai', '/images/club/bombargoregaonwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.173872, 72.838817' , 'guestlist', NULL, NULL),	
+('102bombarg', 'Saturday Night', '25/May/2019', '1000022' ,'Bombar', 'Goregaon West', 'mumbai', '/images/club/bombargoregaonwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.173872, 72.838817' , 'guestlist', NULL, NULL);
+
+
+The Lumber Bar 
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100lumberbarg', 'Commercial Night', '25/May/2019', '1000023' ,'The Lumber Bar', 'CBD Belapur', 'mumbai', '/images/club/thelumberbarcbdbelapur/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.010663, 73.037008' , 'guestlist', NULL, NULL),
+('101lumberbarg', 'Desi Twist', '24/May/2019', '1000023' ,'The Lumber Bar', 'CBD Belapur', 'mumbai', '/images/club/thelumberbarcbdbelapur/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.010663, 73.037008' , 'guestlist', NULL, NULL);
+
+
+
+Coco Mansion
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100cocomansiong', 'RETRO NIGHT', '24/May/2019', '1000024' ,'Coco Mansion', 'Thane West', 'mumbai', '/images/club/cocoMansionthanewest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.274529, 72.961235' , 'guestlist', NULL, NULL),
+('101cocomansiong', 'Bollywood Saturday', '25/May/2019', '1000024' ,'Coco Mansion', 'Thane West', 'mumbai', '/images/club/cocoMansionthanewest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.274529, 72.961235' , 'guestlist', NULL, NULL);
+
+
+Satellite
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100satelliteng', 'Stellar Room', '26/May/2019', '1000027' ,'Satellite', 'Andheri West', 'mumbai', '/images/club/satelliteandheriwest/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.132358, 72.834653' , 'guestlist', NULL, NULL),
+('101satelliteng', 'Eclipse Saturday', '25/May/2019', '1000027' ,'Satellite', 'Andheri West', 'mumbai', '/images/club/satelliteandheriwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.132358, 72.834653' , 'guestlist', NULL, NULL),
+('102satelliteng', 'TGIF Night', '24/May/2019', '1000027' ,'Satellite', 'Andheri West', 'mumbai', '/images/club/satelliteandheriwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.132358, 72.834653' , 'guestlist', NULL, NULL),
+('103satelliteng', 'Drunk Duchess', '23/May/2019', '1000027' ,'Satellite', 'Andheri West', 'mumbai', '/images/club/satelliteandheriwest/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.132358, 72.834653' , 'guestlist', NULL, NULL),
+('104satelliteng', 'Street Night', '22/May/2019', '1000027' ,'Satellite', 'Andheri West', 'mumbai', '/images/club/satelliteandheriwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.132358, 72.834653' , 'guestlist', NULL, NULL);
+
+| 1000029 | Lord Of The Drinks  | Andheri West         | mumbai | /images/club/lordofthedrinksandheriwest/lordofthedrinkandheriwest.jpg      | /video/assets/satelliteandheriwest.mp4         | 19.140493, 72.833249 | 5.0    | 50        | no     
+	
+
+Lord Of The Drinks	Andheri
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100lodawg', 'Ladies Night', '21/May/2019', '1000029' ,' Lord Of The Drinks', 'Andheri West', 'mumbai', '/images/club/lordofthedrinksandheriwest/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.140493, 72.833249' , 'guestlist', NULL, NULL),
+('101lodawg', 'Commercial Night', '22/May/2019', '1000029' ,' Lord Of The Drinks', 'Andheri West', 'mumbai', '/images/club/lordofthedrinksandheriwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.140493, 72.833249' , 'guestlist', NULL, NULL),
+('102lodawg', 'Friday Night OUT', '24/May/2019', '1000029' ,' Lord Of The Drinks', 'Andheri West', 'mumbai', '/images/club/lordofthedrinksandheriwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.140493, 72.833249' , 'guestlist', NULL, NULL),
+('103lodawg', 'Saturday After Dark', '25/May/2019', '1000029' ,' Lord Of The Drinks', 'Andheri West', 'mumbai', '/images/club/lordofthedrinksandheriwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.140493, 72.833249' , 'guestlist', NULL, NULL),
+('104lodawg', 'Retro Night', '26/May/2019', '1000029' ,' Lord Of The Drinks', 'Andheri West', 'mumbai', '/images/club/lordofthedrinksandheriwest/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.140493, 72.833249' , 'guestlist', NULL, NULL);
+
+
+
+| 1000030 | Lord Of The Drinks  | Lower Parel          | mumbai | /images/club/lordofthedrinkslowerparel/lordofthedrinkslowerparel.jpg       | /video/assets/lordofthedrinkslowerparel.mp4    | 19.076343, 72.877660 | 5.0    | 50        | no         |
+
+
+Lord Of The Drinks  | Lower Parel
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100lodlpg', 'Funk Friday', '24/May/2019', '1000030' ,'Lord Of The Drinks', 'Lower Parel', 'mumbai', '/images/club/lordofthedrinkslowerparel/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076343, 72.877660' , 'guestlist', NULL, NULL),
+('101lodlpg', 'Saturday Sins', '25/May/2019', '1000030' ,'Lord Of The Drinks', 'Lower Parel', 'mumbai', '/images/club/lordofthedrinkslowerparel/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.076343, 72.877660' , 'guestlist', NULL, NULL);
+
+| 1000038 | Mitron              | Andheri East         | mumbai | /images/club/mitronandherieast/mitronandherieast.jpg                       | /video/assets/mitronandherieast.mp4            | 19.102903, 72.888728 | 5.0    | 50        | no     
+
+
+
+Mitron
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100mitrong', 'Mitron on Mondays', '20/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/monday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('101mitrong', 'Retro Night', '21/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('102mitrong', 'Love and Hip Hop', '22/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('103mitrong', 'Love Your Lipstick', '23/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('104mitrong', 'Tik Tok Party', '24/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('105mitrong', 'Love for Music', '25/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),	
+('106mitrong', 'Hungover sunday', '26/May/2019', '1000038' ,'Mitron', 'Andheri East', 'mumbai', '/images/club/mitronandherieast/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL);
+
+
+
+
+Cult
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100cultg', 'Tuesday Night', '21/May/2019', '1000039' ,'Cult', 'Andheri East', 'mumbai', '/images/club/cultandherieast/event/tuesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('101cultg', 'Bolly Molly Night', '22/May/2019', '1000039' ,'Cult', 'Andheri East', 'mumbai', '/images/club/cultandherieast/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('102cultg', 'MTV Swag Night', '23/May/2019', '1000039' ,'Cult', 'Andheri East', 'mumbai', '/images/club/cultandherieast/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),
+('103cultg', 'Friday Night', '24/May/2019', '1000039' ,'Cult', 'Andheri East', 'mumbai', '/images/club/cultandherieast/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),		
+('104cultg', 'Saturday Night', '25/May/2019', '1000039' ,'Cult', 'Andheri East', 'mumbai', '/images/club/cultandherieast/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL),	
+('105cultg', 'Sunday Night', '26/May/2019', '1000039' ,'Cult', 'Andheri East', 'mumbai', '/images/club/cultandherieast/event/sunday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.102903, 72.888728' , 'guestlist', NULL, NULL);		
+		
+
+
+Divebkc 
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100divebkcg', 'Bollywood Affair', '22/May/2019', '1000035' ,'Dive', 'BKC', 'mumbai', '/images/club/divebkc/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.072500, 72.870364' , 'guestlist', NULL, NULL),
+('101divebkcg', 'Girls Night Out', '23/May/2019', '1000035' ,'Dive', 'BKC', 'mumbai', '/images/club/divebkc/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.072500, 72.870364' , 'guestlist', NULL, NULL),
+('102divebkcg', 'Friday Night', '24/May/2019', '1000035' ,'Dive', 'BKC', 'mumbai', '/images/club/divebkc/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.072500, 72.870364' , 'guestlist', NULL, NULL),
+('103divebkcg', 'VDJ Night', '25/May/2019', '1000035' ,'Dive', 'BKC', 'mumbai', '/images/club/divebkc/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.072500, 72.870364' , 'guestlist', NULL, NULL);
+
+
+Hard Rock Cafe
+
+INSERT INTO events ( eventid, eventname , eventdate , clubid , clubname , location , city , imageurl , videourl , description , 
+music , djname , djid , prid , latlong , postedby, offerid, offertitile )
+VALUES
+('100hrcag', 'Karaoke Night', '22/May/2019', '1000026' ,'Hard Rock Cafe', 'Andheri West', 'mumbai', '/images/club/hardrockcafeandheriwest/event/wednesday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.136666, 72.835348' , 'guestlist', NULL, NULL),
+('101hrcag', 'Salsa Night', '22/May/2019', '1000026' ,'Hard Rock Cafe', 'Andheri West', 'mumbai', '/images/club/hardrockcafeandheriwest/event/thursday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.136666, 72.835348' , 'guestlist', NULL, NULL),
+('102hrcag', 'Fantastic Fridaze', '24/May/2019', '1000026' ,'Hard Rock Cafe', 'Andheri West', 'mumbai', '/images/club/hardrockcafeandheriwest/event/friday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.136666, 72.835348' , 'guestlist', NULL, NULL),
+('103hrcag', 'Pop Busters', '25/May/2019', '1000026' ,'Hard Rock Cafe', 'Andheri West', 'mumbai', '/images/club/hardrockcafeandheriwest/event/saturday.jpg', NULL, NULL, 
+'Retro Music', NULL, NULL, NULL, '19.136666, 72.835348' , 'guestlist', NULL, NULL);
+
+
+
+
+
+
+scp /Users/vichi/clubImages/event/hitchkibkc/* root@199.180.133.121:/root/home/tipsy/images/club/hitchkibkc/event/ -------no
+
+scp /Users/vichi/clubImages/event/divebkc/* root@199.180.133.121:/root/home/tipsy/images/club/divebkc/event/       ------ no
+
+scp /Users/vichi/clubImages/event/hoppipolakharwest/* root@199.180.133.121:/root/home/tipsy/images/club/hoppipolakharwest/event/  -----no
+
+scp /Users/vichi/clubImages/event/hoppipolapowai/* root@199.180.133.121:/root/home/tipsy/images/club/hoppipolapowai/event/   --no
+
+scp /Users/vichi/clubImages/event/arthkharwest/* root@199.180.133.121:/root/home/tipsy/images/club/arthkharwest/event/  -----no
+
+scp /Users/vichi/clubImages/event/harryspowai/* root@199.180.133.121:/root/home/tipsy/images/club/harryspowai/event/   --no
+
+scp /Users/vichi/clubImages/event/truetrammtrunkjuhu/* root@199.180.133.121:/root/home/tipsy/images/club/truetrammtrunkjuhu/event/ -- no
+
+scp /Users/vichi/clubImages/event/truetrammtrunkbkc/* root@199.180.133.121:/root/home/tipsy/images/club/truetrammtrunkbkc/event/  --- no
+
+ --- no
+
+scp /Users/vichi/clubImages/event/thefinchpowai/* root@199.180.133.121:/root/home/tipsy/images/club/thefinchpowai/event/     --no
+
+
+
+
+ #BKCKiHitchki #ThaneKiHitchki #PowaiKiHitchki #RcityKiHitchki
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+************** EVENT IMAGE FILE TRANSFER COMMANDS ****************
+
+scp /Users/vichi/clubImages/event/hardrockcafeandheriwest/* root@199.180.133.121:/root/home/tipsy/images/club/hardrockcafeandheriwest/event/ 
+
+scp /Users/vichi/clubImages/event/opasakinaka/* root@199.180.133.121:/root/home/tipsy/images/club/opasakinaka/event/    
+
+scp /Users/vichi/clubImages/event/raastakharwest/* root@199.180.133.121:/root/home/tipsy/images/club/raastakharwest/event/
+
+scp /Users/vichi/clubImages/event/socialkharwest/* root@199.180.133.121:/root/home/tipsy/images/club/socialkharwest/event/
+
+scp /Users/vichi/clubImages/event/bombayaddasantacruz/* root@199.180.133.121:/root/home/tipsy/images/club/bombayaddasantacruz/event/
+
+scp /Users/vichi/clubImages/event/escobarbandrawest/* root@199.180.133.121:/root/home/tipsy/images/club/escobarbandrawest/event/
+
+scp /Users/vichi/clubImages/event/thelittleeasybandrawest/* root@199.180.133.121:/root/home/tipsy/images/club/thelittleeasybandrawest/event/
+
+scp /Users/vichi/clubImages/event/jlwabandrawest/* root@199.180.133.121:/root/home/tipsy/images/club/jlwabandrawest/event/
+
+scp /Users/vichi/clubImages/event/raddajuhu/* root@199.180.133.121:/root/home/tipsy/images/club/raddajuhu/event/
+
+scp /Users/vichi/clubImages/event/yedarepublicjuhu/* root@199.180.133.121:/root/home/tipsy/images/club/yedarepublicjuhu/event/
+
+scp /Users/vichi/clubImages/event/glocaljunctionandheriwest/* root@199.180.133.121:/root/home/tipsy/images/club/glocaljunctionandheriwest/event/
+
+scp /Users/vichi/clubImages/event/bombaycocktailbarandheriwest/* root@199.180.133.121:/root/home/tipsy/images/club/bombaycocktailbarandheriwest/event/
+
+scp /Users/vichi/clubImages/event/matahaariworli/* root@199.180.133.121:/root/home/tipsy/images/club/matahaariworli/event/
+
+scp /Users/vichi/clubImages/event/bombargoregaonwest/* root@199.180.133.121:/root/home/tipsy/images/club/bombargoregaonwest/event/
+
+scp /Users/vichi/clubImages/event/thelumberbarcbdbelapur/* root@199.180.133.121:/root/home/tipsy/images/club/thelumberbarcbdbelapur/event/
+
+scp /Users/vichi/clubImages/event/cocoMansionthanewest/* root@199.180.133.121:/root/home/tipsy/images/club/cocoMansionthanewest/event/
+
+scp /Users/vichi/clubImages/event/Drinkerybkc/* root@199.180.133.121:/root/home/tipsy/images/club/Drinkerybkc/event/
+
+scp /Users/vichi/clubImages/event/satelliteandheriwest/* root@199.180.133.121:/root/home/tipsy/images/club/satelliteandheriwest/event/
+
+scp /Users/vichi/clubImages/event/lordofthedrinksandheriwest/* root@199.180.133.121:/root/home/tipsy/images/club/lordofthedrinksandheriwest/event/
+
+scp /Users/vichi/clubImages/event/lordofthedrinkslowerparel/* root@199.180.133.121:/root/home/tipsy/images/club/lordofthedrinkslowerparel/event/
+
+scp /Users/vichi/clubImages/event/truetrammtrunkpowai/* root@199.180.133.121:/root/home/tipsy/images/club/truetrammtrunkpowai/event/
+
+scp /Users/vichi/clubImages/event/mitronandherieast/* root@199.180.133.121:/root/home/tipsy/images/club/mitronandherieast/event/
+
+scp /Users/vichi/clubImages/event/cultandherieast/* root@199.180.133.121:/root/home/tipsy/images/club/cultandherieast/event/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*************************
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+COMMERCIAL NIGHT
+@GOPARTIES
+The Lumber Bar & Co.
+CBD Belapur
+
+18.1 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+BOLLYWOOD SATURDAY #FT L/E -18TH MAY
+@GOPARTIES
+Coco Mansion
+Thane West
+
+23.6 Km Away
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+OPA! SATURDAY FEAT. NITIN.
+@GOPARTIES
+Opa
+Sakinaka
+
+3.2 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+RAASTA PLAYHOUSE
+@GOPARTIES
+Raasta
+Khar West
+
+4.2 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+CHAR GRILLED BEATS | EVERY SATURDAY 18TH MAY #KHARSOCIAL
+@GOPARTIES
+Social
+Khar West
+
+4.3 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+THE GRIND FT. DJ ISHANI & BOBKAT | #KHARSOCIAL
+@GOPARTIES
+Social
+Khar West
+
+4.3 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+SMOKE SCREEN
+@GOPARTIES
+The Finch
+Powai
+
+4.4 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+THE SATURDAY AFFAIR FT. DJ KUSH & DJ GORDON -18TH MAY
+@GOPARTIES
+Bombay Adda
+Santacruz West
+
+4.6 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+DESI NIGHT
+@GOPARTIES
+Escobar
+Bandra West
+
+4.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+SATURDAY RE-LOOP
+@GOPARTIES
+The Little Easy
+Bandra West
+
+4.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+HALL OF FAME
+@GOPARTIES
+JLWA
+Bandra West
+
+4.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+10 YEARS OF KRUNK: IGLOOGHOST & MALFNKTION | MUMBAI
+@GOPARTIES
+Bonobo
+Bandra West
+
+4.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+THE CATCH EDITION 1.0 AT ARTH
+@GOPARTIES
+Arth
+Khar
+
+4.9 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+SATURDAY NIGHT LIVE FEATURING MAY CONTAIN NUTS -18TH MAY
+@GOPARTIES
+The Stables
+Andheri East
+
+5.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+BIGGEST CHASHMA PARTY BY HARRY'S.
+@GOPARTIES
+Harrys
+Powai
+
+5.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+CENSORED SATURDAY FT. DJ PARSH | DJ MANAN-18TH MAY
+@GOPARTIES
+R Adda
+Juhu
+
+6.6 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+URBN SATURDAY
+@GOPARTIES
+Yeda Republic
+Juhu
+
+6.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+À¤•LUB À¤•ULTURE WITH DJ NANAK
+@GOPARTIES
+Glocal Junction
+Andheri West
+
+8.4 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+SPACE OF SOUND FT. DJ CYRUS
+@GOPARTIES
+Bombay Cocktail
+Andheri West
+
+8.4 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+SATURDAY AFTER DARK W/ DJ KAM
+@GOPARTIES
+Lord of the Drinks
+Veera Desai Road
+
+8.4 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+BANANA SPILTS-COMEDY NIGHT AT ATMRP
+@GOPARTIES
+At MRP
+Andheri West
+
+9.4 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+MOTHER'S DAY BOWLING CHAMPIONSHIP
+@GOPARTIES
+Smaaash
+Lower Parel
+
+9.7 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+DJ MADDE LIVE
+@GOPARTIES
+Tamasha
+Lower Parel
+
+9.9 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 5/5
+MAY
+
+18
+
+SAT
+
+SATURDAY SOIREE
+@GOPARTIES
+Matahaari
+Worli
+
+10 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 3/5
+MAY
+
+18
+
+SAT
+
+BOMBAY CIRCUS BOLLYWOOD POPUP FT. DJ AKTHAR - 18TH MAY
+@GOPARTIES
+Bombar
+Goregaon West
+
+11.6 Km Away
+
+Exclusively Via GoParties
+
+ deal
+1 Day To Go 4/5
+MAY
+
+18
+
+SAT
+
+PERCUSSION NIGHT WITH ANIISH
+@GOPARTIES
+Glocal Junction
+Andheri West
+
+11.8 Km Away
+
+Exclusively Via GoParties
+
+First « 1 2 » Last
+Event By Popular Locations
+Connaught Place Nehru Place Sector 29, Gurgaon Rajouri Garden Khel Gaon Marg DLF Cyber Hub Sector 38, Noida Golf Course Road Green Park Safdarjung Enclave Punjabi Bagh Greater Kailash 1 Saket Sector 18, Noida MG Road, Gurgaon Khan Market Janpath Lodhi Road Hauz Khas Village Defence Colony New Friends Colony Greater Kailash 2 Vasant Kunj
+Event By Popular Genres
+Acoustic Blues Bollywood Commercial EDM Funk Fusion Hip Hop House Music Indie Jazz Karaoke Nu Disco POP Psy Trance Psychedelic Punjabi Punk Rock R&B Retro Rock Salsa Stand-up Comedy Sufi Techno
+Venue By Popular Locations
+Connaught Place Nehru Place Sector 29, Gurgaon Rajouri Garden Khel Gaon Marg DLF Cyber Hub Sector 38, Noida Golf Course Road Green Park Safdarjung Enclave Punjabi Bagh Greater Kailash 1 Saket Sector 18, Noida MG Road, Gurgaon Khan Market Janpath Lodhi Road Hauz Khas Village Defence Colony New Friends Colony Greater Kailash 2 Vasant Kunj
+Top Cities: Delhi | Gurgaon | Pune | Bangalore | Hyderabad | Chennai | Goa | Chandigarh | Kolkata
+Blog | Venues | Contact us | Send Feed Back | FAQ'S | Terms & Conditions | Privacy Policy
+NEWSLETTER
+Enter Your Email Id
+Grooved in India For Entertainment Seekers   

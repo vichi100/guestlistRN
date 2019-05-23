@@ -87,8 +87,17 @@ class App extends React.Component {
   }
 
   async init() {
-    await AsyncStorage.setItem("city", 'mumbai');
-    global.city='mumbai';
+    // check user preference of city
+    var myCity = await AsyncStorage.getItem("city");
+    console.log("mycity: "+myCity)
+    if(myCity == null){
+      await AsyncStorage.setItem("city", 'mumbai');
+      global.city='mumbai';
+    }else{
+      global.city = myCity
+    }
+
+    
     var expoToken = await AsyncStorage.getItem("expoToken");
     if (expoToken == null) {
       this.registerForPushNotifications();

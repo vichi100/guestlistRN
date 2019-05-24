@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "GuestList",
-    "version": "2.1",
+    "version": "2.2",
     "slug": "guestlist",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -15,6 +15,16 @@
       "image": "./assets/images/guestlistsplash.png", 
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
+    },
+    "notification": {
+     
+      "icon": "./assets/images/icon.png",
+  
+     
+      "androidMode": "default"
+  
+      
+      
     },
     "updates": {
       "fallbackToCacheTimeout": 0 
@@ -41,7 +51,7 @@
     },
     "android": {
       "package": "com.application.club.guestlist",
-      "versionCode": 38,
+      "versionCode": 39,
       "config": {
 
         "googleSignIn": {

@@ -388,7 +388,7 @@ export default class BookingScreen extends React.Component {
     this.setState({ lastPassStagCount: value.passstagcount });
 
     if(this.state.totalAmount == 0){  
-      this.setState({bookingAmount:0})
+      this.setState({bookingAmount:0}) 
     }
      
     setTimeout(() => {}, 200);

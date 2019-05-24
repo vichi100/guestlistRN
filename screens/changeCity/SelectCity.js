@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, Dimensions, Image , TouchableOpacity,
 import Card from '../Card'
 import { StackActions, NavigationActions } from 'react-navigation';
 import { AsyncStorage } from "react-native";
+import firebase from "firebase";
 
 // const data = [
 //   { key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }, { key: 'J' },
@@ -83,6 +84,16 @@ export default class App extends React.Component {
 
     global.city = this.state.city;
     await AsyncStorage.setItem("city", global.city);
+
+    var usersRef = firebase
+      .database()
+      .ref("Users/");
+      
+      usersRef.child(global.tokenId).update({
+        city: global.city.toLowerCase()
+      });
+      
+
     return this.props.navigation.dispatch(resetAction);
   };
 

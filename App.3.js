@@ -64,7 +64,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    //await AsyncStorage.clear();//COMMENT THIS BEFORE BUILD
+    await AsyncStorage.clear();//COMMENT THIS BEFORE BUILD
     // start : this._getLocationAsync();
     global.userLatlong = -1;
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -98,7 +98,7 @@ class App extends React.Component {
     }
 
     
-    var expoToken = null;//await AsyncStorage.getItem("expoToken");
+    var expoToken = await AsyncStorage.getItem("expoToken");
     if (expoToken == null) {
       this.registerForPushNotifications();
     }
@@ -149,36 +149,26 @@ class App extends React.Component {
     this.writeUserData(token);
 
     this.subscription = Notifications.addListener(this.handleNotification);
-    
+
     this.setState({ token: token });
   }
 
-  removeSpecialChars = (str) => {
-    return str.replace(/(?!\w|\s)./g, '')
-      .replace(/\s+/g, ' ')
-      .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-  }
-
   writeUserData = token => {
-    var tokenId = this.removeSpecialChars(token);
-    global.tokenId = tokenId;
-    // var changedToken = token.replace("[","");
-    // changedToken = changedToken.replace("]","")
-    var usersRef = firebase
+    firebase
       .database()
-      .ref("Users/");
-      usersRef.child(tokenId).set({
+      .ref("Users/")
+      .set({
 
 
-        //mytoken: {
-        token: token,
-        city: global.city.toLowerCase()
-        //}
+        mytoken: {
+          token: token,
+        city: global.city
+        }
         
       })
       .then(data => {
         //success callback
-        //console.log("App: successfully written expo token in firebase: ", data);
+        console.log("App: successfully written expo token in firebase: ", data);
         this._storeDataExpoToken(token);
       })
       .catch(error => {
@@ -198,8 +188,8 @@ class App extends React.Component {
   };
 
   handleNotification = notification => {
-    //console.log("notification recived"+ JSON.stringify(notification));
-    //console.log("notification recived clubid: "+ JSON.stringify(notification.data.clubid));
+    console.log("notification recived"+ JSON.stringify(notification));
+    console.log("notification recived clubid: "+ JSON.stringify(notification.data.clubid));
     var clubid = '1000002';//notification.data.clubid
     if(clubid != null){
       // this.navigator && this.navigator.dispatch({ type: 'Navigate', routeName, params });

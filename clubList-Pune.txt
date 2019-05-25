@@ -542,6 +542,9 @@ VALUES
 ************** EVENT IMAGE FILE TRANSFER COMMANDS ****************
 
 
+mkdir -p oneloungemundhwa/event/
+
+
 scp -pr /Users/vichi/clubImagesPune/event/barazabarsyerawada/* root@199.180.133.121:/root/home/tipsy/images/club/barazabarsyerawada/event/ 
 
 scp -pr /Users/vichi/clubImagesPune/event/miamisenapatibapat/* root@199.180.133.121:/root/home/tipsy/images/club/miamisenapatibapat/event/ 

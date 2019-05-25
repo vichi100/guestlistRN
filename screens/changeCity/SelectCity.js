@@ -14,7 +14,7 @@ import firebase from "firebase";
 
 const data = [{id:"Mumbai", src: require('../../assets/images/mumbai.png')},
                 {id:"Delhi", src: require('../../assets/images/delhi.png')},
-                {id:"Bangloore", src: require('../../assets/images/bangloore.png')},
+                {id:"Bangalore", src: require('../../assets/images/bangloore.png')},
                 {id:'Pune', src: require('../../assets/images/pune.png')},
                 ]
 

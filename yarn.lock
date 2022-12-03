@@ -2589,9 +2589,9 @@ decamelize@^1.1.1:
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
-  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
+  integrity sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==
 
 dedent@^0.6.0:
   version "0.6.0"
@@ -5113,6 +5113,11 @@ lodash.mapvalues@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
   integrity sha1-G6+lAF3p3W9PJmaMMMo3IwzJaJw=
 
+lodash.merge@4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
+  integrity sha512-yP6Me/9MwNfgOdUmMspV4xyjBVktgzlKDYLC9tSmldZGD7stwi6D+bbKihbMDLvFWnP9hr44lidKv5ETe82DKQ==
+
 lodash.omit@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
@@ -6766,12 +6771,24 @@ react-native-scrollable-mixin@^1.0.1:
   resolved "https://registry.yarnpkg.com/react-native-scrollable-mixin/-/react-native-scrollable-mixin-1.0.1.tgz#34a32167b64248594154fd0d6a8b03f22740548e"
   integrity sha1-NKMhZ7ZCSFlBVP0NaosD8idAVI4=
 
-react-native-snackbar-component@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-snackbar-component/-/react-native-snackbar-component-1.1.0.tgz#51be4ab92e004d20010a1a8de0e269c0a3feaa5d"
-  integrity sha512-fV6X6ejVqQhqvrtAGsxn2cMKskbv5s0ZkcMfW2wiUa+Zaobk/otds+vEwRDQivfk1RST4UfCqDJtMbnMwYAS0w==
+react-native-simple-store@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-simple-store/-/react-native-simple-store-1.3.0.tgz#84953a7b007b8e3c50ec768478e98dc3636ef092"
+  integrity sha512-nIyuzqSfHPR1CUFGh5HTSURr4JJe5G23kMgYmzplavf4Jn2vuzz1JGrPQFUkoKyKVbeIagTB6L1kmKJCgAyfMA==
   dependencies:
-    prop-types "^15.6.0"
+    lodash.merge "4.6.0"
+
+react-native-smart-loading-spinner-overlay@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-smart-loading-spinner-overlay/-/react-native-smart-loading-spinner-overlay-1.0.2.tgz#6640c0bcbf1a8fb22697fd2704169005add4ecd9"
+  integrity sha512-u9DMkEA0ubuPDHqFbhu8lz5ecCPqMMZPDx1qjT193koUOHsFmu2xfel2b6rG0tX3GLG/R9drgnCysmrddaKeXQ==
+  dependencies:
+    react-native-smart-timer-enhance "^1.0.2"
+
+react-native-smart-timer-enhance@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-smart-timer-enhance/-/react-native-smart-timer-enhance-1.0.3.tgz#47ddc19be5a6c19184449039495f25546bcd94fe"
+  integrity sha512-L3SruTHQDwgY6lSdzbufAfTOl6mYyY1PxjULnpv3zZQmtojqWEBjQFNVE6JHIMkMjjDgtkEJDdsIJpg1nIQLUw==
 
 react-native-status-bar-height@^2.2.0:
   version "2.3.1"
